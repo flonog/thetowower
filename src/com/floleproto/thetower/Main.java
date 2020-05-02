@@ -31,35 +31,35 @@ public class Main extends JavaPlugin {
         instance = this;
 
         saveDefaultConfig();
-        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer] §eDefault Config saved.");
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eDefault Config saved.");
         PositionSave.LoadFile();
         PositionSave.LoadPositions();
-        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer] §ePositions loaded.");
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §ePositions loaded.");
         InventorySave.LoadFile();
-        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer] §e loaded.");
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eInventories loaded.");
         try{
             GameConfig.loadConfig();
-            Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer]§e Configurations loaded.");
+            Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r]§e Configurations loaded.");
         } catch(Exception e) {
-            Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer]§c Error ! Save default configuration to try to fix it.");
+            Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r]§c Error ! Save default configuration to try to fix it.");
             GameConfig.saveConfig();
         }
 
 
         statistics = new Statistics();
-        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer] §eStatistics loaded.");
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eStatistics loaded.");
         gameManager = new GameManager();
-        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer] §eGameManager loaded.");
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eGameManager loaded.");
         teamManager = new TeamManager();
-        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer] TeamManager loaded.");
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eTeamManager loaded.");
         scoreboardManager = new ScoreboardManager();
-        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer] §eScoreboardManager loaded. (ScoreboardSign by zyuiop)");
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eScoreboardManager loaded. (ScoreboardSign by zyuiop)");
 
         getCommand("host").setExecutor(new HostCommand(this));
         getCommand("start").setExecutor(new StartCommand(this));
         getCommand("cancelstart").setExecutor(new CancelStartCommand(this));
         getCommand("save").setExecutor(new SaveInvCommand(this));
-        System.out.println("[The TOwOwer] §eCommands registered.");
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eCommands registered.");
 
         getServer().getPluginManager().registerEvents(new JoinAndLeftEvent(this), this);
         getServer().getPluginManager().registerEvents(new FoodEvent(this), this);
@@ -68,9 +68,9 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerInteract(this), this);
         getServer().getPluginManager().registerEvents(new PlayerDropEvent(this), this);
         getServer().getPluginManager().registerEvents(new PlayerDieEvent(this), this);
-        System.out.println("[The TOwOwer] §eEvents registered.");
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eEvents registered.");
 
-        System.out.println("[The TOwOwer] §cPlugin loaded successfully.");
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §cPlugin loaded successfully.");
     }
 
 }
