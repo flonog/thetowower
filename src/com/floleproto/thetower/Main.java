@@ -5,12 +5,10 @@ import com.floleproto.thetower.commands.HostCommand;
 import com.floleproto.thetower.commands.SaveInvCommand;
 import com.floleproto.thetower.commands.StartCommand;
 import com.floleproto.thetower.events.*;
-import com.floleproto.thetower.game.GameManager;
-import com.floleproto.thetower.game.ScoreboardManager;
-import com.floleproto.thetower.game.Statistics;
-import com.floleproto.thetower.game.TeamManager;
+import com.floleproto.thetower.game.*;
 import com.floleproto.thetower.game.save.InventorySave;
 import com.floleproto.thetower.game.save.PositionSave;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
@@ -33,27 +31,35 @@ public class Main extends JavaPlugin {
         instance = this;
 
         saveDefaultConfig();
-        System.out.println("[The TOwOwer] Default Config saved.");
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer] §eDefault Config saved.");
         PositionSave.LoadFile();
         PositionSave.LoadPositions();
-        System.out.println("[The TOwOwer] Positions loaded.");
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer] §ePositions loaded.");
         InventorySave.LoadFile();
-        System.out.println("[The TOwOwer] Inventories loaded.");
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer] §e loaded.");
+        try{
+            GameConfig.loadConfig();
+            Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer]§e Configurations loaded.");
+        } catch(Exception e) {
+            Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer]§c Error ! Save default configuration to try to fix it.");
+            GameConfig.saveConfig();
+        }
+
 
         statistics = new Statistics();
-        System.out.println("[The TOwOwer] Statistics loaded.");
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer] §eStatistics loaded.");
         gameManager = new GameManager();
-        System.out.println("[The TOwOwer] GameManager loaded.");
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer] §eGameManager loaded.");
         teamManager = new TeamManager();
-        System.out.println("[The TOwOwer] TeamManager loaded.");
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer] TeamManager loaded.");
         scoreboardManager = new ScoreboardManager();
-        System.out.println("[The TOwOwer] ScoreboardManager loaded. (ScoreboardSign by zyuiop)");
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer] §eScoreboardManager loaded. (ScoreboardSign by zyuiop)");
 
         getCommand("host").setExecutor(new HostCommand(this));
         getCommand("start").setExecutor(new StartCommand(this));
         getCommand("cancelstart").setExecutor(new CancelStartCommand(this));
         getCommand("save").setExecutor(new SaveInvCommand(this));
-        System.out.println("[The TOwOwer] Commands registered.");
+        System.out.println("[The TOwOwer] §eCommands registered.");
 
         getServer().getPluginManager().registerEvents(new JoinAndLeftEvent(this), this);
         getServer().getPluginManager().registerEvents(new FoodEvent(this), this);
@@ -62,9 +68,9 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerInteract(this), this);
         getServer().getPluginManager().registerEvents(new PlayerDropEvent(this), this);
         getServer().getPluginManager().registerEvents(new PlayerDieEvent(this), this);
-        System.out.println("[The TOwOwer] Events registered.");
+        System.out.println("[The TOwOwer] §eEvents registered.");
 
-        System.out.println("[The TOwOwer] Plugin loaded successfully.");
+        System.out.println("[The TOwOwer] §cPlugin loaded successfully.");
     }
 
 }

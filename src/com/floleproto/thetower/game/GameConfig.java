@@ -4,21 +4,21 @@ import com.floleproto.thetower.Main;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class GameConfig {
-    int minplayer = 5;
-    int scoretowin = 10;
+    public static int minplayer = 5;
+    public static int scoretowin = 10;
 
-    long spawnrate_xp = 5;
-    long spawnrate_iron = 5;
-    boolean spawnlapis = false;
+    public static long spawnrate_xp = 5;
+    public static long spawnrate_iron = 5;
+    public static boolean spawnlapis = false;
 
-    boolean chest_breakable = true;
-    boolean friendlyfire = false;
-    boolean nolapisneeded = true;
-    boolean timelimit = true;
-    boolean spawnmob = false;
-    boolean eternalday = true;
+    public static boolean chest_breakable = true;
+    public static boolean friendlyfire = false;
+    public static boolean nolapisneeded = true;
+    public static boolean timelimit = true;
+    public static boolean spawnmob = false;
+    public static boolean eternalday = true;
 
-    public void loadConfig() {
+    public static void loadConfig() {
         FileConfiguration config = Main.instance.getConfig();
 
         minplayer = config.getInt("minplayer");
@@ -36,8 +36,7 @@ public class GameConfig {
         eternalday = config.getBoolean("eternalday");
     }
 
-    public void saveConfig() {
-
+    public static void saveConfig() {
         FileConfiguration config = Main.instance.getConfig();
 
         config.set("minplayer", minplayer);
@@ -54,5 +53,6 @@ public class GameConfig {
         config.set("spawnmob", spawnmob);
         config.set("eternalday", eternalday);
 
+        Main.instance.saveConfig();
     }
 }
