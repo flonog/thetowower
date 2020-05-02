@@ -70,7 +70,7 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerDieEvent(this), this);
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eEvents registered.");
 
-        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §cPlugin loaded successfully.");
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §aPlugin loaded successfully.");
     }
 
 }
