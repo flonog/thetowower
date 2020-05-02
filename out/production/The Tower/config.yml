@@ -1,0 +1,7 @@
+spawn:
+  x: -28
+  y: 64
+  z: 992
+  world: world
+
+minplayer: 5

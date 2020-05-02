@@ -1,0 +1,144 @@
+blue:
+  inventory:
+    '0':
+      ==: org.bukkit.inventory.ItemStack
+      type: WOOD_SWORD
+    '1':
+      ==: org.bukkit.inventory.ItemStack
+      type: STAINED_GLASS
+      damage: 11
+      amount: 16
+    '8':
+      ==: org.bukkit.inventory.ItemStack
+      type: BAKED_POTATO
+      amount: 8
+  armor:
+    '0':
+      ==: org.bukkit.inventory.ItemStack
+      type: LEATHER_BOOTS
+      meta:
+        ==: ItemMeta
+        meta-type: LEATHER_ARMOR
+        color:
+          ==: Color
+          RED: 0
+          BLUE: 235
+          GREEN: 17
+    '1':
+      ==: org.bukkit.inventory.ItemStack
+      type: LEATHER_LEGGINGS
+      meta:
+        ==: ItemMeta
+        meta-type: LEATHER_ARMOR
+        color:
+          ==: Color
+          RED: 0
+          BLUE: 235
+          GREEN: 17
+    '2':
+      ==: org.bukkit.inventory.ItemStack
+      type: LEATHER_CHESTPLATE
+      meta:
+        ==: ItemMeta
+        meta-type: LEATHER_ARMOR
+        color:
+          ==: Color
+          RED: 0
+          BLUE: 235
+          GREEN: 17
+    '3':
+      ==: org.bukkit.inventory.ItemStack
+      type: LEATHER_HELMET
+      meta:
+        ==: ItemMeta
+        meta-type: LEATHER_ARMOR
+        color:
+          ==: Color
+          RED: 0
+          BLUE: 235
+          GREEN: 17
+red:
+  inventory:
+    '0':
+      ==: org.bukkit.inventory.ItemStack
+      type: WOOD_SWORD
+    '1':
+      ==: org.bukkit.inventory.ItemStack
+      type: STAINED_GLASS
+      damage: 14
+      amount: 16
+    '8':
+      ==: org.bukkit.inventory.ItemStack
+      type: BAKED_POTATO
+      amount: 8
+  armor:
+    '0':
+      ==: org.bukkit.inventory.ItemStack
+      type: LEATHER_BOOTS
+      meta:
+        ==: ItemMeta
+        meta-type: LEATHER_ARMOR
+        color:
+          ==: Color
+          RED: 235
+          BLUE: 42
+          GREEN: 0
+    '1':
+      ==: org.bukkit.inventory.ItemStack
+      type: LEATHER_LEGGINGS
+      meta:
+        ==: ItemMeta
+        meta-type: LEATHER_ARMOR
+        color:
+          ==: Color
+          RED: 235
+          BLUE: 42
+          GREEN: 0
+    '2':
+      ==: org.bukkit.inventory.ItemStack
+      type: LEATHER_CHESTPLATE
+      meta:
+        ==: ItemMeta
+        meta-type: LEATHER_ARMOR
+        color:
+          ==: Color
+          RED: 235
+          BLUE: 42
+          GREEN: 0
+    '3':
+      ==: org.bukkit.inventory.ItemStack
+      type: LEATHER_HELMET
+      meta:
+        ==: ItemMeta
+        meta-type: LEATHER_ARMOR
+        color:
+          ==: Color
+          RED: 235
+          BLUE: 42
+          GREEN: 0
+spectator:
+  inventory:
+    '13':
+      ==: org.bukkit.inventory.ItemStack
+      type: GHAST_TEAR
+  armor:
+    '0':
+      ==: org.bukkit.inventory.ItemStack
+      type: AIR
+      damage: -1
+      amount: 0
+    '1':
+      ==: org.bukkit.inventory.ItemStack
+      type: AIR
+      damage: -1
+      amount: 0
+    '2':
+      ==: org.bukkit.inventory.ItemStack
+      type: AIR
+      damage: -1
+      amount: 0
+    '3':
+      ==: org.bukkit.inventory.ItemStack
+      type: AIR
+      damage: -1
+      amount: 0
