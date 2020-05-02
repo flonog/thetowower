@@ -145,7 +145,7 @@ public class Team {
         addScore(1);
         teleportToTeamPoint(p);
 
-        Bukkit.broadcastMessage("§b§lGoal §4§l>§1§l> " + p.getDisplayName() + " has marked one point for the " + name + " team !");
+        Bukkit.broadcastMessage("§b§lGoal §4§l>§1§l> " + p.getDisplayName() + " has marked one point for the " + name + "§r team !");
 
         for (Player pl : Bukkit.getOnlinePlayers()) {
             if (isInTeam(pl)) {
@@ -154,6 +154,18 @@ public class Team {
                 pl.playSound(pl.getLocation(), Sound.NOTE_PLING, 1, 0.5f);
             }
         }
+
+        Main.instance.scoreboardManager.setScore();
+
+        if(checkWin()){
+            win();
+        }
+    }
+
+    public void win(){
+        Bukkit.broadcastMessage("\n§b§lThe TOwOwer §4§l>§1§l> " + name + " §e team won the game !\n\n");
+        Main.instance.gameManager.stopGame();
+        Main.instance.scoreboardManager.setWinner(name);
     }
 
     public void addPlayer(Player p) {
@@ -177,6 +189,6 @@ public class Team {
     }
 
     public boolean checkWin() {
-        return score >= Main.instance.getConfig().getInt("scoretowin");
+        return score >= GameConfig.scoretowin;
     }
 }

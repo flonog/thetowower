@@ -28,7 +28,7 @@ public class ScoreboardManager {
                 scoreboardSign.setLine(3, "§d");
                 scoreboardSign.setLine(4, "§bBlue won !");
                 scoreboardSign.setLine(5, "§e");
-                scoreboardSign.setLine(6, "Time §e00:00");
+                scoreboardSign.setLine(6, "§f");
                 break;
             case ONGAME:
                 scoreboardSign.setLine(0, "§c");
@@ -64,6 +64,14 @@ public class ScoreboardManager {
             ScoreboardSign scoreboardSign = scoreboards.get(p);
             scoreboardSign.setLine(4, "§4§lRed§r   " + TeamManager.redTeam.getScore());
             scoreboardSign.setLine(5, "§1§lBlue§r  " + TeamManager.blueTeam.getScore());
+            scoreboards.put(p, scoreboardSign);
+        }
+    }
+
+    public void setWinner(String teamName){
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            ScoreboardSign scoreboardSign = scoreboards.get(p);
+            scoreboardSign.setLine(4, "§b" + teamName +" §bwon !");
             scoreboards.put(p, scoreboardSign);
         }
     }

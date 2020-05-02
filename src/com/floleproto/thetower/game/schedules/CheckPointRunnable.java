@@ -16,8 +16,6 @@ public class CheckPointRunnable extends BukkitRunnable {
             for (Object p : Arrays.stream(players).filter(x -> teamManager.getTeam(x).getTag() == "blue").toArray()) {
                 teamManager.blueTeam.scorePoint((Player) p);
             }
-            ;
-            Main.instance.scoreboardManager.setScore();
         }
 
         players = teamManager.blueTeam.getPool().getPlayersInside();
@@ -25,8 +23,6 @@ public class CheckPointRunnable extends BukkitRunnable {
             for (Object p : Arrays.stream(players).filter(x -> teamManager.getTeam(x).getTag() == "red").toArray()) {
                 teamManager.redTeam.scorePoint((Player) p);
             }
-            ;
-            Main.instance.scoreboardManager.setScore();
         }
     }
 }

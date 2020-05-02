@@ -1,8 +1,10 @@
 package com.floleproto.thetower.game;
 
+import com.floleproto.thetower.utils.MapUtils;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.UUID;
 
 public class Statistics {
@@ -33,4 +35,11 @@ public class Statistics {
         kills.put(p.getUniqueId(), 0);
     }
 
+    public LinkedHashMap<UUID, Integer> getBestDeaths(){
+        return MapUtils.sortBestPlayer(deaths);
+    }
+
+    public LinkedHashMap<UUID, Integer> getBestKills(){
+        return MapUtils.sortBestPlayer(kills);
+    }
 }

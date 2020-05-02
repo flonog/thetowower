@@ -11,10 +11,11 @@ spawnrate_xp: 5
 spawnrate_iron: 5
 spawnlapis: false
 
+timelimit_enable: true
+timelimit_time: 30
+
 chest_breakable: true
 friendlyfire: false
 nolapisneeded: true
-timelimit: true
 spawnmob: false
 eternalday: true
-

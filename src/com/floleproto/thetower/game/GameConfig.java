@@ -14,7 +14,8 @@ public class GameConfig {
     public static boolean chest_breakable = true;
     public static boolean friendlyfire = false;
     public static boolean nolapisneeded = true;
-    public static boolean timelimit = true;
+    public static boolean timelimit_enable = true;
+    public static int timelimit_time = 30;
     public static boolean spawnmob = false;
     public static boolean eternalday = true;
 
@@ -31,7 +32,8 @@ public class GameConfig {
         chest_breakable = config.getBoolean("chest_breakable");
         friendlyfire = config.getBoolean("friendlyfire");
         nolapisneeded = config.getBoolean("nolapisneeded");
-        timelimit = config.getBoolean("timelimit");
+        timelimit_enable = config.getBoolean("timelimit_enable");
+        timelimit_time = config.getInt("timelimit_time");
         spawnmob = config.getBoolean("spawnmob");
         eternalday = config.getBoolean("eternalday");
     }
@@ -49,7 +51,8 @@ public class GameConfig {
         config.set("chest_breakable", chest_breakable);
         config.set("friendlyfire", friendlyfire);
         config.set("nolapisneeded", nolapisneeded);
-        config.set("timelimit", timelimit);
+        config.set("timelimit_enable", timelimit_enable);
+        config.set("timelimit_time", timelimit_time);
         config.set("spawnmob", spawnmob);
         config.set("eternalday", eternalday);
 
