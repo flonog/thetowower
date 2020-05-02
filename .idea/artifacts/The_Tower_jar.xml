@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="The Tower:jar">
-    <output-path>D:/Documents/Jeux/Minecraft/Server/1.8.8/plugins/</output-path>
-    <root id="archive" name="The Tower.jar">
-      <element id="module-output" name="The Tower" />
-      <element id="extracted-dir" path="D:/Documents/Jeux/Minecraft/Server/1.8.8/spigot-1.8.8.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>
