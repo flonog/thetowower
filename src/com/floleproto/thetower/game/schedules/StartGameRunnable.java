@@ -3,8 +3,6 @@ package com.floleproto.thetower.game.schedules;
 import com.floleproto.thetower.Main;
 import com.floleproto.thetower.utils.Title;
 import com.floleproto.thetower.utils.XpBarManager;
-import com.sun.xml.internal.fastinfoset.tools.XML_SAX_StAX_FI;
-import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class StartGameRunnable extends BukkitRunnable {
@@ -12,7 +10,7 @@ public class StartGameRunnable extends BukkitRunnable {
     private int timer;
     private int maxTimer;
 
-    public StartGameRunnable(int timer){
+    public StartGameRunnable(int timer) {
         this.timer = timer;
         this.maxTimer = timer;
     }
@@ -22,13 +20,13 @@ public class StartGameRunnable extends BukkitRunnable {
         XpBarManager.broadcastLevel(timer);
         XpBarManager.broadcastSetBar(timer, maxTimer);
 
-        if(timer <= 10){
+        if (timer <= 10) {
             Title title = new Title("", "");
-            if(timer == 1 ){
+            if (timer == 1) {
                 title.setTitle("§4" + timer);
-            } else if(timer <= 3){
+            } else if (timer <= 3) {
                 title.setTitle("§c" + timer);
-            } else if(timer <= 5){
+            } else if (timer <= 5) {
                 title.setTitle("§e" + timer);
             } else {
                 title.setTitle("§a" + timer);
@@ -37,7 +35,7 @@ public class StartGameRunnable extends BukkitRunnable {
             title.broadcast();
         }
 
-        if(timer <= 0){
+        if (timer <= 0) {
 
             Main.instance.gameManager.startGame();
             Main.instance.gameManager.stopCountdown(false);

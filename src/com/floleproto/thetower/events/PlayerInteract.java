@@ -1,7 +1,6 @@
 package com.floleproto.thetower.events;
 
 import com.floleproto.thetower.Main;
-import com.floleproto.thetower.game.GameManager;
 import com.floleproto.thetower.game.GameStates;
 import com.floleproto.thetower.gui.waitingroom.TeamGui;
 import org.bukkit.GameMode;
@@ -19,17 +18,17 @@ public class PlayerInteract implements Listener {
     }
 
     @EventHandler
-    public void onPlayerInteract(PlayerInteractEvent ev){
-        if(!main.gameManager.isStates(GameStates.WAITING))
+    public void onPlayerInteract(PlayerInteractEvent ev) {
+        if (!main.gameManager.isStates(GameStates.WAITING))
             return;
 
         Player p = ev.getPlayer();
 
-        if(p.getGameMode() == GameMode.CREATIVE)
+        if (p.getGameMode() == GameMode.CREATIVE)
             return;
 
-        if(ev.hasItem()){
-            switch (ev.getMaterial()){
+        if (ev.hasItem()) {
+            switch (ev.getMaterial()) {
                 case WOOL:
                     new TeamGui(p).show();
             }
@@ -37,11 +36,11 @@ public class PlayerInteract implements Listener {
     }
 
     @EventHandler
-    public void onPlayerInteractGUI(InventoryClickEvent ev){
-        if(ev.getWhoClicked().getGameMode() == GameMode.CREATIVE)
+    public void onPlayerInteractGUI(InventoryClickEvent ev) {
+        if (ev.getWhoClicked().getGameMode() == GameMode.CREATIVE)
             return;
 
-        if(main.gameManager.isStates(GameStates.WAITING))
+        if (main.gameManager.isStates(GameStates.WAITING))
             ev.setCancelled(true);
     }
 }

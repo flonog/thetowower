@@ -7,14 +7,14 @@ spawn:
 minplayer: 5
 scoretowin: 10
 
-spawnrate_xp : 5
-spawnrate_iron : 5
-spawnlapis : false
+spawnrate_xp: 5
+spawnrate_iron: 5
+spawnlapis: false
 
-chest_breakable : true
-friendlyfire : false
-nolapisneeded : true
-timelimit : true
-spawnmob : false
-eternalday : true
+chest_breakable: true
+friendlyfire: false
+nolapisneeded: true
+timelimit: true
+spawnmob: false
+eternalday: true
 

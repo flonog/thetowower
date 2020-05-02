@@ -16,7 +16,6 @@ import org.bukkit.inventory.ItemFlag;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class JoinAndLeftEvent implements Listener {
@@ -28,12 +27,12 @@ public class JoinAndLeftEvent implements Listener {
     }
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent ev){
+    public void onJoin(PlayerJoinEvent ev) {
         Player p = ev.getPlayer();
         main.scoreboardManager.createScoreboard(p);
         main.scoreboardManager.setScoreboardTemplate(p, main.gameManager.getStates());
-        ev.setJoinMessage("§r" + Bukkit.getOnlinePlayers().size() + "§r / §r"+ Bukkit.getMaxPlayers() +" §4§l>§1§l> §a" + p.getDisplayName() + " join the game.");
-        if(main.gameManager.isStates(GameStates.WAITING)){
+        ev.setJoinMessage("§r" + Bukkit.getOnlinePlayers().size() + "§r / §r" + Bukkit.getMaxPlayers() + " §4§l>§1§l> §a" + p.getDisplayName() + " join the game.");
+        if (main.gameManager.isStates(GameStates.WAITING)) {
             FileConfiguration config = main.getConfig();
             double x = config.getDouble("spawn.x");
             double y = config.getDouble("spawn.y");
@@ -48,7 +47,7 @@ public class JoinAndLeftEvent implements Listener {
 
             p.getInventory().clear();
             Map<Enchantment, Integer> enchants = new HashMap<Enchantment, Integer>();
-            enchants.put(Enchantment.DURABILITY,1);
+            enchants.put(Enchantment.DURABILITY, 1);
             p.getInventory().setItem(4, new ItemCreator(Material.WOOL, 1, (byte) 0, "§b§lTeam", null, enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
 
             Title title = new Title("§b§lThe TOwOwer", "§eThe game will start soon");
@@ -56,23 +55,24 @@ public class JoinAndLeftEvent implements Listener {
 
             main.statistics.registerPlayer(p);
 
-            if(Bukkit.getOnlinePlayers().size() >= main.getConfig().getInt("minplayer") && !main.gameManager.isStarting()){
+            if (Bukkit.getOnlinePlayers().size() >= main.getConfig().getInt("minplayer") && !main.gameManager.isStarting()) {
                 main.gameManager.startCountdown();
-            };
+            }
+            ;
         }
     }
 
     @EventHandler
-    public void onLeft(PlayerQuitEvent ev){
+    public void onLeft(PlayerQuitEvent ev) {
         main.scoreboardManager.removeScoreboard(ev.getPlayer());
-        ev.setQuitMessage("§r" + (Bukkit.getOnlinePlayers().size() - 1) + "§r / §r"+ Bukkit.getMaxPlayers() +" §4§l>§l§1> §c" + ev.getPlayer().getDisplayName() + " left the game.");
+        ev.setQuitMessage("§r" + (Bukkit.getOnlinePlayers().size() - 1) + "§r / §r" + Bukkit.getMaxPlayers() + " §4§l>§l§1> §c" + ev.getPlayer().getDisplayName() + " left the game.");
 
-        if(main.gameManager.isStates(GameStates.WAITING)){
-            if(Bukkit.getOnlinePlayers().size() - 1 < main.getConfig().getInt("minplayer") && main.gameManager.isStarting()){
+        if (main.gameManager.isStates(GameStates.WAITING)) {
+            if (Bukkit.getOnlinePlayers().size() - 1 < main.getConfig().getInt("minplayer") && main.gameManager.isStarting()) {
                 main.gameManager.stopCountdown(false);
                 Bukkit.broadcastMessage("§b§lThe TOwOwer §4§l>§1§l>§c There is'nt enough players to start the game. Cancelling.");
             }
-        } else if(main.gameManager.isStates(GameStates.ONGAME)){
+        } else if (main.gameManager.isStates(GameStates.ONGAME)) {
             ev.getPlayer().setHealth(0);
         }
     }

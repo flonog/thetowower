@@ -9,7 +9,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.plugin.Plugin;
 
 public class GuiManager implements Listener {
     protected Player player;
@@ -32,31 +31,54 @@ public class GuiManager implements Listener {
         inventory = Bukkit.createInventory(null, type, name);
     }
 
-    public void show() { Bukkit.getPluginManager().registerEvents(this, Main.instance); this.player.openInventory(inventory); }
+    public void show() {
+        Bukkit.getPluginManager().registerEvents(this, Main.instance);
+        this.player.openInventory(inventory);
+    }
 
-    public Player getPlayer() { return this.player; }
+    public Player getPlayer() {
+        return this.player;
+    }
 
-    public void setPlayer(Player player) { this.player = player; }
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 
-    public int getSize() { return this.size; }
+    public int getSize() {
+        return this.size;
+    }
 
-    public void setSize(int size) { this.size = size; }
+    public void setSize(int size) {
+        this.size = size;
+    }
 
-    public InventoryType getType() { return this.type; }
+    public InventoryType getType() {
+        return this.type;
+    }
 
-    public void setType(InventoryType type) { this.type = type; }
+    public void setType(InventoryType type) {
+        this.type = type;
+    }
 
-    public String getName() { return this.name; }
+    public String getName() {
+        return this.name;
+    }
 
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public Inventory getInventory() { return inventory; }
+    public Inventory getInventory() {
+        return inventory;
+    }
 
-    public void setInventory(Inventory inventory) { this.inventory = inventory; }
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
 
     @EventHandler
     public void onCloseInventory(InventoryCloseEvent ev) {
-        if(ev.getInventory() == inventory) {
+        if (ev.getInventory() == inventory) {
             HandlerList.unregisterAll(this);
         }
     }

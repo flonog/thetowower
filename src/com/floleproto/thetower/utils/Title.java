@@ -17,12 +17,12 @@ public class Title {
     private int duration = 80;
     private int fadeOut = 20;
 
-    public Title(String title, String subtitle){
+    public Title(String title, String subtitle) {
         this.title = title;
         this.subtitle = subtitle;
     }
 
-    public Title(String title, String subtitle, int fadeIn, int duration, int fadeOut){
+    public Title(String title, String subtitle, int fadeIn, int duration, int fadeOut) {
         this.title = title;
         this.subtitle = subtitle;
         this.fadeIn = fadeIn;
@@ -30,7 +30,7 @@ public class Title {
         this.fadeOut = fadeOut;
     }
 
-    public void sendToPlayer(Player p){
+    public void sendToPlayer(Player p) {
         ProtocolManager manager = ProtocolLibrary.getProtocolManager();
         PacketContainer subtitlePacket = getSubtitlePacket();
         try {
@@ -47,7 +47,7 @@ public class Title {
         }
     }
 
-    public void broadcast(){
+    public void broadcast() {
         ProtocolManager manager = ProtocolLibrary.getProtocolManager();
         PacketContainer subtitlePacket = getSubtitlePacket();
         manager.broadcastServerPacket(subtitlePacket);
@@ -56,11 +56,11 @@ public class Title {
         manager.broadcastServerPacket(titlePacket);
     }
 
-    private PacketContainer getSubtitlePacket(){
+    private PacketContainer getSubtitlePacket() {
         PacketContainer subtitlePacket = new PacketContainer(PacketType.Play.Server.TITLE);
         subtitlePacket.getTitleActions().write(0, EnumWrappers.TitleAction.SUBTITLE);
         subtitlePacket.getChatComponents().write(0, WrappedChatComponent.fromText(subtitle));
-        return  subtitlePacket;
+        return subtitlePacket;
     }
 
     private PacketContainer getTitlePacket() {

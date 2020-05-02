@@ -21,27 +21,27 @@ public class GameManager {
         this.states = states;
     }
 
-    public boolean isStates(GameStates arg){
+    public boolean isStates(GameStates arg) {
         return states == arg;
     }
 
-    public void startCountdown(){
+    public void startCountdown() {
         startGameRunnable = new StartGameRunnable(60);
         startGameRunnable.runTaskTimerAsynchronously(Main.instance, 0L, 20L);
         Bukkit.broadcastMessage("§b§lThe TOwOwer §4§l>§1§l>§e The game will start in 60 seconds.");
     }
 
-    public void forceStartCountdown(){
+    public void forceStartCountdown() {
         startGameRunnable = new StartGameRunnable(10);
         startGameRunnable.runTaskTimerAsynchronously(Main.instance, 0L, 20L);
         Bukkit.broadcastMessage("§b§lThe TOwOwer §4§l>§1§l>§e The game start has been forced. It will start in 10 seconds.");
     }
 
-    public void startGame(){
+    public void startGame() {
         setStates(GameStates.ONGAME);
 
-        for(Player p : Bukkit.getOnlinePlayers()){
-            if(!Main.instance.teamManager.isInTeam(p)){
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            if (!Main.instance.teamManager.isInTeam(p)) {
                 Main.instance.teamManager.setRandomTeam(p);
             }
         }
@@ -53,12 +53,12 @@ public class GameManager {
         checkPointRunnable.runTaskTimerAsynchronously(Main.instance, 0L, 10L);
     }
 
-    public void stopCountdown(boolean isForced){
-        if(startGameRunnable == null){
+    public void stopCountdown(boolean isForced) {
+        if (startGameRunnable == null) {
             throw new NullPointerException();
         }
 
-        if(isForced){
+        if (isForced) {
             Bukkit.broadcastMessage("§b§lThe TOwOwer §4§l>§1§l>§cThe countdown has been cancelled.");
         }
 
@@ -66,11 +66,11 @@ public class GameManager {
         startGameRunnable = null;
     }
 
-    public boolean isStarting(){
+    public boolean isStarting() {
         return startGameRunnable != null;
     }
 
-    public void stopGame(){
+    public void stopGame() {
         timerRunnable.cancel();
         checkPointRunnable.cancel();
     }

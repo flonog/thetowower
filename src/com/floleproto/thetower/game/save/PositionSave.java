@@ -29,9 +29,9 @@ public class PositionSave {
     public static File file = new File("plugins//TheTOwOwer//positions.yml");
     public static YamlConfiguration yml = YamlConfiguration.loadConfiguration(file);
 
-    public static void LoadFile(){
-        if(!path.exists()) path.mkdir();
-        if(!file.exists()) Main.instance.saveResource("positions.yml", true);
+    public static void LoadFile() {
+        if (!path.exists()) path.mkdir();
+        if (!file.exists()) Main.instance.saveResource("positions.yml", true);
 
         try {
             yml.load(file);
@@ -40,7 +40,7 @@ public class PositionSave {
         }
     }
 
-    public static void LoadPositions(){
+    public static void LoadPositions() {
         redSpawn = new Location(Bukkit.getWorld(yml.getString("red.spawn.world")), yml.getDouble("red.spawn.x"), yml.getDouble("red.spawn.y"), yml.getDouble("red.spawn.z"), (float) yml.getDouble("red.spawn.yaw"), (float) yml.getDouble("red.spawn.pitch"));
 
         Location pos1RedPool = new Location(Bukkit.getWorld(yml.getString("red.pool.pos1.world")), yml.getDouble("red.pool.pos1.x"), yml.getDouble("red.pool.pos1.y"), yml.getDouble("red.pool.pos1.z"));
@@ -55,7 +55,7 @@ public class PositionSave {
         Location pos2RedSpawnProtected = new Location(Bukkit.getWorld(yml.getString("red.protectedSpawn.pos2.world")), yml.getDouble("red.protectedSpawn.pos2.x"), yml.getDouble("red.protectedSpawn.pos2.y"), yml.getDouble("red.protectedSpawn.pos2.z"));
         redSpawnProtected = new Area(pos1RedSpawnProtected, pos2RedSpawnProtected);
 
-        blueSpawn = new Location(Bukkit.getWorld(yml.getString("blue.spawn.world")), yml.getDouble("blue.spawn.x"), yml.getDouble("blue.spawn.y"), yml.getDouble("blue.spawn.z"), (float) yml.getDouble( "blue.spawn.yaw"), (float) yml.getDouble("blue.spawn.pitch"));
+        blueSpawn = new Location(Bukkit.getWorld(yml.getString("blue.spawn.world")), yml.getDouble("blue.spawn.x"), yml.getDouble("blue.spawn.y"), yml.getDouble("blue.spawn.z"), (float) yml.getDouble("blue.spawn.yaw"), (float) yml.getDouble("blue.spawn.pitch"));
         System.out.println(blueSpawn);
         Location pos1BluePool = new Location(Bukkit.getWorld(yml.getString("blue.pool.pos1.world")), yml.getDouble("blue.pool.pos1.x"), yml.getDouble("blue.pool.pos1.y"), yml.getDouble("blue.pool.pos1.z"));
         Location pos2BluePool = new Location(Bukkit.getWorld(yml.getString("blue.pool.pos2.world")), yml.getDouble("blue.pool.pos2.x"), yml.getDouble("blue.pool.pos2.y"), yml.getDouble("blue.pool.pos2.z"));

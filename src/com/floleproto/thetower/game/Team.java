@@ -18,21 +18,19 @@ public class Team {
     private int score;
     private ChatColor color;
     private ArrayList<UUID> players = new ArrayList<>();
+    private Location spawn;
+    private Area pool;
+    private Area poolProtected;
+    private Area spawnProtected;
 
-    public void setName(String name) {
+    public Team(String name, String tag, ChatColor color, Location spawn, Area pool, Area poolProtected, Area spawnProtected) {
         this.name = name;
-    }
-
-    public void setTag(String tag) {
         this.tag = tag;
-    }
-
-    public void setColor(ChatColor color) {
         this.color = color;
-    }
-
-    public void setPlayers(ArrayList<UUID> players) {
-        this.players = players;
+        this.spawn = spawn;
+        this.pool = pool;
+        this.poolProtected = poolProtected;
+        this.spawnProtected = spawnProtected;
     }
 
     public Location getSpawn() {
@@ -67,31 +65,28 @@ public class Team {
         this.spawnProtected = spawnProtected;
     }
 
-    private Location spawn;
-    private Area pool;
-    private Area poolProtected;
-    private Area spawnProtected;
-
-    public Team(String name, String tag, ChatColor color, Location spawn, Area pool, Area poolProtected, Area spawnProtected) {
-        this.name = name;
-        this.tag = tag;
-        this.color = color;
-        this.spawn = spawn;
-        this.pool = pool;
-        this.poolProtected = poolProtected;
-        this.spawnProtected = spawnProtected;
-    }
-
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getTag() {
         return tag;
     }
 
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
     public ChatColor getColor() {
         return color;
+    }
+
+    public void setColor(ChatColor color) {
+        this.color = color;
     }
 
     public int getScore() {
@@ -104,19 +99,23 @@ public class Team {
 
     public ArrayList<Player> getPlayers() {
         ArrayList<Player> playersParsed = new ArrayList<>();
-        for (UUID id: players) {
+        for (UUID id : players) {
             playersParsed.add(Bukkit.getPlayer(id));
         }
 
         return playersParsed;
     }
 
-    public int getSize(){
+    public void setPlayers(ArrayList<UUID> players) {
+        this.players = players;
+    }
+
+    public int getSize() {
         return players.size();
     }
 
-    public void setupPlayers(){
-        for(Player p : getPlayers()){
+    public void setupPlayers() {
+        for (Player p : getPlayers()) {
             ItemStack[][] itemStacks = InventorySave.loadInventory(tag);
             p.getInventory().setArmorContents(itemStacks[0]);
             p.getInventory().setContents(itemStacks[1]);
@@ -126,30 +125,30 @@ public class Team {
         }
     }
 
-    public void setTeamInventory(Player p){
+    public void setTeamInventory(Player p) {
         ItemStack[][] itemStacks = InventorySave.loadInventory(tag);
         p.getInventory().setArmorContents(itemStacks[0]);
         p.getInventory().setContents(itemStacks[1]);
     }
 
-    public void teleportToTeamPoint(Player p){
+    public void teleportToTeamPoint(Player p) {
         p.teleport(spawn);
     }
 
-    public void teleportAllTeam(){
-        for(Player p : Bukkit.getOnlinePlayers()){
+    public void teleportAllTeam() {
+        for (Player p : Bukkit.getOnlinePlayers()) {
             p.teleport(spawn);
         }
     }
 
-    public void scorePoint(Player p){
+    public void scorePoint(Player p) {
         addScore(1);
         teleportToTeamPoint(p);
 
-        Bukkit.broadcastMessage("§b§lGoal §4§l>§1§l> " + p.getDisplayName() +" has marked one point for the " + name + " team !");
+        Bukkit.broadcastMessage("§b§lGoal §4§l>§1§l> " + p.getDisplayName() + " has marked one point for the " + name + " team !");
 
         for (Player pl : Bukkit.getOnlinePlayers()) {
-            if(isInTeam(pl)){
+            if (isInTeam(pl)) {
                 pl.playSound(pl.getLocation(), Sound.NOTE_PLING, 1, 2);
             } else {
                 pl.playSound(pl.getLocation(), Sound.NOTE_PLING, 1, 0.5f);
@@ -157,19 +156,19 @@ public class Team {
         }
     }
 
-    public void addPlayer(Player p){
+    public void addPlayer(Player p) {
         players.add(p.getUniqueId());
         p.setPlayerListName(color + p.getName() + "§r");
         p.setDisplayName(color + p.getName() + "§r");
     }
 
-    public void removePlayer(Player p){
+    public void removePlayer(Player p) {
         players.remove(p.getUniqueId());
         p.setPlayerListName(p.getName() + "§r");
         p.setDisplayName(p.getName() + "§r");
     }
 
-    public boolean isInTeam(Player p){
+    public boolean isInTeam(Player p) {
         return players.contains(p.getUniqueId());
     }
 
@@ -177,7 +176,7 @@ public class Team {
         score += i;
     }
 
-    public boolean checkWin(){
+    public boolean checkWin() {
         return score >= Main.instance.getConfig().getInt("scoretowin");
     }
 }

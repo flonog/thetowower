@@ -2,7 +2,6 @@ package com.floleproto.thetower.game;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -37,7 +36,7 @@ public class Area {
         this.pos2 = pos2;
     }
 
-    public boolean isInArea(Location loc){
+    public boolean isInArea(Location loc) {
         Location minLocation;
         Location maxLocation;
 
@@ -52,10 +51,10 @@ public class Area {
                 && maxLocation.getZ() >= loc.getZ());
     }
 
-    public Player[] getPlayersInside(){
+    public Player[] getPlayersInside() {
         List<Player> playerList = new ArrayList<>();
         for (Player p : Bukkit.getOnlinePlayers()) {
-            if(isInArea(p.getLocation())){
+            if (isInArea(p.getLocation())) {
                 playerList.add(p);
             }
         }

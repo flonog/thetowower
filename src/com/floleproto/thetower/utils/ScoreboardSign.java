@@ -12,19 +12,30 @@ import java.util.List;
  * @author zyuiop
  */
 public class ScoreboardSign {
-    private boolean created = false;
     private final VirtualTeam[] lines = new VirtualTeam[15];
     private final Player player;
+    private boolean created = false;
     private String objectiveName;
 
     /**
      * Create a scoreboard sign for a given player and using a specifig objective name
-     * @param player the player viewing the scoreboard sign
+     *
+     * @param player        the player viewing the scoreboard sign
      * @param objectiveName the name of the scoreboard sign (displayed at the top of the scoreboard)
      */
     public ScoreboardSign(Player player, String objectiveName) {
         this.player = player;
         this.objectiveName = objectiveName;
+    }
+
+    private static void setField(Object edit, String fieldName, Object value) {
+        try {
+            Field field = edit.getClass().getDeclaredField(fieldName);
+            field.setAccessible(true);
+            field.set(edit, value);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -62,6 +73,7 @@ public class ScoreboardSign {
 
     /**
      * Change the name of the objective. The name is displayed at the top of the scoreboard.
+     *
      * @param name the name of the objective, max 32 char
      */
     public void setObjectiveName(String name) {
@@ -72,7 +84,8 @@ public class ScoreboardSign {
 
     /**
      * Change a scoreboard line and send the packets to the player. Can be called async.
-     * @param line the number of the line (0 <= line < 15)
+     *
+     * @param line  the number of the line (0 <= line < 15)
      * @param value the new value for the scoreboard line
      */
     public void setLine(int line, String value) {
@@ -88,6 +101,7 @@ public class ScoreboardSign {
 
     /**
      * Remove a given scoreboard line
+     *
      * @param line the line to remove
      */
     public void removeLine(int line) {
@@ -104,6 +118,7 @@ public class ScoreboardSign {
 
     /**
      * Get the current value for a line
+     *
      * @param line the line
      * @return the content of the line
      */
@@ -117,6 +132,7 @@ public class ScoreboardSign {
 
     /**
      * Get the team assigned to a line
+     *
      * @return the {@link VirtualTeam} used to display this line
      */
     public VirtualTeam getTeam(int line) {
@@ -293,8 +309,8 @@ public class ScoreboardSign {
             }
 
             if (first || playerChanged) {
-                if (oldPlayer != null)										// remove these two lines ?
-                    packets.add(addOrRemovePlayer(4, oldPlayer)); 	//
+                if (oldPlayer != null)                                        // remove these two lines ?
+                    packets.add(addOrRemovePlayer(4, oldPlayer));    //
                 packets.add(changePlayer());
             }
 
@@ -355,16 +371,6 @@ public class ScoreboardSign {
             } else {
                 throw new IllegalArgumentException("Too long value ! Max 48 characters, value was " + value.length() + " !");
             }
-        }
-    }
-
-    private static void setField(Object edit, String fieldName, Object value) {
-        try {
-            Field field = edit.getClass().getDeclaredField(fieldName);
-            field.setAccessible(true);
-            field.set(edit, value);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
         }
     }
 }

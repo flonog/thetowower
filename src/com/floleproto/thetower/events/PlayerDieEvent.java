@@ -5,11 +5,8 @@ import com.floleproto.thetower.game.GameStates;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
-
-import java.util.HashMap;
 
 public class PlayerDieEvent implements Listener {
 
@@ -20,15 +17,15 @@ public class PlayerDieEvent implements Listener {
     }
 
     @EventHandler
-    public void onPlayerDie(PlayerDeathEvent ev){
+    public void onPlayerDie(PlayerDeathEvent ev) {
 
-        if(!main.gameManager.isStates(GameStates.ONGAME))
+        if (!main.gameManager.isStates(GameStates.ONGAME))
             return;
 
         Player killer = ev.getEntity().getKiller();
         Player victim = ev.getEntity();
 
-        if(killer != null){
+        if (killer != null) {
             main.statistics.addKill(killer, 1);
             main.scoreboardManager.refreshKillsDeaths(killer);
         }
@@ -38,7 +35,7 @@ public class PlayerDieEvent implements Listener {
     }
 
     @EventHandler
-    public void onPlayerRespawn(PlayerRespawnEvent ev){
+    public void onPlayerRespawn(PlayerRespawnEvent ev) {
         Player p = ev.getPlayer();
         main.scoreboardManager.refreshKillsDeaths(p);
         main.teamManager.getTeam(p).setTeamInventory(p);

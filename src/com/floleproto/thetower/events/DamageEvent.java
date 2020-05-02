@@ -15,9 +15,9 @@ public class DamageEvent implements Listener {
     }
 
     @EventHandler
-    public void onEntityDamage(EntityDamageEvent ev){
-        if(main.gameManager.isStates(GameStates.WAITING)){
-            if(ev.getEntityType().equals(EntityType.PLAYER)){
+    public void onEntityDamage(EntityDamageEvent ev) {
+        if (main.gameManager.isStates(GameStates.WAITING)) {
+            if (ev.getEntityType().equals(EntityType.PLAYER)) {
                 ev.setCancelled(true);
             }
         }

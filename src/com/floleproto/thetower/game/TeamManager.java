@@ -1,9 +1,6 @@
 package com.floleproto.thetower.game;
 
-import com.comphenix.protocol.PacketType;
-import com.floleproto.thetower.Main;
 import com.floleproto.thetower.game.save.PositionSave;
-import net.minecraft.server.v1_8_R3.Position;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -14,32 +11,32 @@ public class TeamManager {
     public static Team blueTeam;
     public static Team spectatorTeam;
 
-    public TeamManager(){
-        redTeam = new Team("§4§lRed","red", ChatColor.DARK_RED, PositionSave.redSpawn, PositionSave.redPool, PositionSave.redPoolProtected, PositionSave.redSpawnProtected);
+    public TeamManager() {
+        redTeam = new Team("§4§lRed", "red", ChatColor.DARK_RED, PositionSave.redSpawn, PositionSave.redPool, PositionSave.redPoolProtected, PositionSave.redSpawnProtected);
         blueTeam = new Team("§1§lBlue", "blue", ChatColor.DARK_BLUE, PositionSave.blueSpawn, PositionSave.bluePool, PositionSave.bluePoolProtected, PositionSave.blueSpawnProtected);
         spectatorTeam = new Team("Spectator", "spectator", ChatColor.GREEN, PositionSave.redSpawn, null, null, null);
     }
 
 
-    public void addPlayer(Player p, @NotNull Team team){
+    public void addPlayer(Player p, @NotNull Team team) {
         team.addPlayer(p);
     }
 
-    public void removePlayer(Player p){
-        if(redTeam.getPlayers().contains(p)){
+    public void removePlayer(Player p) {
+        if (redTeam.getPlayers().contains(p)) {
             redTeam.removePlayer(p);
-        } else if(blueTeam.getPlayers().contains(p)) {
+        } else if (blueTeam.getPlayers().contains(p)) {
             blueTeam.removePlayer(p);
         } else {
             spectatorTeam.removePlayer(p);
         }
     }
 
-    public void setRandomTeam(Player p){
+    public void setRandomTeam(Player p) {
         int redSize = redTeam.getSize();
         int blueSize = blueTeam.getSize();
 
-        if(redSize > blueSize){
+        if (redSize > blueSize) {
             addPlayer(p, blueTeam);
         } else {
             addPlayer(p, redTeam);
@@ -47,18 +44,17 @@ public class TeamManager {
     }
 
 
-    public Team getTeam(Player p){
-        if(blueTeam.isInTeam(p)){
+    public Team getTeam(Player p) {
+        if (blueTeam.isInTeam(p)) {
             return blueTeam;
-        } else if(redTeam.isInTeam(p)){
+        } else if (redTeam.isInTeam(p)) {
             return redTeam;
         }
 
         return spectatorTeam;
     }
 
-    public boolean isInTeam(Player p)
-    {
+    public boolean isInTeam(Player p) {
         return redTeam.isInTeam(p) || blueTeam.isInTeam(p) || spectatorTeam.isInTeam(p);
     }
 }

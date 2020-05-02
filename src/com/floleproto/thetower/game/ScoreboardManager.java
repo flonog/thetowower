@@ -12,10 +12,10 @@ public class ScoreboardManager {
 
     public HashMap<Player, ScoreboardSign> scoreboards = new HashMap<>();
 
-    public void setScoreboardTemplate(Player p, GameStates states){
+    public void setScoreboardTemplate(Player p, GameStates states) {
         ScoreboardSign scoreboardSign = scoreboards.get(p);
         DecimalFormat decimalFormat = new DecimalFormat("000");
-        switch (states){
+        switch (states) {
             case WAITING:
                 scoreboardSign.setLine(0, "§c");
                 scoreboardSign.setLine(1, "Waiting for players");
@@ -43,14 +43,14 @@ public class ScoreboardManager {
         }
     }
 
-    public void createScoreboard(Player p){
+    public void createScoreboard(Player p) {
         ScoreboardSign scoreboardSign = new ScoreboardSign(p, "§b§lThe TOwOwer");
         scoreboardSign.create();
         scoreboardSign.setLine(0, "§c");
         scoreboards.put(p, scoreboardSign);
     }
 
-    public void setTimer(String time){
+    public void setTimer(String time) {
 
         for (Player p : Bukkit.getOnlinePlayers()) {
             ScoreboardSign scoreboardSign = scoreboards.get(p);
@@ -59,7 +59,7 @@ public class ScoreboardManager {
         }
     }
 
-    public void setScore(){
+    public void setScore() {
         for (Player p : Bukkit.getOnlinePlayers()) {
             ScoreboardSign scoreboardSign = scoreboards.get(p);
             scoreboardSign.setLine(4, "§4§lRed§r   " + TeamManager.redTeam.getScore());
@@ -68,14 +68,14 @@ public class ScoreboardManager {
         }
     }
 
-    public void refreshKillsDeaths(Player p){
+    public void refreshKillsDeaths(Player p) {
         ScoreboardSign scoreboardSign = scoreboards.get(p);
         DecimalFormat decimalFormat = new DecimalFormat("000");
         scoreboardSign.setLine(2, "§r" + decimalFormat.format(Main.instance.statistics.getKills(p)) + "   " + decimalFormat.format(Main.instance.statistics.getDeaths(p)));
         scoreboards.put(p, scoreboardSign);
     }
 
-    public void removeScoreboard(Player p){
+    public void removeScoreboard(Player p) {
         scoreboards.remove(p);
     }
 

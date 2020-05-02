@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 
 public class SaveInvCommand implements CommandExecutor {
     private Main main;
+
     public SaveInvCommand(Main main) {
         this.main = main;
     }

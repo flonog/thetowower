@@ -13,7 +13,7 @@ public class TimerRunnable extends BukkitRunnable {
     public void run() {
         seconds++;
 
-        if(seconds >= 60){
+        if (seconds >= 60) {
             seconds = 0;
             minutes++;
         }

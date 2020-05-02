@@ -16,10 +16,10 @@ public class PlayerDropEvent implements Listener {
     }
 
     @EventHandler
-    public void onPlayerDrop(PlayerDropItemEvent ev){
-        if(ev.getPlayer().getGameMode() == GameMode.CREATIVE)
+    public void onPlayerDrop(PlayerDropItemEvent ev) {
+        if (ev.getPlayer().getGameMode() == GameMode.CREATIVE)
             return;
-        if(main.gameManager.isStates(GameStates.WAITING))
+        if (main.gameManager.isStates(GameStates.WAITING))
             ev.setCancelled(true);
     }
 }

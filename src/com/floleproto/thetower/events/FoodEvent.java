@@ -14,8 +14,8 @@ public class FoodEvent implements Listener {
     }
 
     @EventHandler
-    public void onFoodLevelChanged(FoodLevelChangeEvent ev){
-        if(main.gameManager.isStates(GameStates.WAITING) || main.gameManager.isStates(GameStates.FINISH))
+    public void onFoodLevelChanged(FoodLevelChangeEvent ev) {
+        if (main.gameManager.isStates(GameStates.WAITING) || main.gameManager.isStates(GameStates.FINISH))
             ev.setFoodLevel(20);
     }
 }

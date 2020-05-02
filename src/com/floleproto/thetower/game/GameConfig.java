@@ -18,7 +18,7 @@ public class GameConfig {
     boolean spawnmob = false;
     boolean eternalday = true;
 
-    public void loadConfig(){
+    public void loadConfig() {
         FileConfiguration config = Main.instance.getConfig();
 
         minplayer = config.getInt("minplayer");
@@ -36,7 +36,7 @@ public class GameConfig {
         eternalday = config.getBoolean("eternalday");
     }
 
-    public void saveConfig(){
+    public void saveConfig() {
 
         FileConfiguration config = Main.instance.getConfig();
 

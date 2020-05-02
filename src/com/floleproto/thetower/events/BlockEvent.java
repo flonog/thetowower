@@ -3,7 +3,6 @@ package com.floleproto.thetower.events;
 import com.floleproto.thetower.Main;
 import com.floleproto.thetower.game.GameStates;
 import com.floleproto.thetower.game.TeamManager;
-import com.sun.javafx.sg.prism.NGAmbientLight;
 import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,38 +17,38 @@ public class BlockEvent implements Listener {
     }
 
     @EventHandler
-    public void onBlockPlaceEvent(BlockPlaceEvent ev){
-        if(ev.getPlayer().getGameMode() == GameMode.CREATIVE)
+    public void onBlockPlaceEvent(BlockPlaceEvent ev) {
+        if (ev.getPlayer().getGameMode() == GameMode.CREATIVE)
             return;
-        if(main.gameManager.isStates(GameStates.WAITING)){
+        if (main.gameManager.isStates(GameStates.WAITING)) {
             ev.setCancelled(true);
-        } else if(main.gameManager.isStates(GameStates.ONGAME)){
-            if(TeamManager.redTeam.getPoolProtected().isInArea(ev.getBlock().getLocation())){
+        } else if (main.gameManager.isStates(GameStates.ONGAME)) {
+            if (TeamManager.redTeam.getPoolProtected().isInArea(ev.getBlock().getLocation())) {
                 ev.setCancelled(true);
-            } else if(TeamManager.blueTeam.getPoolProtected().isInArea(ev.getBlock().getLocation())){
+            } else if (TeamManager.blueTeam.getPoolProtected().isInArea(ev.getBlock().getLocation())) {
                 ev.setCancelled(true);
-            } else if(TeamManager.redTeam.getSpawnProtected().isInArea(ev.getBlock().getLocation())){
+            } else if (TeamManager.redTeam.getSpawnProtected().isInArea(ev.getBlock().getLocation())) {
                 ev.setCancelled(true);
-            } else if(TeamManager.blueTeam.getSpawnProtected().isInArea(ev.getBlock().getLocation())){
+            } else if (TeamManager.blueTeam.getSpawnProtected().isInArea(ev.getBlock().getLocation())) {
                 ev.setCancelled(true);
             }
         }
     }
 
     @EventHandler
-    public void onBlockBreakEvent(BlockBreakEvent ev){
-        if(ev.getPlayer().getGameMode() == GameMode.CREATIVE)
+    public void onBlockBreakEvent(BlockBreakEvent ev) {
+        if (ev.getPlayer().getGameMode() == GameMode.CREATIVE)
             return;
-        if(main.gameManager.isStates(GameStates.WAITING)){
+        if (main.gameManager.isStates(GameStates.WAITING)) {
             ev.setCancelled(true);
-        } else if(main.gameManager.isStates(GameStates.ONGAME)){
-            if(TeamManager.redTeam.getPoolProtected().isInArea(ev.getBlock().getLocation())){
+        } else if (main.gameManager.isStates(GameStates.ONGAME)) {
+            if (TeamManager.redTeam.getPoolProtected().isInArea(ev.getBlock().getLocation())) {
                 ev.setCancelled(true);
-            } else if(TeamManager.blueTeam.getPoolProtected().isInArea(ev.getBlock().getLocation())){
+            } else if (TeamManager.blueTeam.getPoolProtected().isInArea(ev.getBlock().getLocation())) {
                 ev.setCancelled(true);
-            } else if(TeamManager.redTeam.getSpawnProtected().isInArea(ev.getBlock().getLocation())){
+            } else if (TeamManager.redTeam.getSpawnProtected().isInArea(ev.getBlock().getLocation())) {
                 ev.setCancelled(true);
-            } else if(TeamManager.blueTeam.getSpawnProtected().isInArea(ev.getBlock().getLocation())){
+            } else if (TeamManager.blueTeam.getSpawnProtected().isInArea(ev.getBlock().getLocation())) {
                 ev.setCancelled(true);
             }
         }

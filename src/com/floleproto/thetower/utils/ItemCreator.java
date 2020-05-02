@@ -1,14 +1,13 @@
 package com.floleproto.thetower.utils;
 
-import java.util.List;
-import java.util.Map;
-
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.material.MaterialData;
+
+import java.util.List;
+import java.util.Map;
 
 public class ItemCreator {
 
@@ -60,29 +59,53 @@ public class ItemCreator {
         this.data = data;
     }
 
-    public Material getMaterial() { return this.material; }
+    public Material getMaterial() {
+        return this.material;
+    }
 
-    public void setMaterial(Material material) { this.material = material; }
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
 
-    public int getAmount() { return this.amount; }
+    public int getAmount() {
+        return this.amount;
+    }
 
-    public void setAmount(int amount) { this.amount = amount; }
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 
-    public String getName() { return this.name; }
+    public String getName() {
+        return this.name;
+    }
 
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public List<String> getLores() { return this.lores; }
+    public List<String> getLores() {
+        return this.lores;
+    }
 
-    public void setLores(List<String> lores) { this.lores = lores; }
+    public void setLores(List<String> lores) {
+        this.lores = lores;
+    }
 
-    public Map<Enchantment, Integer> getEnchantments() { return this.enchantments; }
+    public Map<Enchantment, Integer> getEnchantments() {
+        return this.enchantments;
+    }
 
-    public void setEnchantments(Map<Enchantment, Integer> enchantments) { this.enchantments = enchantments; }
+    public void setEnchantments(Map<Enchantment, Integer> enchantments) {
+        this.enchantments = enchantments;
+    }
 
-    public List<ItemFlag> getItemFlags() {return this.itemFlags; }
+    public List<ItemFlag> getItemFlags() {
+        return this.itemFlags;
+    }
 
-    public void setItemFlags(List<ItemFlag> itemFlags) {this.itemFlags = itemFlags; }
+    public void setItemFlags(List<ItemFlag> itemFlags) {
+        this.itemFlags = itemFlags;
+    }
 
     public byte getData() {
         return data;
@@ -97,22 +120,22 @@ public class ItemCreator {
         ItemStack item = new ItemStack(material, amount, data);
         ItemMeta itemM = item.getItemMeta();
 
-        if(name != null) {
+        if (name != null) {
             itemM.setDisplayName(name);
         }
 
-        if(lores != null) {
+        if (lores != null) {
             itemM.setLore(lores);
         }
 
-        if(enchantments != null) {
-            for(Map.Entry<Enchantment, Integer> entry : enchantments.entrySet()) {
+        if (enchantments != null) {
+            for (Map.Entry<Enchantment, Integer> entry : enchantments.entrySet()) {
                 itemM.addEnchant(entry.getKey(), entry.getValue(), true);
             }
         }
 
-        if(itemFlags != null) {
-            for(ItemFlag flag : itemFlags) {
+        if (itemFlags != null) {
+            for (ItemFlag flag : itemFlags) {
                 itemM.addItemFlags(flag);
             }
         }
