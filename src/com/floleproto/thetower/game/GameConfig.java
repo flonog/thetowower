@@ -98,7 +98,7 @@ public class GameConfig {
                 "   FriendlyFire : " + (friendlyfire ? "§a§lON" : "§c§lOFF") + "§r",
                 "   Eternal day : " + (eternalday ? "§a§lON" : "§c§lOFF") + "§r",
                 "   Heal on point marked : " + (healonpoint ? "§a§lON" : "§c§lOFF") + "§r\n§c ",
-                "   Mob spawn : " + (spawnmob ? "§a§lON" : "§c§lOFF") + "§r",
+                "   Mob spawning : " + (spawnmob ? "§a§lON" : "§c§lOFF") + "§r",
                 "   Mob griefing : " + (mobgriefing ? "§a§lON" : "§c§lOFF") + "§r",
         };
     }

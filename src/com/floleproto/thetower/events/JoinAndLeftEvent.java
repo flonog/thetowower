@@ -49,6 +49,7 @@ public class JoinAndLeftEvent implements Listener {
             Map<Enchantment, Integer> enchants = new HashMap<Enchantment, Integer>();
             enchants.put(Enchantment.DURABILITY, 1);
             p.getInventory().setItem(4, new ItemCreator(Material.WOOL, 1, (byte) 0, "§b§lTeam", null, enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
+            p.getInventory().setItem(8, new ItemCreator(Material.COMMAND, 1, (byte) 0, "§c§lConfig", null, enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
 
             Title title = new Title("§b§lThe TOwOwer", "§eThe game will start soon");
             title.sendToPlayer(p);

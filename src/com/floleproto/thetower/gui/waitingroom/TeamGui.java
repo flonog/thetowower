@@ -32,10 +32,10 @@ public class TeamGui extends GuiManager {
         if (ev.getInventory() == null)
             return;
 
-        if (ev.getInventory() != inventory)
+        if (ev.getClickedInventory() != inventory)
             return;
 
-        if(ev.getCurrentItem() == null){
+        if (ev.getCurrentItem() == null){
             return;
         }
 

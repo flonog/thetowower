@@ -2,6 +2,7 @@ package com.floleproto.thetower.events;
 
 import com.floleproto.thetower.Main;
 import com.floleproto.thetower.game.GameStates;
+import com.floleproto.thetower.gui.configmenu.MainMenu;
 import com.floleproto.thetower.gui.waitingroom.TeamGui;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
@@ -31,6 +32,12 @@ public class PlayerInteract implements Listener {
             switch (ev.getMaterial()) {
                 case WOOL:
                     new TeamGui(p).show();
+                    break;
+                case COMMAND:
+                    if(p.hasPermission("thetowower.config") || p.hasPermission("thetowower.*") || p.isOp()){
+                        new MainMenu(p).show();
+                    }
+                    break;
             }
         }
     }
@@ -39,6 +46,10 @@ public class PlayerInteract implements Listener {
     public void onPlayerInteractGUI(InventoryClickEvent ev) {
         if (ev.getWhoClicked().getGameMode() == GameMode.CREATIVE)
             return;
+
+        if(ev.getClickedInventory() != ev.getWhoClicked().getInventory()){
+            return;
+        }
 
         if (main.gameManager.isStates(GameStates.WAITING))
             ev.setCancelled(true);
