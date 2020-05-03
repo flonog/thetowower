@@ -91,11 +91,11 @@ red:
 general:
   ironSpawner:
     x: 0
-    y: 206
+    y: 205
     z: 1138
     world: world
   xpSpawner:
     x: 0
-    y: 206
+    y: 205
     z: 1166
     world: world
