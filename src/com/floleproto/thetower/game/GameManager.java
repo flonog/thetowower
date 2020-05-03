@@ -19,6 +19,7 @@ public class GameManager {
     private CheckPointRunnable checkPointRunnable = new CheckPointRunnable();
     private ItemSpawnRunnable ironSpawnItem = new ItemSpawnRunnable(new ItemStack(Material.IRON_INGOT), PositionSave.ironSpawn);
     private ItemSpawnRunnable xpSpawnItem = new ItemSpawnRunnable(new ItemStack(Material.EXP_BOTTLE), PositionSave.xpSpawn);
+    private ItemSpawnRunnable lapisSpawnItem = new ItemSpawnRunnable(new ItemStack(Material.INK_SACK, 1, (byte) 4), PositionSave.lapisSpawn);
 
     public GameStates getStates() {
         return states;
@@ -71,6 +72,7 @@ public class GameManager {
         checkPointRunnable.runTaskTimer(Main.instance, 0L, 10L);
         ironSpawnItem.runTaskTimer(Main.instance, 0L, 20L * GameConfig.spawnrate_iron);
         xpSpawnItem.runTaskTimer(Main.instance, 0L, 20L * GameConfig.spawnrate_xp);
+        lapisSpawnItem.runTaskTimer(Main.instance, 0L, 20L * GameConfig.spawnlapis_rate);
     }
 
     public void stopCountdown(boolean isForced) {
@@ -116,5 +118,6 @@ public class GameManager {
         checkPointRunnable.cancel();
         ironSpawnItem.cancel();
         xpSpawnItem.cancel();
+        lapisSpawnItem.cancel();
     }
 }

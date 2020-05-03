@@ -24,6 +24,7 @@ public class PositionSave {
 
     public static Location ironSpawn;
     public static Location xpSpawn;
+    public static Location lapisSpawn;
 
     public static File path = new File("plugins//TheTOwOwer");
     public static File file = new File("plugins//TheTOwOwer//positions.yml");
@@ -71,5 +72,6 @@ public class PositionSave {
 
         ironSpawn = new Location(Bukkit.getWorld(yml.getString("general.ironSpawner.world")), yml.getDouble("general.ironSpawner.x"), yml.getDouble("general.ironSpawner.y"), yml.getDouble("general.ironSpawner.z"));
         xpSpawn = new Location(Bukkit.getWorld(yml.getString("general.xpSpawner.world")), yml.getDouble("general.xpSpawner.x"), yml.getDouble("general.xpSpawner.y"), yml.getDouble("general.xpSpawner.z"));
+        lapisSpawn =  new Location(Bukkit.getWorld(yml.getString("general.lapisSpawner.world")), yml.getDouble("general.lapisSpawner.x"), yml.getDouble("general.lapisSpawner.y"), yml.getDouble("general.lapisSpawner.z"));
     }
 }

@@ -9,9 +9,10 @@ public class GameConfig {
     public static int minplayer = 5;
     public static int scoretowin = 10;
 
-    public static long spawnrate_xp = 5; //TODO: XP and Iron spawner
+    public static long spawnrate_xp = 5;
     public static long spawnrate_iron = 5;
-    public static boolean spawnlapis = false; //TODO: No lapis into the enchantment table when it disabled
+    public static boolean spawnlapis = false;
+    public static long spawnlapis_rate = 5;
 
     public static boolean chest_breakable = true;
     public static boolean friendlyfire = false;
@@ -32,6 +33,7 @@ public class GameConfig {
         spawnrate_xp = config.getLong("spawnrate_xp");
         spawnrate_iron = config.getLong("spawnrate_iron");
         spawnlapis = config.getBoolean("spawnlapis");
+        spawnlapis_rate = config.getLong("spawnlapis_rate");
 
         chest_breakable = config.getBoolean("chest_breakable");
         friendlyfire = config.getBoolean("friendlyfire");
@@ -53,6 +55,7 @@ public class GameConfig {
         config.set("spawnrate_xp", spawnrate_xp);
         config.set("spawnrate_iron", spawnrate_iron);
         config.set("spawnlapis", spawnlapis);
+        config.set("spawnlapis_rate", spawnlapis_rate);
 
         config.set("chest_breakable", chest_breakable);
         config.set("friendlyfire", friendlyfire);
@@ -89,12 +92,12 @@ public class GameConfig {
                 "   Score to Win : §b§l" + scoretowin,
                 "   XP SpawnRate : §b§l" + spawnrate_xp,
                 "   Iron SpawnRate : §b§l" + spawnrate_iron,
-                "   Lapis spawn : " + (spawnlapis ? "§a§lON" : "§c§lOFF") + "§r\n§c ",
-                "   Time Limit : " + (timelimit_enable ? "§a§lON (§b" + timelimit_time +"§a)" : "§c§lOFF") + "§r",
+                "   Lapis spawn : " + (spawnlapis ? "§a§lON (" + spawnlapis_rate + "§a§l)" : "§c§lOFF") + "§r\n§c ",
+                "   Time Limit : " + (timelimit_enable ? "§a§lON (§b" + timelimit_time +"§a§l)" : "§c§lOFF") + "§r",
                 "   Breakable Chest : " + (chest_breakable ? "§a§lON" : "§c§lOFF") + "§r",
                 "   FriendlyFire : " + (friendlyfire ? "§a§lON" : "§c§lOFF") + "§r",
                 "   Eternal day : " + (eternalday ? "§a§lON" : "§c§lOFF") + "§r",
-                "   Heal on point marked : " + (healonpoint ? "§a§lON" : "§c§lOFF") + "§r§r\n§c ",
+                "   Heal on point marked : " + (healonpoint ? "§a§lON" : "§c§lOFF") + "§r\n§c ",
                 "   Mob spawn : " + (spawnmob ? "§a§lON" : "§c§lOFF") + "§r",
                 "   Mob griefing : " + (mobgriefing ? "§a§lON" : "§c§lOFF") + "§r",
         };

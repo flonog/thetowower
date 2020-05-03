@@ -10,6 +10,7 @@ scoretowin: 10
 spawnrate_xp: 5
 spawnrate_iron: 5
 spawnlapis: false
+spawnlapis_rate: 5
 
 timelimit_enable: true
 timelimit_time: 30

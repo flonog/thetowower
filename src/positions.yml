@@ -99,3 +99,8 @@ general:
     y: 206.0
     z: 1166.5
     world: world
+  lapisSpawner:
+    x: 0.5
+    y: 205.0
+    z: 1152.5
+    world: world
