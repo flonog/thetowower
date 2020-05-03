@@ -1,23 +1,24 @@
 package com.floleproto.thetower.game;
 
 import com.floleproto.thetower.Main;
-import com.floleproto.thetower.game.schedules.CheckPointRunnable;
-import com.floleproto.thetower.game.schedules.StartGameRunnable;
-import com.floleproto.thetower.game.schedules.TimerRunnable;
-import com.floleproto.thetower.utils.MapUtils;
+import com.floleproto.thetower.game.runnables.CheckPointRunnable;
+import com.floleproto.thetower.game.runnables.ItemSpawnRunnable;
+import com.floleproto.thetower.game.runnables.StartGameRunnable;
+import com.floleproto.thetower.game.runnables.TimerRunnable;
+import com.floleproto.thetower.game.save.PositionSave;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.util.io.BukkitObjectInputStream;
-
-import java.util.LinkedHashMap;
-import java.util.UUID;
+import org.bukkit.inventory.ItemStack;
 
 public class GameManager {
     private GameStates states = GameStates.WAITING;
     private StartGameRunnable startGameRunnable = null;
     private TimerRunnable timerRunnable = new TimerRunnable();
     private CheckPointRunnable checkPointRunnable = new CheckPointRunnable();
+    private ItemSpawnRunnable ironSpawnItem = new ItemSpawnRunnable(new ItemStack(Material.IRON_INGOT), PositionSave.ironSpawn);
+    private ItemSpawnRunnable xpSpawnItem = new ItemSpawnRunnable(new ItemStack(Material.EXP_BOTTLE), PositionSave.xpSpawn);
 
     public GameStates getStates() {
         return states;
@@ -68,6 +69,8 @@ public class GameManager {
 
         timerRunnable.runTaskTimer(Main.instance, 0L, 20L);
         checkPointRunnable.runTaskTimer(Main.instance, 0L, 10L);
+        ironSpawnItem.runTaskTimer(Main.instance, 0L, 20L * GameConfig.spawnrate_iron);
+        xpSpawnItem.runTaskTimer(Main.instance, 0L, 20L * GameConfig.spawnrate_xp);
     }
 
     public void stopCountdown(boolean isForced) {
@@ -111,5 +114,7 @@ public class GameManager {
 
         timerRunnable.cancel();
         checkPointRunnable.cancel();
+        ironSpawnItem.cancel();
+        xpSpawnItem.cancel();
     }
 }
