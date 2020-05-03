@@ -145,6 +145,11 @@ public class Team {
         addScore(1);
         teleportToTeamPoint(p);
 
+        if(GameConfig.healonpoint){
+            p.setHealth(20);
+            p.setFoodLevel(30);
+        }
+
         Bukkit.broadcastMessage("§b§lGoal §4§l>§1§l> " + p.getDisplayName() + " has marked one point for the " + name + "§r team !");
 
         for (Player pl : Bukkit.getOnlinePlayers()) {

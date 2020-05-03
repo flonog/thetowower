@@ -19,6 +19,8 @@ public class GameConfig {
     public static boolean spawnmob = false;
     public static boolean eternalday = true;
 
+    public static boolean healonpoint = true;
+
     public static void loadConfig() {
         FileConfiguration config = Main.instance.getConfig();
 
@@ -36,6 +38,8 @@ public class GameConfig {
         timelimit_time = config.getInt("timelimit_time");
         spawnmob = config.getBoolean("spawnmob");
         eternalday = config.getBoolean("eternalday");
+
+        healonpoint = config.getBoolean("healonpoint");
     }
 
     public static void saveConfig() {
@@ -54,6 +58,9 @@ public class GameConfig {
         config.set("timelimit_enable", timelimit_enable);
         config.set("timelimit_time", timelimit_time);
         config.set("spawnmob", spawnmob);
+
+        config.set("healonpoint", healonpoint);
+
         config.set("eternalday", eternalday);
 
         Main.instance.saveConfig();
