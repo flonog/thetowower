@@ -59,6 +59,7 @@ public class Main extends JavaPlugin {
         getCommand("start").setExecutor(new StartCommand(this));
         getCommand("cancelstart").setExecutor(new CancelStartCommand(this));
         getCommand("save").setExecutor(new SaveInvCommand(this));
+        getCommand("rules").setExecutor(new RulesCommand(this));
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eCommands registered.");
 
         getServer().getPluginManager().registerEvents(new JoinAndLeftEvent(this), this);

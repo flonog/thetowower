@@ -12,3 +12,5 @@ commands:
     description: Stop the countdown
   save:
     description: Save the inventory (edit mode only)
+  rules:
+    description: Print the rules in the chat

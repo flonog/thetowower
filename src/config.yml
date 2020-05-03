@@ -16,7 +16,6 @@ timelimit_time: 30
 
 chest_breakable: true
 friendlyfire: false
-nolapisneeded: true
 spawnmob: false
 eternalday: true
 
