@@ -90,12 +90,12 @@ red:
 
 general:
   ironSpawner:
-    x: 0
-    y: 205
-    z: 1138
+    x: 0.5
+    y: 206.0
+    z: 1138.5
     world: world
   xpSpawner:
-    x: 0
-    y: 205
-    z: 1166
+    x: 0.5
+    y: 206.0
+    z: 1166.5
     world: world

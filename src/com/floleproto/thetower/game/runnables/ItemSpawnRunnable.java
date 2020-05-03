@@ -8,6 +8,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
 
 public class ItemSpawnRunnable extends BukkitRunnable {
 
@@ -26,5 +27,6 @@ public class ItemSpawnRunnable extends BukkitRunnable {
             previousItem.remove();
         }
         previousItem = Bukkit.getWorld("world").dropItem(position, item);
+        previousItem.setVelocity(new Vector(0,0,0));
     }
 }
