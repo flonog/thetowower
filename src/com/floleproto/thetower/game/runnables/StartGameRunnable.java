@@ -1,4 +1,4 @@
-package com.floleproto.thetower.game.schedules;
+package com.floleproto.thetower.game.runnables;
 
 import com.floleproto.thetower.Main;
 import com.floleproto.thetower.game.GameConfig;
