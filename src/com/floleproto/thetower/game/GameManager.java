@@ -1,6 +1,7 @@
 package com.floleproto.thetower.game;
 
 import com.floleproto.thetower.Main;
+import com.floleproto.thetower.events.EnchantEvent;
 import com.floleproto.thetower.game.runnables.CheckPointRunnable;
 import com.floleproto.thetower.game.runnables.ItemSpawnRunnable;
 import com.floleproto.thetower.game.runnables.StartGameRunnable;
@@ -10,6 +11,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 
 public class GameManager {
@@ -56,6 +58,10 @@ public class GameManager {
 
         Main.instance.teamManager.redTeam.setupPlayers();
         Main.instance.teamManager.blueTeam.setupPlayers();
+
+        if(!GameConfig.spawnlapis){
+            Bukkit.getPluginManager().registerEvents(new EnchantEvent(Main.instance), Main.instance);
+        }
 
         Bukkit.getWorld("world").setGameRuleValue("doDaylightCycle", String.valueOf(!GameConfig.eternalday));
         Bukkit.getWorld("world").setGameRuleValue("doMobSpawning", String.valueOf(GameConfig.spawnmob));
@@ -121,5 +127,7 @@ public class GameManager {
         xpSpawnItem.cancel();
         if(GameConfig.spawnlapis)
             lapisSpawnItem.cancel();
+        else
+            HandlerList.unregisterAll(new EnchantEvent(Main.instance));
     }
 }
