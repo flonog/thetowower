@@ -4,6 +4,7 @@ import com.floleproto.thetower.Main;
 import com.floleproto.thetower.game.GameConfig;
 import com.floleproto.thetower.game.GameStates;
 import com.floleproto.thetower.game.TeamManager;
+import com.floleproto.thetower.game.save.PositionSave;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
@@ -46,7 +47,9 @@ public class BlockEvent implements Listener {
         } else if (main.gameManager.isStates(GameStates.ONGAME)) {
 
             if(ev.getBlock().getType().equals(Material.CHEST) && !GameConfig.chest_breakable){
-                ev.setCancelled(true);
+                if(PositionSave.chestPos.contains(ev.getBlock().getLocation())){
+                    ev.setCancelled(true);
+                }
             }
 
             if (TeamManager.redTeam.getPoolProtected().isInArea(ev.getBlock().getLocation())) {

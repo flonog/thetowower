@@ -6,7 +6,6 @@ blue:
     yaw: -90
     pitch: 0
     world: world
-
   protectedSpawn:
     pos1:
       x: -87
@@ -18,7 +17,6 @@ blue:
       y: 199
       z: 1149
       world: world
-
   pool:
     pos1:
       x: -85
@@ -30,7 +28,6 @@ blue:
       y: 201
       z: 1153
       world: world
-
   protectedPool:
     pos1:
       x: -87
@@ -42,7 +39,6 @@ blue:
       y: 200
       z: 1149
       world: world
-
 red:
   spawn:
     x: 84
@@ -51,7 +47,6 @@ red:
     yaw: 90
     pitch: 0
     world: world
-
   protectedSpawn:
     pos1:
       x: 81
@@ -63,7 +58,6 @@ red:
       y: 199
       z: 1149
       world: world
-
   pool:
     pos1:
       x: 85
@@ -75,7 +69,6 @@ red:
       y: 201
       z: 1151
       world: world
-
   protectedPool:
     pos1:
       x: 81
@@ -87,7 +80,6 @@ red:
       y: 200
       z: 1149
       world: world
-
 general:
   ironSpawner:
     x: 0.5
@@ -103,4 +95,190 @@ general:
     x: 0.5
     y: 205.0
     z: 1152.5
+    world: world
+chest:
+  '0':
+    x: 65.0
+    y: 192.0
+    z: 1147.0
+    world: world
+  '1':
+    x: 65.0
+    y: 192.0
+    z: 1146.0
+    world: world
+  '2':
+    x: 65.0
+    y: 192.0
+    z: 1144.0
+    world: world
+  '3':
+    x: 65.0
+    y: 192.0
+    z: 1143.0
+    world: world
+  '4':
+    x: 63.0
+    y: 192.0
+    z: 1138.0
+    world: world
+  '5':
+    x: 61.0
+    y: 192.0
+    z: 1143.0
+    world: world
+  '6':
+    x: 61.0
+    y: 192.0
+    z: 1144.0
+    world: world
+  '7':
+    x: 61.0
+    y: 192.0
+    z: 1146.0
+    world: world
+  '8':
+    x: 61.0
+    y: 192.0
+    z: 1147.0
+    world: world
+  '9':
+    x: 63.0
+    y: 192.0
+    z: 1166.0
+    world: world
+  '10':
+    x: 49.0
+    y: 192.0
+    z: 1166.0
+    world: world
+  '11':
+    x: 35.0
+    y: 192.0
+    z: 1138.0
+    world: world
+  '12':
+    x: 35.0
+    y: 192.0
+    z: 1166.0
+    world: world
+  '13':
+    x: 35.0
+    y: 197.0
+    z: 1166.0
+    world: world
+  '14':
+    x: 35.0
+    y: 197.0
+    z: 1138.0
+    world: world
+  '15':
+    x: 49.0
+    y: 197.0
+    z: 1138.0
+    world: world
+  '16':
+    x: 63.0
+    y: 197.0
+    z: 1138.0
+    world: world
+  '17':
+    x: 0.0
+    y: 207.0
+    z: 1152.0
+    world: world
+  '18':
+    x: -35.0
+    y: 197.0
+    z: 1138.0
+    world: world
+  '19':
+    x: -35.0
+    y: 197.0
+    z: 1166.0
+    world: world
+  '20':
+    x: -49.0
+    y: 197.0
+    z: 1166.0
+    world: world
+  '21':
+    x: -63.0
+    y: 197.0
+    z: 1166.0
+    world: world
+  '22':
+    x: -65.0
+    y: 192.0
+    z: 1157.0
+    world: world
+  '23':
+    x: -65.0
+    y: 192.0
+    z: 1158.0
+    world: world
+  '24':
+    x: -65.0
+    y: 192.0
+    z: 1160.0
+    world: world
+  '25':
+    x: -65.0
+    y: 192.0
+    z: 1161.0
+    world: world
+  '26':
+    x: -61.0
+    y: 192.0
+    z: 1161.0
+    world: world
+  '27':
+    x: -61.0
+    y: 192.0
+    z: 1160.0
+    world: world
+  '28':
+    x: -61.0
+    y: 192.0
+    z: 1158.0
+    world: world
+  '29':
+    x: -61.0
+    y: 192.0
+    z: 1157.0
+    world: world
+  '30':
+    x: -63.0
+    y: 192.0
+    z: 1166.0
+    world: world
+  '31':
+    x: -63.0
+    y: 192.0
+    z: 1138.0
+    world: world
+  '32':
+    x: -49.0
+    y: 192.0
+    z: 1138.0
+    world: world
+  '33':
+    x: -35.0
+    y: 192.0
+    z: 1138.0
+    world: world
+  '34':
+    x: -35.0
+    y: 192.0
+    z: 1166.0
+    world: world
+  '35':
+    x: -49.0
+    y: 206.0
+    z: 1152.0
+    world: world
+  '36':
+    x: 49.0
+    y: 206.0
+    z: 1152.0
     world: world

@@ -1,9 +1,6 @@
 package com.floleproto.thetower;
 
-import com.floleproto.thetower.commands.CancelStartCommand;
-import com.floleproto.thetower.commands.HostCommand;
-import com.floleproto.thetower.commands.SaveInvCommand;
-import com.floleproto.thetower.commands.StartCommand;
+import com.floleproto.thetower.commands.*;
 import com.floleproto.thetower.events.*;
 import com.floleproto.thetower.game.*;
 import com.floleproto.thetower.game.save.InventorySave;
@@ -60,6 +57,7 @@ public class Main extends JavaPlugin {
         getCommand("cancelstart").setExecutor(new CancelStartCommand(this));
         getCommand("save").setExecutor(new SaveInvCommand(this));
         getCommand("rules").setExecutor(new RulesCommand(this));
+        getCommand("savechest").setExecutor(new SaveChestCommand(this));
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eCommands registered.");
 
         getServer().getPluginManager().registerEvents(new JoinAndLeftEvent(this), this);
