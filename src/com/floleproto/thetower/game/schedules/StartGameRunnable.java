@@ -20,6 +20,8 @@ public class StartGameRunnable extends BukkitRunnable {
         XpBarManager.broadcastLevel(timer);
         XpBarManager.broadcastSetBar(timer, maxTimer);
 
+
+
         if (timer <= 10) {
             Title title = new Title("", "");
             if (timer == 1) {
@@ -29,6 +31,7 @@ public class StartGameRunnable extends BukkitRunnable {
             } else if (timer <= 5) {
                 title.setTitle("§e" + timer);
             } else {
+                //TODO: Change 0 to text
                 title.setTitle("§a" + timer);
             }
 

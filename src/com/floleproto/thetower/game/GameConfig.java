@@ -7,17 +7,17 @@ public class GameConfig {
     public static int minplayer = 5;
     public static int scoretowin = 10;
 
-    public static long spawnrate_xp = 5;
+    public static long spawnrate_xp = 5; //TODO: XP and Iron spawner
     public static long spawnrate_iron = 5;
     public static boolean spawnlapis = false;
 
     public static boolean chest_breakable = true;
     public static boolean friendlyfire = false;
-    public static boolean nolapisneeded = true;
+    public static boolean nolapisneeded = true; //TODO: No lapis into the enchantment table
     public static boolean timelimit_enable = true;
     public static int timelimit_time = 30;
-    public static boolean spawnmob = false;
-    public static boolean eternalday = true;
+    public static boolean spawnmob = false; //TODO: Change spawn mob
+    public static boolean eternalday = true; //TODO: Change eternal day
 
     public static boolean healonpoint = true;
 
