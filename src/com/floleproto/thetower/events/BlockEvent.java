@@ -1,9 +1,11 @@
 package com.floleproto.thetower.events;
 
 import com.floleproto.thetower.Main;
+import com.floleproto.thetower.game.GameConfig;
 import com.floleproto.thetower.game.GameStates;
 import com.floleproto.thetower.game.TeamManager;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -42,6 +44,11 @@ public class BlockEvent implements Listener {
         if (main.gameManager.isStates(GameStates.WAITING)) {
             ev.setCancelled(true);
         } else if (main.gameManager.isStates(GameStates.ONGAME)) {
+
+            if(ev.getBlock().getType().equals(Material.CHEST) && !GameConfig.chest_breakable){
+                ev.setCancelled(true);
+            }
+
             if (TeamManager.redTeam.getPoolProtected().isInArea(ev.getBlock().getLocation())) {
                 ev.setCancelled(true);
             } else if (TeamManager.blueTeam.getPoolProtected().isInArea(ev.getBlock().getLocation())) {
