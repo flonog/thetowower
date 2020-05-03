@@ -17,8 +17,9 @@ public class GameConfig {
     public static boolean friendlyfire = false;
     public static boolean timelimit_enable = true;
     public static int timelimit_time = 30;
-    public static boolean spawnmob = false; //TODO: Change spawn mob
-    public static boolean eternalday = true; //TODO: Change eternal day
+    public static boolean spawnmob = false;
+    public static boolean mobgriefing = false;
+    public static boolean eternalday = true;
 
     public static boolean healonpoint = true;
 
@@ -37,6 +38,7 @@ public class GameConfig {
         timelimit_enable = config.getBoolean("timelimit_enable");
         timelimit_time = config.getInt("timelimit_time");
         spawnmob = config.getBoolean("spawnmob");
+        mobgriefing = config.getBoolean("mobgriefing");
         eternalday = config.getBoolean("eternalday");
 
         healonpoint = config.getBoolean("healonpoint");
@@ -57,6 +59,7 @@ public class GameConfig {
         config.set("timelimit_enable", timelimit_enable);
         config.set("timelimit_time", timelimit_time);
         config.set("spawnmob", spawnmob);
+        config.set("mobgriefing", mobgriefing);
 
         config.set("healonpoint", healonpoint);
 
@@ -90,9 +93,10 @@ public class GameConfig {
                 "   Time Limit : " + (timelimit_enable ? "§a§lON (§b" + timelimit_time +"§a)" : "§c§lOFF") + "§r",
                 "   Breakable Chest : " + (chest_breakable ? "§a§lON" : "§c§lOFF") + "§r",
                 "   FriendlyFire : " + (friendlyfire ? "§a§lON" : "§c§lOFF") + "§r",
-                "   Mob spawn : " + (spawnmob ? "§a§lON" : "§c§lOFF") + "§r",
                 "   Eternal day : " + (eternalday ? "§a§lON" : "§c§lOFF") + "§r",
                 "   Heal on point marked : " + (healonpoint ? "§a§lON" : "§c§lOFF") + "§r§r\n§c ",
+                "   Mob spawn : " + (spawnmob ? "§a§lON" : "§c§lOFF") + "§r",
+                "   Mob griefing : " + (mobgriefing ? "§a§lON" : "§c§lOFF") + "§r",
         };
     }
 }

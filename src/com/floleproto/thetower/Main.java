@@ -71,6 +71,12 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerDieEvent(this), this);
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eEvents registered.");
 
+        Bukkit.getWorld("world").setGameRuleValue("doDaylightCycle", "false");
+        Bukkit.getWorld("world").setGameRuleValue("doMobSpawning", "false");
+        Bukkit.getWorld("world").setGameRuleValue("doMobLoot", "false");
+        Bukkit.getWorld("world").setGameRuleValue("mobGriefing", "false");
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §Gamerule world registered.");
+
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §aPlugin loaded successfully.");
     }
 

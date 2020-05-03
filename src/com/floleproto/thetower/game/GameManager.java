@@ -8,6 +8,7 @@ import com.floleproto.thetower.utils.MapUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
+import org.bukkit.util.io.BukkitObjectInputStream;
 
 import java.util.LinkedHashMap;
 import java.util.UUID;
@@ -53,6 +54,13 @@ public class GameManager {
 
         Main.instance.teamManager.redTeam.setupPlayers();
         Main.instance.teamManager.blueTeam.setupPlayers();
+
+        Bukkit.getWorld("world").setGameRuleValue("doDaylightCycle", String.valueOf(!GameConfig.eternalday));
+        Bukkit.getWorld("world").setGameRuleValue("doMobSpawning", String.valueOf(GameConfig.spawnmob));
+        Bukkit.getWorld("world").setGameRuleValue("doMobLoot", "false");
+        Bukkit.getWorld("world").setGameRuleValue("mobGriefing", String.valueOf(GameConfig.mobgriefing));
+
+        Bukkit.getWorld("world").setTime(6000L);
 
         if(GameConfig.timelimit_enable){
             Bukkit.broadcastMessage("§b§lThe TOwOwer §4§l>§1§l> §eThe game end in " + GameConfig.timelimit_time + " minutes.");
