@@ -56,7 +56,7 @@ public class PositionSave {
         redSpawnProtected = new Area(pos1RedSpawnProtected, pos2RedSpawnProtected);
 
         blueSpawn = new Location(Bukkit.getWorld(yml.getString("blue.spawn.world")), yml.getDouble("blue.spawn.x"), yml.getDouble("blue.spawn.y"), yml.getDouble("blue.spawn.z"), (float) yml.getDouble("blue.spawn.yaw"), (float) yml.getDouble("blue.spawn.pitch"));
-        System.out.println(blueSpawn);
+
         Location pos1BluePool = new Location(Bukkit.getWorld(yml.getString("blue.pool.pos1.world")), yml.getDouble("blue.pool.pos1.x"), yml.getDouble("blue.pool.pos1.y"), yml.getDouble("blue.pool.pos1.z"));
         Location pos2BluePool = new Location(Bukkit.getWorld(yml.getString("blue.pool.pos2.world")), yml.getDouble("blue.pool.pos2.x"), yml.getDouble("blue.pool.pos2.y"), yml.getDouble("blue.pool.pos2.z"));
         bluePool = new Area(pos1BluePool, pos2BluePool);
