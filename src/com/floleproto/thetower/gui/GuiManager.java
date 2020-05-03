@@ -78,7 +78,7 @@ public class GuiManager implements Listener {
 
     @EventHandler
     public void onCloseInventory(InventoryCloseEvent ev) {
-        if (ev.getInventory() == inventory) {
+        if (ev.getInventory().getName().equals(inventory.getName())) {
             HandlerList.unregisterAll(this);
         }
     }

@@ -28,7 +28,6 @@ public class TeamGui extends GuiManager {
 
     @EventHandler
     public void onClick(InventoryClickEvent ev) {
-
         if (ev.getInventory() == null)
             return;
 

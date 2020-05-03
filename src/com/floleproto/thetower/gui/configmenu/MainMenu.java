@@ -44,9 +44,7 @@ public class MainMenu extends GuiManager {
         if (ev.getInventory() == null)
             return;
 
-        if (!ev.getInventory().equals(inventory)){ //FIXME: CraftInventory and CraftInventoryCustom are not equals.
-            System.out.println(ev.getClickedInventory());
-            System.out.println(inventory);
+        if (!ev.getInventory().equals(inventory)){
             return;
         }
 
