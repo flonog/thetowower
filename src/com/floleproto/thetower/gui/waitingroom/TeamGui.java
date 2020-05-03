@@ -35,6 +35,10 @@ public class TeamGui extends GuiManager {
         if (ev.getInventory() != inventory)
             return;
 
+        if(ev.getCurrentItem() == null){
+            return;
+        }
+
         if (ev.getCurrentItem().getType() == Material.WOOL) {
             TeamManager teamManager = Main.instance.teamManager;
             Map<Enchantment, Integer> enchants = new HashMap<Enchantment, Integer>();
