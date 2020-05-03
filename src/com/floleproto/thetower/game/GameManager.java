@@ -54,6 +54,10 @@ public class GameManager {
         Main.instance.teamManager.redTeam.setupPlayers();
         Main.instance.teamManager.blueTeam.setupPlayers();
 
+        if(GameConfig.timelimit_enable){
+            Bukkit.broadcastMessage("§b§lThe TOwOwer §4§l>§1§l> §eThe game end in " + GameConfig.timelimit_time + " minutes.");
+        }
+
         timerRunnable.runTaskTimer(Main.instance, 0L, 20L);
         checkPointRunnable.runTaskTimer(Main.instance, 0L, 10L);
     }

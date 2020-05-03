@@ -1,6 +1,7 @@
 package com.floleproto.thetower.game.schedules;
 
 import com.floleproto.thetower.Main;
+import com.floleproto.thetower.game.GameConfig;
 import com.floleproto.thetower.utils.Title;
 import com.floleproto.thetower.utils.XpBarManager;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -24,14 +25,17 @@ public class StartGameRunnable extends BukkitRunnable {
 
         if (timer <= 10) {
             Title title = new Title("", "");
-            if (timer == 1) {
+            if(timer <= 0){
+                title.setSubtitle("§eMark " + GameConfig.scoretowin + " points to win !");
+                title.setTitle("§b§lThe TOwOwer");
+
+            } else if (timer == 1) {
                 title.setTitle("§4" + timer);
             } else if (timer <= 3) {
                 title.setTitle("§c" + timer);
             } else if (timer <= 5) {
                 title.setTitle("§e" + timer);
             } else {
-                //TODO: Change 0 to text
                 title.setTitle("§a" + timer);
             }
 
