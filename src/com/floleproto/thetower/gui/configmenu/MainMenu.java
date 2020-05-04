@@ -2,6 +2,7 @@ package com.floleproto.thetower.gui.configmenu;
 
 import com.floleproto.thetower.game.GameConfig;
 import com.floleproto.thetower.gui.GuiManager;
+import com.floleproto.thetower.gui.configmenu.time.TimeConfig;
 import com.floleproto.thetower.utils.ItemCreator;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftInventory;
@@ -96,6 +97,9 @@ public class MainMenu extends GuiManager {
                 if(ev.getClick() == ClickType.RIGHT){
                     GameConfig.timelimit_enable = !GameConfig.timelimit_enable;
                     refresh();
+                } else {
+                    player.getOpenInventory().close();
+                    new TimeConfig(player).show();
                 }
                 break;
         }
