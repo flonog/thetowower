@@ -2,6 +2,7 @@ package com.floleproto.thetower.gui.configmenu;
 
 import com.floleproto.thetower.game.GameConfig;
 import com.floleproto.thetower.gui.GuiManager;
+import com.floleproto.thetower.gui.configmenu.time.PointConfigMenu;
 import com.floleproto.thetower.gui.configmenu.time.TimeConfig;
 import com.floleproto.thetower.utils.ItemCreator;
 import org.bukkit.Material;
@@ -62,6 +63,8 @@ public class MainMenu extends GuiManager {
 
         switch (ev.getCurrentItem().getType()){
             case NETHER_STAR:
+                player.getOpenInventory().close();
+                new PointConfigMenu(player).show();
                 break;
             case IRON_AXE:
                 GameConfig.friendlyfire = !GameConfig.friendlyfire;
