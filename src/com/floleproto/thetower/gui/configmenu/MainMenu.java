@@ -32,7 +32,7 @@ public class MainMenu extends GuiManager {
         inventory.setItem(1, new ItemCreator(Material.IRON_AXE, 1, (byte) 0, "§eFriendlyFire " + (GameConfig.friendlyfire ? "§a§lON" : "§c§lOFF"), Arrays.asList(new String[] { "§rDefined if the FriendlyFire is active or not. " }), enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
         inventory.setItem(2, new ItemCreator(Material.CHEST, 1, (byte) 0, "§eBreakable Chest " + (GameConfig.chest_breakable ? "§a§lON" : "§c§lOFF"), Arrays.asList(new String[] { "§rDefined if the chests can be destroyed or not. " }), enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
         inventory.setItem(3, new ItemCreator(Material.WOOL, 1, (byte) 4, "§eEternal Day " + (GameConfig.eternalday ? "§a§lON" : "§c§lOFF"), Arrays.asList(new String[] { "§rDefined if the day is there all the time. " }), enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
-        inventory.setItem(4, new ItemCreator(Material.GLASS, 1, (byte) 14, "§eHeal on point " + (GameConfig.healonpoint ? "§a§lON" : "§c§lOFF"), Arrays.asList(new String[] { "§rHeal the player when he score a point. " }), enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
+        inventory.setItem(4, new ItemCreator(Material.STAINED_GLASS_PANE, 1, (byte) 14, "§eHeal on point " + (GameConfig.healonpoint ? "§a§lON" : "§c§lOFF"), Arrays.asList(new String[] { "§rHeal the player when he score a point. " }), enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
         inventory.setItem(5, new ItemCreator(Material.SKULL_ITEM, 1, (byte) 2, "§eMob spawning " + (GameConfig.spawnmob ? "§a§lON" : "§c§lOFF"), Arrays.asList(new String[] { "§rDefined if the mobs can spawn. " }), enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
         inventory.setItem(6, new ItemCreator(Material.TNT, 1, (byte) 0, "§eMob griefing " + (GameConfig.mobgriefing ? "§a§lON" : "§c§lOFF"), Arrays.asList(new String[] { "§rDefined if the mobs can damage the terrain. " }), enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
         inventory.setItem(7, new ItemCreator(Material.IRON_INGOT, 1, (byte) 0, "§eItem Spawning Config", Arrays.asList(new String[] { "§rLapis spawn : " + (GameConfig.spawnlapis ? "§a§lON (§b" + GameConfig.spawnlapis_rate + "§a§l)" : "§c§lOFF"), "§rXP spawn : §b§l" + (GameConfig.spawnrate_xp_enable ? "§a§lON (§b" + GameConfig.spawnrate_xp + "§a§l)" : "§c§lOFF"), "§rIron SpawnRate : §b§l" + (GameConfig.spawnrate_iron_enable ? "§a§lON (§b" + GameConfig.spawnrate_iron + "§a§l)" : "§c§lOFF")}), enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
@@ -78,7 +78,7 @@ public class MainMenu extends GuiManager {
                 GameConfig.eternalday = !GameConfig.eternalday;
                 refresh();
                 break;
-            case GLASS:
+            case STAINED_GLASS_PANE:
                 GameConfig.healonpoint = !GameConfig.healonpoint;
                 refresh();
                 break;
