@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 
 public class RulesCommand implements CommandExecutor {
     private Main main;
+
     public RulesCommand(Main main) {
         this.main = main;
     }
@@ -15,7 +16,7 @@ public class RulesCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 
-        if(!main.gameManager.isStates(GameStates.ONGAME)){
+        if (!main.gameManager.isStates(GameStates.ONGAME)) {
             commandSender.sendMessage("§b§lThe TOwOwer §4§l>§1§l>§c The game hasn't started yet.");
             return false;
         }

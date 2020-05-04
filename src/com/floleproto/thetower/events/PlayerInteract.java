@@ -34,7 +34,7 @@ public class PlayerInteract implements Listener {
                     new TeamGui(p).show();
                     break;
                 case COMMAND:
-                    if(p.hasPermission("thetowower.config") || p.hasPermission("thetowower.*") || p.isOp()){
+                    if (p.hasPermission("thetowower.config") || p.hasPermission("thetowower.*") || p.isOp()) {
                         new MainMenu(p).show();
                     }
                     break;
@@ -47,7 +47,7 @@ public class PlayerInteract implements Listener {
         if (ev.getWhoClicked().getGameMode() == GameMode.CREATIVE)
             return;
 
-        if(ev.getClickedInventory() != ev.getWhoClicked().getInventory()){
+        if (ev.getClickedInventory() != ev.getWhoClicked().getInventory()) {
             return;
         }
 

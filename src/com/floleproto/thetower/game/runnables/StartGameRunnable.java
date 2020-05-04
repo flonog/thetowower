@@ -22,10 +22,9 @@ public class StartGameRunnable extends BukkitRunnable {
         XpBarManager.broadcastSetBar(timer, maxTimer);
 
 
-
         if (timer <= 10) {
             Title title = new Title("", "");
-            if(timer <= 0){
+            if (timer <= 0) {
                 title.setSubtitle("§eMark " + GameConfig.scoretowin + " points to win !");
                 title.setTitle("§b§lThe TOwOwer");
 

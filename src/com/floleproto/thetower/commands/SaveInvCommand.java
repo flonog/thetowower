@@ -19,10 +19,32 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SaveInvCommand implements CommandExecutor {
-    private Main main;
     public static HashMap<Player, Team> playersEditing = new HashMap<>();
+    private Main main;
+
     public SaveInvCommand(Main main) {
         this.main = main;
+    }
+
+    public static void openEdit(Player p, Team team) {
+        p.setGameMode(GameMode.CREATIVE);
+        p.setAllowFlight(false);
+        p.getInventory().clear();
+        p.getInventory().setArmorContents(null);
+
+        p.sendMessage("§b§lThe TOwOwer §4§l>§1§l>§a You are editing the inventory of " + team.getName() + " §ateam. Execute \"/save\" in the chat to save your changes.");
+
+        team.setTeamInventory(p);
+
+        playersEditing.put(p, team);
+    }
+
+    public static void closeEdit(Player p) {
+        p.setGameMode(GameMode.SURVIVAL);
+        p.getInventory().clear();
+        p.getInventory().setArmorContents(null);
+
+        playersEditing.remove(p);
     }
 
     @Override
@@ -61,26 +83,5 @@ public class SaveInvCommand implements CommandExecutor {
         p.getInventory().setItem(8, new ItemCreator(Material.COMMAND, 1, (byte) 0, "§c§lConfig", null, enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
 
         return true;
-    }
-
-    public static void openEdit(Player p, Team team){
-        p.setGameMode(GameMode.CREATIVE);
-        p.setAllowFlight(false);
-        p.getInventory().clear();
-        p.getInventory().setArmorContents(null);
-
-        p.sendMessage("§b§lThe TOwOwer §4§l>§1§l>§a You are editing the inventory of " + team.getName() + " §ateam. Execute \"/save\" in the chat to save your changes.");
-
-        team.setTeamInventory(p);
-
-        playersEditing.put(p, team);
-    }
-
-    public static void closeEdit(Player p){
-        p.setGameMode(GameMode.SURVIVAL);
-        p.getInventory().clear();
-        p.getInventory().setArmorContents(null);
-
-        playersEditing.remove(p);
     }
 }

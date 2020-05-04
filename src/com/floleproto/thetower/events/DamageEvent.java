@@ -27,8 +27,8 @@ public class DamageEvent implements Listener {
     }
 
     @EventHandler
-    public void onEntityDamageByEntity(EntityDamageByEntityEvent ev){
-        if(main.gameManager.isStates(GameStates.ONGAME)) {
+    public void onEntityDamageByEntity(EntityDamageByEntityEvent ev) {
+        if (main.gameManager.isStates(GameStates.ONGAME)) {
             if (!GameConfig.friendlyfire) {
                 if (ev.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) {
                     if (ev.getEntity() instanceof Player && ev.getDamager() instanceof Player) {

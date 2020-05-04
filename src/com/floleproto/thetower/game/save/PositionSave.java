@@ -4,7 +4,6 @@ import com.floleproto.thetower.Main;
 import com.floleproto.thetower.game.Area;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -13,7 +12,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class PositionSave {
 
@@ -38,8 +36,10 @@ public class PositionSave {
     public static YamlConfiguration yml = YamlConfiguration.loadConfiguration(file);
 
     public static void LoadFile() {
-        if (!path.exists()) path.mkdir();
-        if (!file.exists()) Main.instance.saveResource("positions.yml", true);
+        if (!path.exists())
+            path.mkdir();
+        if (!file.exists())
+            Main.instance.saveResource("positions.yml", true);
 
         try {
             yml.load(file);
@@ -52,16 +52,16 @@ public class PositionSave {
         chestPos.add(pos);
     }
 
-    public static void loadChestsPos(){
+    public static void loadChestsPos() {
         ConfigurationSection section = yml.getConfigurationSection("chest");
         chestPos = new ArrayList<>();
-        for(String s : section.getKeys(false)){
+        for (String s : section.getKeys(false)) {
             double x = yml.getDouble("chest." + s + ".x");
             System.out.println(yml.getDouble("chest.'1'.x"));
             double y = yml.getDouble("chest." + s + ".y");
             double z = yml.getDouble("chest." + s + ".z");
             String world = yml.getString("chest." + s + ".world");
-            chestPos.add(new Location(Bukkit.getWorld(world),x,y,z));
+            chestPos.add(new Location(Bukkit.getWorld(world), x, y, z));
         }
     }
 
@@ -82,7 +82,7 @@ public class PositionSave {
         }
     }
 
-    public static void removeChestPos(Location pos){
+    public static void removeChestPos(Location pos) {
         chestPos.remove(pos);
     }
 
@@ -117,7 +117,7 @@ public class PositionSave {
 
         ironSpawn = new Location(Bukkit.getWorld(yml.getString("general.ironSpawner.world")), yml.getDouble("general.ironSpawner.x"), yml.getDouble("general.ironSpawner.y"), yml.getDouble("general.ironSpawner.z"));
         xpSpawn = new Location(Bukkit.getWorld(yml.getString("general.xpSpawner.world")), yml.getDouble("general.xpSpawner.x"), yml.getDouble("general.xpSpawner.y"), yml.getDouble("general.xpSpawner.z"));
-        lapisSpawn =  new Location(Bukkit.getWorld(yml.getString("general.lapisSpawner.world")), yml.getDouble("general.lapisSpawner.x"), yml.getDouble("general.lapisSpawner.y"), yml.getDouble("general.lapisSpawner.z"));
+        lapisSpawn = new Location(Bukkit.getWorld(yml.getString("general.lapisSpawner.world")), yml.getDouble("general.lapisSpawner.x"), yml.getDouble("general.lapisSpawner.y"), yml.getDouble("general.lapisSpawner.z"));
 
         loadChestsPos();
     }

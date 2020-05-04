@@ -145,7 +145,7 @@ public class Team {
         addScore(1);
         teleportToTeamPoint(p);
 
-        if(GameConfig.healonpoint){
+        if (GameConfig.healonpoint) {
             p.setHealth(20);
             p.setFoodLevel(30);
         }
@@ -162,12 +162,12 @@ public class Team {
 
         Main.instance.scoreboardManager.setScore();
 
-        if(checkWin()){
+        if (checkWin()) {
             win();
         }
     }
 
-    public void win(){
+    public void win() {
         Bukkit.broadcastMessage("\n§b§lThe TOwOwer §4§l>§1§l> " + name + " §e team won the game !\n\n");
         Main.instance.gameManager.stopGame();
         Main.instance.scoreboardManager.setWinner(name);

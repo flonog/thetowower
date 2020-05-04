@@ -35,11 +35,11 @@ public class Statistics {
         kills.put(p.getUniqueId(), 0);
     }
 
-    public LinkedHashMap<UUID, Integer> getBestDeaths(){
+    public LinkedHashMap<UUID, Integer> getBestDeaths() {
         return MapUtils.sortBestPlayer(deaths);
     }
 
-    public LinkedHashMap<UUID, Integer> getBestKills(){
+    public LinkedHashMap<UUID, Integer> getBestKills() {
         return MapUtils.sortBestPlayer(kills);
     }
 }

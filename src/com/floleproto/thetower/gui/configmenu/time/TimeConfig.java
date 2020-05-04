@@ -15,36 +15,36 @@ public class TimeConfig extends NumberConfigMenu {
         refreshInventory();
     }
 
-    public void refreshInventory(){
+    public void refreshInventory() {
         inventory.setItem(4, new ItemCreator(Material.WATCH, 1, (byte) 0, "§b" + GameConfig.timelimit_time).create());
     }
 
     @EventHandler
-    public void onClick(InventoryClickEvent ev){
+    public void onClick(InventoryClickEvent ev) {
         if (ev.getInventory() == null)
             return;
 
-        if (!ev.getInventory().equals(inventory)){
+        if (!ev.getInventory().equals(inventory)) {
             return;
         }
 
-        if (ev.getCurrentItem() == null){
+        if (ev.getCurrentItem() == null) {
             return;
         }
 
         ev.setCancelled(true);
 
-        if (!player.hasPermission("thetowower.config") || !player.hasPermission("thetowower.*") || !player.isOp()){
+        if (!player.hasPermission("thetowower.config") || !player.hasPermission("thetowower.*") || !player.isOp()) {
             player.getOpenInventory().close();
             return;
         }
 
-        if(ev.getCurrentItem().getType().equals(Material.BARRIER)){
+        if (ev.getCurrentItem().getType().equals(Material.BARRIER)) {
             player.getOpenInventory().close();
             new MainMenu(player).show();
         }
 
-        if(!ev.getCurrentItem().getType().equals(Material.WOOL)){
+        if (!ev.getCurrentItem().getType().equals(Material.WOOL)) {
             return;
         }
         String itemName = ev.getCurrentItem().getItemMeta().getDisplayName();

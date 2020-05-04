@@ -34,10 +34,10 @@ public class Main extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §ePositions loaded.");
         InventorySave.LoadFile();
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eInventories loaded.");
-        try{
+        try {
             GameConfig.loadConfig();
             Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r]§e Configurations loaded.");
-        } catch(Exception e) {
+        } catch (Exception e) {
             Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r]§c Error ! Save default configuration to try to fix it.");
             GameConfig.saveConfig();
         }

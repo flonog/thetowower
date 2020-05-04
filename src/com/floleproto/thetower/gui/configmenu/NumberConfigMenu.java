@@ -5,8 +5,6 @@ import com.floleproto.thetower.utils.ItemCreator;
 import org.apache.commons.lang.mutable.MutableInt;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.inventory.InventoryClickEvent;
 
 public class NumberConfigMenu extends GuiManager {
 
@@ -20,7 +18,7 @@ public class NumberConfigMenu extends GuiManager {
 
     }
 
-    public void loadInventory(){
+    public void loadInventory() {
         inventory.setItem(10, new ItemCreator(Material.WOOL, 1, (byte) 14, "§c-10").create());
         inventory.setItem(11, new ItemCreator(Material.WOOL, 1, (byte) 14, "§c-5").create());
         inventory.setItem(12, new ItemCreator(Material.WOOL, 1, (byte) 14, "§c-1").create());

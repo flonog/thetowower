@@ -77,29 +77,29 @@ public class GameConfig {
         Main.instance.saveConfig();
     }
 
-    public static void sendRules(Player p){
+    public static void sendRules(Player p) {
         p.sendMessage("\n§c §b===================================================\n§c ");
         for (String s : getRules()) {
-            p.sendMessage( "§e" + s);
+            p.sendMessage("§e" + s);
         }
         p.sendMessage("\n§c §b===================================================\n ");
     }
 
-    public static void sendRules(CommandSender commandSender){
+    public static void sendRules(CommandSender commandSender) {
         commandSender.sendMessage("\n§c §b===================================================\n§c ");
         for (String s : getRules()) {
-            commandSender.sendMessage( "§e" + s);
+            commandSender.sendMessage("§e" + s);
         }
         commandSender.sendMessage("\n§c §b===================================================\n§c ");
     }
 
-    private static String[] getRules(){
-        return new String[] {
+    private static String[] getRules() {
+        return new String[]{
                 "   Score to Win : §b§l" + scoretowin,
                 "   XP spawn : §b§l" + (spawnrate_xp_enable ? "§a§lON (§b" + spawnrate_xp + "§a§l)" : "§c§lOFF") + "§r",
                 "   Iron spawn : §b§l" + (spawnrate_iron_enable ? "§a§lON (§b" + spawnrate_iron + "§a§l)" : "§c§lOFF") + "§r",
                 "   Lapis spawn : " + (spawnlapis ? "§a§lON (§b" + spawnlapis_rate + "§a§l)" : "§c§lOFF") + "§r\n§c ",
-                "   Time Limit : " + (timelimit_enable ? "§a§lON (§b" + timelimit_time +"§a§l)" : "§c§lOFF") + "§r",
+                "   Time Limit : " + (timelimit_enable ? "§a§lON (§b" + timelimit_time + "§a§l)" : "§c§lOFF") + "§r",
                 "   Breakable Chest : " + (chest_breakable ? "§a§lON" : "§c§lOFF") + "§r",
                 "   FriendlyFire : " + (friendlyfire ? "§a§lON" : "§c§lOFF") + "§r",
                 "   Eternal day : " + (eternalday ? "§a§lON" : "§c§lOFF") + "§r",

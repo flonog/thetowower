@@ -21,27 +21,27 @@ public class TimerRunnable extends BukkitRunnable {
         }
         DecimalFormat decimalFormat = new DecimalFormat("00");
 
-        if(GameConfig.timelimit_enable){
-            if(seconds == 0){
-                if(GameConfig.timelimit_time - minutes == 5){
+        if (GameConfig.timelimit_enable) {
+            if (seconds == 0) {
+                if (GameConfig.timelimit_time - minutes == 5) {
                     Bukkit.broadcastMessage("§b§lThe TOwOwer §4§l>§1§l>§e The game end in 5 minutes.");
-                } else if(GameConfig.timelimit_time - minutes == 1){
+                } else if (GameConfig.timelimit_time - minutes == 1) {
                     Bukkit.broadcastMessage("§b§lThe TOwOwer §4§l>§1§l>§e The game end in 1 minute.");
                 }
             }
 
-            if(GameConfig.timelimit_time - minutes == 1){
-                if(60 - seconds == 30){
+            if (GameConfig.timelimit_time - minutes == 1) {
+                if (60 - seconds == 30) {
                     Bukkit.broadcastMessage("§b§lThe TOwOwer §4§l>§1§l>§e The game end in 30 seconds.");
-                } else if(60 - seconds == 10){
+                } else if (60 - seconds == 10) {
                     Bukkit.broadcastMessage("§b§lThe TOwOwer §4§l>§1§l>§e The game end in 10 seconds.");
-                } else if(60 - seconds <= 5){
+                } else if (60 - seconds <= 5) {
                     Bukkit.broadcastMessage("§b§lThe TOwOwer §4§l>§1§l>§e The game end in " + (60 - seconds) + " seconds.");
                 }
             }
         }
 
-        if(GameConfig.timelimit_time == minutes){
+        if (GameConfig.timelimit_time == minutes) {
             Main.instance.gameManager.timeOut();
         }
 

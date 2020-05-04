@@ -1,7 +1,6 @@
 package com.floleproto.thetower.gui.configmenu.itemspawn;
 
 import com.floleproto.thetower.game.GameConfig;
-import com.floleproto.thetower.gui.configmenu.MainMenu;
 import com.floleproto.thetower.gui.configmenu.NumberConfigMenu;
 import com.floleproto.thetower.utils.ItemCreator;
 import org.bukkit.Material;
@@ -15,36 +14,36 @@ public class XpRateConfig extends NumberConfigMenu {
         refreshInventory();
     }
 
-    public void refreshInventory(){
+    public void refreshInventory() {
         inventory.setItem(4, new ItemCreator(Material.EXP_BOTTLE, 1, (byte) 0, "§b" + GameConfig.spawnrate_xp).create());
     }
 
     @EventHandler
-    public void onClick(InventoryClickEvent ev){
+    public void onClick(InventoryClickEvent ev) {
         if (ev.getInventory() == null)
             return;
 
-        if (!ev.getInventory().equals(inventory)){
+        if (!ev.getInventory().equals(inventory)) {
             return;
         }
 
-        if (ev.getCurrentItem() == null){
+        if (ev.getCurrentItem() == null) {
             return;
         }
 
         ev.setCancelled(true);
 
-        if (!player.hasPermission("thetowower.config") || !player.hasPermission("thetowower.*") || !player.isOp()){
+        if (!player.hasPermission("thetowower.config") || !player.hasPermission("thetowower.*") || !player.isOp()) {
             player.getOpenInventory().close();
             return;
         }
 
-        if(ev.getCurrentItem().getType().equals(Material.BARRIER)){
+        if (ev.getCurrentItem().getType().equals(Material.BARRIER)) {
             player.getOpenInventory().close();
             new ItemSpawnMenu(player).show();
         }
 
-        if(!ev.getCurrentItem().getType().equals(Material.WOOL)){
+        if (!ev.getCurrentItem().getType().equals(Material.WOOL)) {
             return;
         }
         String itemName = ev.getCurrentItem().getItemMeta().getDisplayName();

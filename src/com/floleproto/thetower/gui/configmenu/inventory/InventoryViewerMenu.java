@@ -1,11 +1,9 @@
 package com.floleproto.thetower.gui.configmenu.inventory;
 
 import com.floleproto.thetower.commands.SaveInvCommand;
-import com.floleproto.thetower.game.GameConfig;
 import com.floleproto.thetower.game.Team;
 import com.floleproto.thetower.game.save.InventorySave;
 import com.floleproto.thetower.gui.GuiManager;
-import com.floleproto.thetower.gui.configmenu.itemspawn.ItemSpawnMenu;
 import com.floleproto.thetower.utils.ItemCreator;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -39,30 +37,30 @@ public class InventoryViewerMenu extends GuiManager {
     }
 
     @EventHandler
-    public void onClick(InventoryClickEvent ev){
+    public void onClick(InventoryClickEvent ev) {
         if (ev.getInventory() == null)
             return;
 
-        if (!ev.getInventory().equals(inventory)){
+        if (!ev.getInventory().equals(inventory)) {
             return;
         }
 
-        if (ev.getCurrentItem() == null){
+        if (ev.getCurrentItem() == null) {
             return;
         }
 
         ev.setCancelled(true);
 
-        if (!player.hasPermission("thetowower.config") || !player.hasPermission("thetowower.*") || !player.isOp()){
+        if (!player.hasPermission("thetowower.config") || !player.hasPermission("thetowower.*") || !player.isOp()) {
             player.getOpenInventory().close();
             return;
         }
 
-        if(ev.getCurrentItem().getType().equals(Material.BARRIER)){
+        if (ev.getCurrentItem().getType().equals(Material.BARRIER)) {
             player.getOpenInventory().close();
             new InventoryMenu(player).show();
-        } else if(ev.getCurrentItem().getType().equals(Material.INK_SACK)){
-            if(ev.getCurrentItem().getItemMeta().getDisplayName() == "§aEdit"){
+        } else if (ev.getCurrentItem().getType().equals(Material.INK_SACK)) {
+            if (ev.getCurrentItem().getItemMeta().getDisplayName() == "§aEdit") {
                 SaveInvCommand.openEdit(player, team);
                 player.getOpenInventory().close();
             }

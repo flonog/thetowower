@@ -59,7 +59,7 @@ public class GameManager {
         Main.instance.teamManager.redTeam.setupPlayers();
         Main.instance.teamManager.blueTeam.setupPlayers();
 
-        if(!GameConfig.spawnlapis){
+        if (!GameConfig.spawnlapis) {
             Bukkit.getPluginManager().registerEvents(new EnchantEvent(Main.instance), Main.instance);
         }
 
@@ -70,17 +70,17 @@ public class GameManager {
 
         Bukkit.getWorld("world").setTime(6000L);
 
-        if(GameConfig.timelimit_enable){
+        if (GameConfig.timelimit_enable) {
             Bukkit.broadcastMessage("§b§lThe TOwOwer §4§l>§1§l> §eThe game end in " + GameConfig.timelimit_time + " minutes.");
         }
 
         timerRunnable.runTaskTimer(Main.instance, 0L, 20L);
         checkPointRunnable.runTaskTimer(Main.instance, 0L, 10L);
-        if(GameConfig.spawnrate_iron_enable)
+        if (GameConfig.spawnrate_iron_enable)
             ironSpawnItem.runTaskTimer(Main.instance, 0L, 20L * GameConfig.spawnrate_iron);
-        if(GameConfig.spawnrate_xp_enable)
+        if (GameConfig.spawnrate_xp_enable)
             xpSpawnItem.runTaskTimer(Main.instance, 0L, 20L * GameConfig.spawnrate_xp);
-        if(GameConfig.spawnlapis)
+        if (GameConfig.spawnlapis)
             lapisSpawnItem.runTaskTimer(Main.instance, 0L, 20L * GameConfig.spawnlapis_rate);
     }
 
@@ -97,11 +97,11 @@ public class GameManager {
         startGameRunnable = null;
     }
 
-    public void timeOut(){
+    public void timeOut() {
         stopGame();
-        if(TeamManager.redTeam.getScore() > TeamManager.blueTeam.getScore()){
+        if (TeamManager.redTeam.getScore() > TeamManager.blueTeam.getScore()) {
             TeamManager.redTeam.win();
-        } else if(TeamManager.redTeam.getScore() < TeamManager.blueTeam.getScore()){
+        } else if (TeamManager.redTeam.getScore() < TeamManager.blueTeam.getScore()) {
             TeamManager.blueTeam.win();
         } else {
             Bukkit.broadcastMessage("\n§b§lThe TOwOwer §4§l>§1§l> §2§lTie game§r. The both teams have an equivalent number of points.\n\n");
@@ -116,7 +116,7 @@ public class GameManager {
 
     public void stopGame() {
         Main.instance.gameManager.setStates(GameStates.FINISH);
-        for (Player p: Bukkit.getOnlinePlayers()) {
+        for (Player p : Bukkit.getOnlinePlayers()) {
             Main.instance.scoreboardManager.setScoreboardTemplate(p, GameStates.FINISH);
             p.setGameMode(GameMode.SPECTATOR);
         }
@@ -125,11 +125,11 @@ public class GameManager {
 
         timerRunnable.cancel();
         checkPointRunnable.cancel();
-        if(GameConfig.spawnrate_iron_enable)
+        if (GameConfig.spawnrate_iron_enable)
             ironSpawnItem.cancel();
-        if(GameConfig.spawnrate_xp_enable)
+        if (GameConfig.spawnrate_xp_enable)
             xpSpawnItem.cancel();
-        if(GameConfig.spawnlapis)
+        if (GameConfig.spawnlapis)
             lapisSpawnItem.cancel();
         else
             HandlerList.unregisterAll(new EnchantEvent(Main.instance));

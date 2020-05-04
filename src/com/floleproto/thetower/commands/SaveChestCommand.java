@@ -10,13 +10,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 public class SaveChestCommand implements CommandExecutor {
     private Main main;
+
     public SaveChestCommand(Main main) {
         this.main = main;
     }
@@ -27,27 +27,27 @@ public class SaveChestCommand implements CommandExecutor {
             commandSender.sendMessage("§b§lThe TOwOwer §4§l>§1§l>§c You don't have the permission to execute this command.");
             return false;
         }
-        if(!(commandSender instanceof Player)){
+        if (!(commandSender instanceof Player)) {
             commandSender.sendMessage("§b§lThe TOwOwer §4§l>§1§l>§c Only player can execute this command.");
         }
-        if(strings.length < 1){
+        if (strings.length < 1) {
             commandSender.sendMessage("§b§lThe TOwOwer §4§l>§1§l>§c /savechest <add | remove>.");
             return false;
         }
         Player p = (Player) commandSender;
 
-        if(strings[0].equalsIgnoreCase("add")){
+        if (strings[0].equalsIgnoreCase("add")) {
 
             Set<Material> chests = new HashSet<Material>(Arrays.asList(new Material[]{Material.AIR}));
-            Block block  = p.getTargetBlock(chests, 4);
+            Block block = p.getTargetBlock(chests, 4);
 
             System.out.println(block);
 
-            if(block == null){
+            if (block == null) {
                 commandSender.sendMessage("§b§lThe TOwOwer §4§l>§1§l>§c Please look at a chest.");
                 return false;
             }
-            if(!block.getType().equals(Material.CHEST)){
+            if (!block.getType().equals(Material.CHEST)) {
                 commandSender.sendMessage("§b§lThe TOwOwer §4§l>§1§l>§c This is not a chest.");
                 return false;
             }
@@ -61,18 +61,17 @@ public class SaveChestCommand implements CommandExecutor {
 
             commandSender.sendMessage("§b§lThe TOwOwer §4§l>§1§l>§a Chest saved successfully.");
             return true;
-        }
-        else if(strings[0].equalsIgnoreCase("remove")){
+        } else if (strings[0].equalsIgnoreCase("remove")) {
             Set<Material> chests = new HashSet<Material>(Arrays.asList(new Material[]{Material.AIR}));
-            Block block  = p.getTargetBlock(chests, 4);
+            Block block = p.getTargetBlock(chests, 4);
 
             System.out.println(block);
 
-            if(block == null){
+            if (block == null) {
                 commandSender.sendMessage("§b§lThe TOwOwer §4§l>§1§l>§c Please look at a chest.");
                 return false;
             }
-            if(!block.getType().equals(Material.CHEST)){
+            if (!block.getType().equals(Material.CHEST)) {
                 commandSender.sendMessage("§b§lThe TOwOwer §4§l>§1§l>§c This is not a chest.");
                 return false;
             }

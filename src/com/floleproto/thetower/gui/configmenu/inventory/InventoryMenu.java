@@ -1,21 +1,13 @@
 package com.floleproto.thetower.gui.configmenu.inventory;
 
-import com.floleproto.thetower.Main;
 import com.floleproto.thetower.game.TeamManager;
 import com.floleproto.thetower.gui.GuiManager;
 import com.floleproto.thetower.gui.configmenu.MainMenu;
 import com.floleproto.thetower.utils.ItemCreator;
 import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.ItemFlag;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class InventoryMenu extends GuiManager {
     public InventoryMenu(Player player) {
@@ -26,14 +18,14 @@ public class InventoryMenu extends GuiManager {
     }
 
     @EventHandler
-    public void onClick(InventoryClickEvent ev){
+    public void onClick(InventoryClickEvent ev) {
         if (ev.getInventory() == null)
             return;
 
-        if (!ev.getClickedInventory().equals(inventory) )
+        if (!ev.getClickedInventory().equals(inventory))
             return;
 
-        if (ev.getCurrentItem() == null){
+        if (ev.getCurrentItem() == null) {
             return;
         }
 

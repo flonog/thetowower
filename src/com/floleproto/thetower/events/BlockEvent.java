@@ -46,8 +46,8 @@ public class BlockEvent implements Listener {
             ev.setCancelled(true);
         } else if (main.gameManager.isStates(GameStates.ONGAME)) {
 
-            if(ev.getBlock().getType().equals(Material.CHEST) && !GameConfig.chest_breakable){
-                if(PositionSave.chestPos.contains(ev.getBlock().getLocation())){
+            if (ev.getBlock().getType().equals(Material.CHEST) && !GameConfig.chest_breakable) {
+                if (PositionSave.chestPos.contains(ev.getBlock().getLocation())) {
                     ev.setCancelled(true);
                 }
             }

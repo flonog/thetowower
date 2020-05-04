@@ -68,10 +68,10 @@ public class ScoreboardManager {
         }
     }
 
-    public void setWinner(String teamName){
+    public void setWinner(String teamName) {
         for (Player p : Bukkit.getOnlinePlayers()) {
             ScoreboardSign scoreboardSign = scoreboards.get(p);
-            scoreboardSign.setLine(4, "§b" + teamName +" §bwon !");
+            scoreboardSign.setLine(4, "§b" + teamName + " §bwon !");
             scoreboards.put(p, scoreboardSign);
         }
     }
