@@ -38,6 +38,8 @@ public class TeamGui extends GuiManager {
             return;
         }
 
+        ev.setCancelled(true);
+
         if (ev.getCurrentItem().getType() == Material.WOOL) {
             TeamManager teamManager = Main.instance.teamManager;
             Map<Enchantment, Integer> enchants = new HashMap<Enchantment, Integer>();

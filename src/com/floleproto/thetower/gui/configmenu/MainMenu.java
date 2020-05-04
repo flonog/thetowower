@@ -52,12 +52,12 @@ public class MainMenu extends GuiManager {
             return;
         }
 
+        ev.setCancelled(true);
+
         if (!player.hasPermission("thetowower.config") || !player.hasPermission("thetowower.*") || !player.isOp()){
             player.getOpenInventory().close();
             return;
         }
-
-        ev.setCancelled(true);
 
         switch (ev.getCurrentItem().getType()){
             case NETHER_STAR:
