@@ -1,6 +1,7 @@
-package com.floleproto.thetower.gui.configmenu.time;
+package com.floleproto.thetower.gui.configmenu.itemspawn;
 
 import com.floleproto.thetower.game.GameConfig;
+import com.floleproto.thetower.gui.GuiManager;
 import com.floleproto.thetower.gui.configmenu.MainMenu;
 import com.floleproto.thetower.gui.configmenu.NumberConfigMenu;
 import com.floleproto.thetower.utils.ItemCreator;
@@ -9,14 +10,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
-public class PointConfigMenu extends NumberConfigMenu {
-    public PointConfigMenu(Player player) {
-        super(player, "§rTime Limit Configuration");
+public class IronRateConfig extends NumberConfigMenu {
+    public IronRateConfig(Player player) {
+        super(player, "§rIron Config");
         refreshInventory();
     }
 
     public void refreshInventory(){
-        inventory.setItem(4, new ItemCreator(Material.NETHER_STAR, 1, (byte) 0, "§b" + GameConfig.scoretowin).create());
+        inventory.setItem(4, new ItemCreator(Material.IRON_INGOT, 1, (byte) 0, "§b" + GameConfig.spawnrate_iron).create());
     }
 
     @EventHandler
@@ -41,7 +42,7 @@ public class PointConfigMenu extends NumberConfigMenu {
 
         if(ev.getCurrentItem().getType().equals(Material.BARRIER)){
             player.getOpenInventory().close();
-            new MainMenu(player).show();
+            new ItemSpawnMenu(player).show();
         }
 
         if(!ev.getCurrentItem().getType().equals(Material.WOOL)){
@@ -50,7 +51,7 @@ public class PointConfigMenu extends NumberConfigMenu {
         String itemName = ev.getCurrentItem().getItemMeta().getDisplayName();
         int number = Integer.parseInt(itemName.substring(2));
 
-        GameConfig.scoretowin += number;
+        GameConfig.spawnrate_iron += number;
         refreshInventory();
     }
 }

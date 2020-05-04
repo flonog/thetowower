@@ -76,8 +76,10 @@ public class GameManager {
 
         timerRunnable.runTaskTimer(Main.instance, 0L, 20L);
         checkPointRunnable.runTaskTimer(Main.instance, 0L, 10L);
-        ironSpawnItem.runTaskTimer(Main.instance, 0L, 20L * GameConfig.spawnrate_iron);
-        xpSpawnItem.runTaskTimer(Main.instance, 0L, 20L * GameConfig.spawnrate_xp);
+        if(GameConfig.spawnrate_iron_enable)
+            ironSpawnItem.runTaskTimer(Main.instance, 0L, 20L * GameConfig.spawnrate_iron);
+        if(GameConfig.spawnrate_xp_enable)
+            xpSpawnItem.runTaskTimer(Main.instance, 0L, 20L * GameConfig.spawnrate_xp);
         if(GameConfig.spawnlapis)
             lapisSpawnItem.runTaskTimer(Main.instance, 0L, 20L * GameConfig.spawnlapis_rate);
     }
@@ -123,8 +125,10 @@ public class GameManager {
 
         timerRunnable.cancel();
         checkPointRunnable.cancel();
-        ironSpawnItem.cancel();
-        xpSpawnItem.cancel();
+        if(GameConfig.spawnrate_iron_enable)
+            ironSpawnItem.cancel();
+        if(GameConfig.spawnrate_xp_enable)
+            xpSpawnItem.cancel();
         if(GameConfig.spawnlapis)
             lapisSpawnItem.cancel();
         else

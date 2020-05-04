@@ -10,7 +10,9 @@ public class GameConfig {
     public static int scoretowin = 10;
 
     public static long spawnrate_xp = 5;
+    public static boolean spawnrate_xp_enable = true;
     public static long spawnrate_iron = 5;
+    public static boolean spawnrate_iron_enable = true;
     public static boolean spawnlapis = false;
     public static long spawnlapis_rate = 5;
 
@@ -31,7 +33,9 @@ public class GameConfig {
         scoretowin = config.getInt("scoretowin");
 
         spawnrate_xp = config.getLong("spawnrate_xp");
+        spawnrate_xp_enable = config.getBoolean("spawnrate_xp_enable");
         spawnrate_iron = config.getLong("spawnrate_iron");
+        spawnrate_iron_enable = config.getBoolean("spawnrate_iron_enable");
         spawnlapis = config.getBoolean("spawnlapis");
         spawnlapis_rate = config.getLong("spawnlapis_rate");
 
@@ -53,7 +57,9 @@ public class GameConfig {
         config.set("scoretowin", scoretowin);
 
         config.set("spawnrate_xp", spawnrate_xp);
+        config.set("spawnrate_xp_enable", spawnrate_xp_enable);
         config.set("spawnrate_iron", spawnrate_iron);
+        config.set("spawnrate_iron_enable", spawnrate_iron_enable);
         config.set("spawnlapis", spawnlapis);
         config.set("spawnlapis_rate", spawnlapis_rate);
 
@@ -90,9 +96,9 @@ public class GameConfig {
     private static String[] getRules(){
         return new String[] {
                 "   Score to Win : §b§l" + scoretowin,
-                "   XP SpawnRate : §b§l" + spawnrate_xp,
-                "   Iron SpawnRate : §b§l" + spawnrate_iron,
-                "   Lapis spawn : " + (spawnlapis ? "§a§lON (" + spawnlapis_rate + "§a§l)" : "§c§lOFF") + "§r\n§c ",
+                "   XP spawn : §b§l" + (spawnrate_xp_enable ? "§a§lON (§b" + spawnrate_xp + "§a§l)" : "§c§lOFF") + "§r",
+                "   Iron spawn : §b§l" + (spawnrate_iron_enable ? "§a§lON (§b" + spawnrate_iron + "§a§l)" : "§c§lOFF") + "§r",
+                "   Lapis spawn : " + (spawnlapis ? "§a§lON (§b" + spawnlapis_rate + "§a§l)" : "§c§lOFF") + "§r\n§c ",
                 "   Time Limit : " + (timelimit_enable ? "§a§lON (§b" + timelimit_time +"§a§l)" : "§c§lOFF") + "§r",
                 "   Breakable Chest : " + (chest_breakable ? "§a§lON" : "§c§lOFF") + "§r",
                 "   FriendlyFire : " + (friendlyfire ? "§a§lON" : "§c§lOFF") + "§r",

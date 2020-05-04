@@ -2,17 +2,16 @@ package com.floleproto.thetower.gui.configmenu;
 
 import com.floleproto.thetower.game.GameConfig;
 import com.floleproto.thetower.gui.GuiManager;
-import com.floleproto.thetower.gui.configmenu.time.PointConfigMenu;
+import com.floleproto.thetower.gui.configmenu.itemspawn.ItemSpawnMenu;
+import com.floleproto.thetower.gui.configmenu.point.PointConfigMenu;
 import com.floleproto.thetower.gui.configmenu.time.TimeConfig;
 import com.floleproto.thetower.utils.ItemCreator;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftInventory;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemFlag;
 
 import java.util.Arrays;
@@ -35,7 +34,7 @@ public class MainMenu extends GuiManager {
         inventory.setItem(4, new ItemCreator(Material.GLASS, 1, (byte) 14, "§eHeal on point " + (GameConfig.healonpoint ? "§a§lON" : "§c§lOFF"), Arrays.asList(new String[] { "§rHeal the player when he score a point. " }), enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
         inventory.setItem(5, new ItemCreator(Material.SKULL_ITEM, 1, (byte) 2, "§eMob spawning " + (GameConfig.spawnmob ? "§a§lON" : "§c§lOFF"), Arrays.asList(new String[] { "§rDefined if the mobs can spawn. " }), enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
         inventory.setItem(6, new ItemCreator(Material.TNT, 1, (byte) 0, "§eMob griefing " + (GameConfig.mobgriefing ? "§a§lON" : "§c§lOFF"), Arrays.asList(new String[] { "§rDefined if the mobs can damage the terrain. " }), enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
-        inventory.setItem(7, new ItemCreator(Material.IRON_INGOT, 1, (byte) 0, "§eItem Spawning Config", Arrays.asList(new String[] { "§rLapis spawn : " + (GameConfig.spawnlapis ? "§a§lON (" + GameConfig.spawnlapis_rate + "§a§l)" : "§c§lOFF"), "§rXP SpawnRate : §b§l" + GameConfig.spawnrate_xp, "§rIron SpawnRate : §b§l" + GameConfig.spawnrate_iron}), enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
+        inventory.setItem(7, new ItemCreator(Material.IRON_INGOT, 1, (byte) 0, "§eItem Spawning Config", Arrays.asList(new String[] { "§rLapis spawn : " + (GameConfig.spawnlapis ? "§a§lON (§b" + GameConfig.spawnlapis_rate + "§a§l)" : "§c§lOFF"), "§rXP spawn : §b§l" + (GameConfig.spawnrate_xp_enable ? "§a§lON (§b" + GameConfig.spawnrate_xp + "§a§l)" : "§c§lOFF"), "§rIron SpawnRate : §b§l" + (GameConfig.spawnrate_iron_enable ? "§a§lON (§b" + GameConfig.spawnrate_iron + "§a§l)" : "§c§lOFF")}), enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
         inventory.setItem(8, new ItemCreator(Material.IRON_CHESTPLATE, 1, (byte) 0, "§eInventory Config", Arrays.asList(new String[] { "§rDefined the inventory of the teams" }), enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
         inventory.setItem(9, new ItemCreator(Material.BOOK, 1, (byte) 0, "§eScenario", Arrays.asList(new String[] { "§c§lComing soon" }), enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
         inventory.setItem(10, new ItemCreator(Material.WATCH, 1, (byte) 0, "§eTime Limit " + (GameConfig.timelimit_enable ? "§a§lON (§b" + GameConfig.timelimit_time +"§a§l)" : "§c§lOFF"), Arrays.asList(new String[] { "§rSet the time limit.", "§rLeft click to toggle.", "§rRight click to edit the time." }), enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
@@ -91,6 +90,8 @@ public class MainMenu extends GuiManager {
                 refresh();
                 break;
             case IRON_INGOT:
+                player.getOpenInventory().close();
+                new ItemSpawnMenu(player).show();
                 break;
             case IRON_CHESTPLATE:
                 break;

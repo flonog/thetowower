@@ -9,6 +9,8 @@ scoretowin: 10
 
 spawnrate_xp: 5
 spawnrate_iron: 5
+spawnrate_xp_enable: true
+spawnrate_iron_enable: true
 spawnlapis: false
 spawnlapis_rate: 5
 
