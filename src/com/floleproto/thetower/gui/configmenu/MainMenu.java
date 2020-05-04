@@ -2,6 +2,7 @@ package com.floleproto.thetower.gui.configmenu;
 
 import com.floleproto.thetower.game.GameConfig;
 import com.floleproto.thetower.gui.GuiManager;
+import com.floleproto.thetower.gui.configmenu.inventory.InventoryMenu;
 import com.floleproto.thetower.gui.configmenu.itemspawn.ItemSpawnMenu;
 import com.floleproto.thetower.gui.configmenu.point.PointConfigMenu;
 import com.floleproto.thetower.gui.configmenu.time.TimeConfig;
@@ -94,6 +95,8 @@ public class MainMenu extends GuiManager {
                 new ItemSpawnMenu(player).show();
                 break;
             case IRON_CHESTPLATE:
+                player.getOpenInventory().close();
+                new InventoryMenu(player).show();
                 break;
             case BOOK:
                 break;
