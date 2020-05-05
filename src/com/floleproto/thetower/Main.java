@@ -5,6 +5,7 @@ import com.floleproto.thetower.events.listened.*;
 import com.floleproto.thetower.game.*;
 import com.floleproto.thetower.game.save.InventorySave;
 import com.floleproto.thetower.game.save.PositionSave;
+import com.floleproto.thetower.scenarios.scenarios.NoCleanUp;
 import com.floleproto.thetower.scenarios.scenarios.NoFallDamage;
 import com.floleproto.thetower.scenarios.ScenarioManager;
 import com.floleproto.thetower.scenarios.scenarios.XpOnKill;
@@ -56,6 +57,7 @@ public class Main extends JavaPlugin {
         scenarioManager = new ScenarioManager();
         scenarioManager.registerScenario(new NoFallDamage());
         scenarioManager.registerScenario(new XpOnKill());
+        scenarioManager.registerScenario(new NoCleanUp());
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eScenarioManager loaded.");
         scoreboardManager = new ScoreboardManager();
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eScoreboardManager loaded. (ScoreboardSign by zyuiop)");
