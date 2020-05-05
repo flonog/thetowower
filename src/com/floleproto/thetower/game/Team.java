@@ -1,6 +1,7 @@
 package com.floleproto.thetower.game;
 
 import com.floleproto.thetower.Main;
+import com.floleproto.thetower.events.custom.PlayerScoreEvent;
 import com.floleproto.thetower.game.save.InventorySave;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -142,6 +143,13 @@ public class Team {
     }
 
     public void scorePoint(Player p) {
+
+        PlayerScoreEvent playerScoreEvent = new PlayerScoreEvent(p, this);
+        Bukkit.getPluginManager().callEvent(playerScoreEvent);
+
+        if(playerScoreEvent.isCancelled())
+            return;
+
         addScore(1);
         teleportToTeamPoint(p);
 
