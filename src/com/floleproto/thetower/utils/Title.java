@@ -1,14 +1,10 @@
 package com.floleproto.thetower.utils;
 
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.ProtocolManager;
-import com.comphenix.protocol.events.PacketContainer;
-import com.comphenix.protocol.wrappers.EnumWrappers;
-import com.comphenix.protocol.wrappers.WrappedChatComponent;
+import net.minecraft.server.v1_8_R3.ChatComponentText;
+import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
+import org.bukkit.Bukkit;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
-
-import java.lang.reflect.InvocationTargetException;
 
 public class Title {
     private String title = "";
@@ -31,44 +27,17 @@ public class Title {
     }
 
     public void sendToPlayer(Player p) {
-        ProtocolManager manager = ProtocolLibrary.getProtocolManager();
-        PacketContainer subtitlePacket = getSubtitlePacket();
-        try {
-            manager.sendServerPacket(p, subtitlePacket);
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
 
-        PacketContainer titlePacket = getTitlePacket();
-        try {
-            manager.sendServerPacket(p, titlePacket);
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
+        PacketPlayOutTitle packetPlayOutTitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.SUBTITLE, new ChatComponentText(subtitle));
+        ((CraftPlayer) p.getPlayer()).getHandle().playerConnection.sendPacket(packetPlayOutTitle);
+
+        packetPlayOutTitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TITLE, new ChatComponentText(title), fadeIn, duration, fadeOut);
+        ((CraftPlayer) p.getPlayer()).getHandle().playerConnection.sendPacket(packetPlayOutTitle);
     }
 
     public void broadcast() {
-        ProtocolManager manager = ProtocolLibrary.getProtocolManager();
-        PacketContainer subtitlePacket = getSubtitlePacket();
-        manager.broadcastServerPacket(subtitlePacket);
-
-        PacketContainer titlePacket = getTitlePacket();
-        manager.broadcastServerPacket(titlePacket);
-    }
-
-    private PacketContainer getSubtitlePacket() {
-        PacketContainer subtitlePacket = new PacketContainer(PacketType.Play.Server.TITLE);
-        subtitlePacket.getTitleActions().write(0, EnumWrappers.TitleAction.SUBTITLE);
-        subtitlePacket.getChatComponents().write(0, WrappedChatComponent.fromText(subtitle));
-        return subtitlePacket;
-    }
-
-    private PacketContainer getTitlePacket() {
-        PacketContainer titlePacket = new PacketContainer(PacketType.Play.Server.TITLE);
-        titlePacket.getTitleActions().write(0, EnumWrappers.TitleAction.TITLE);
-        titlePacket.getChatComponents().write(0, WrappedChatComponent.fromText(title));
-        titlePacket.getIntegers().write(0, fadeIn).write(1, duration).write(2, fadeOut);
-        return titlePacket;
+        Bukkit.getOnlinePlayers().forEach(player -> ((CraftPlayer) player).getHandle().playerConnection.sendPacket(new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.SUBTITLE, new ChatComponentText(subtitle))));
+        Bukkit.getOnlinePlayers().forEach(player -> ((CraftPlayer) player).getHandle().playerConnection.sendPacket(new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TITLE, new ChatComponentText(title), fadeIn, duration, fadeOut)));
     }
 
     public String getTitle() {
