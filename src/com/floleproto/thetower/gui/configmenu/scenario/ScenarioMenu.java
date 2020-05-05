@@ -67,7 +67,7 @@ public class ScenarioMenu extends GuiManager {
             return;
         }
 
-        if (ev.getCurrentItem() == null) {
+        if (ev.getCurrentItem() == null || ev.getCurrentItem().getType().equals(Material.AIR)) {
             return;
         }
 
