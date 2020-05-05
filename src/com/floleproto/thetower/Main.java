@@ -1,10 +1,13 @@
 package com.floleproto.thetower;
 
 import com.floleproto.thetower.commands.*;
-import com.floleproto.thetower.events.*;
+import com.floleproto.thetower.events.listened.*;
 import com.floleproto.thetower.game.*;
 import com.floleproto.thetower.game.save.InventorySave;
 import com.floleproto.thetower.game.save.PositionSave;
+import com.floleproto.thetower.scenarios.scenarios.NoFallDamage;
+import com.floleproto.thetower.scenarios.ScenarioManager;
+import com.floleproto.thetower.scenarios.scenarios.XpOnKill;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -15,6 +18,7 @@ public class Main extends JavaPlugin {
     public TeamManager teamManager;
     public Statistics statistics;
     public ScoreboardManager scoreboardManager;
+    public ScenarioManager scenarioManager;
 
     @Override
     public void onDisable() {
@@ -49,6 +53,10 @@ public class Main extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eGameManager loaded.");
         teamManager = new TeamManager();
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eTeamManager loaded.");
+        scenarioManager = new ScenarioManager();
+        scenarioManager.registerScenario(new NoFallDamage());
+        scenarioManager.registerScenario(new XpOnKill());
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eScenarioManager loaded.");
         scoreboardManager = new ScoreboardManager();
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eScoreboardManager loaded. (ScoreboardSign by zyuiop)");
 

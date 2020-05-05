@@ -1,12 +1,15 @@
 package com.floleproto.thetower.game;
 
 import com.floleproto.thetower.Main;
-import com.floleproto.thetower.events.EnchantEvent;
+import com.floleproto.thetower.events.custom.GameEndEvent;
+import com.floleproto.thetower.events.custom.GameStartEvent;
+import com.floleproto.thetower.events.listened.EnchantEvent;
 import com.floleproto.thetower.game.runnables.CheckPointRunnable;
 import com.floleproto.thetower.game.runnables.ItemSpawnRunnable;
 import com.floleproto.thetower.game.runnables.StartGameRunnable;
 import com.floleproto.thetower.game.runnables.TimerRunnable;
 import com.floleproto.thetower.game.save.PositionSave;
+import com.floleproto.thetower.utils.XpBarManager;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -50,6 +53,8 @@ public class GameManager {
     public void startGame() {
         setStates(GameStates.ONGAME);
 
+        Main.instance.scenarioManager.enableListener();
+
         for (Player p : Bukkit.getOnlinePlayers()) {
             if (!Main.instance.teamManager.isInTeam(p)) {
                 Main.instance.teamManager.setRandomTeam(p);
@@ -82,6 +87,8 @@ public class GameManager {
             xpSpawnItem.runTaskTimer(Main.instance, 0L, 20L * GameConfig.spawnrate_xp);
         if (GameConfig.spawnlapis)
             lapisSpawnItem.runTaskTimer(Main.instance, 0L, 20L * GameConfig.spawnlapis_rate);
+
+        Bukkit.getPluginManager().callEvent(new GameStartEvent());
     }
 
     public void stopCountdown(boolean isForced) {
@@ -92,6 +99,9 @@ public class GameManager {
         if (isForced) {
             Bukkit.broadcastMessage("§b§lThe TOwOwer §4§l>§1§l> §cThe countdown has been cancelled.");
         }
+
+        XpBarManager.broadcastLevel(0);
+        XpBarManager.broadcastSetBar(0, 1);
 
         startGameRunnable.cancel();
         startGameRunnable = null;
@@ -122,6 +132,8 @@ public class GameManager {
         }
 
         Bukkit.broadcastMessage("§e");
+
+        Bukkit.getPluginManager().callEvent(new GameEndEvent());
 
         timerRunnable.cancel();
         checkPointRunnable.cancel();

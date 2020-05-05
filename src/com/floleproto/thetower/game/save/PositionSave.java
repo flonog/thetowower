@@ -57,7 +57,6 @@ public class PositionSave {
         chestPos = new ArrayList<>();
         for (String s : section.getKeys(false)) {
             double x = yml.getDouble("chest." + s + ".x");
-            System.out.println(yml.getDouble("chest.'1'.x"));
             double y = yml.getDouble("chest." + s + ".y");
             double z = yml.getDouble("chest." + s + ".z");
             String world = yml.getString("chest." + s + ".world");

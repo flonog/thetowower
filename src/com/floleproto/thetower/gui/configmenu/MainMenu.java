@@ -5,6 +5,7 @@ import com.floleproto.thetower.gui.GuiManager;
 import com.floleproto.thetower.gui.configmenu.inventory.InventoryMenu;
 import com.floleproto.thetower.gui.configmenu.itemspawn.ItemSpawnMenu;
 import com.floleproto.thetower.gui.configmenu.point.PointConfigMenu;
+import com.floleproto.thetower.gui.configmenu.scenario.ScenarioMenu;
 import com.floleproto.thetower.gui.configmenu.time.TimeConfig;
 import com.floleproto.thetower.utils.ItemCreator;
 import org.bukkit.Material;
@@ -100,6 +101,8 @@ public class MainMenu extends GuiManager {
                 new InventoryMenu(player).show();
                 break;
             case BOOK:
+                player.getOpenInventory().close();
+                new ScenarioMenu(player).show();
                 break;
             case WATCH:
                 if (ev.getClick() == ClickType.RIGHT) {

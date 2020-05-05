@@ -1,9 +1,10 @@
-package com.floleproto.thetower.events;
+package com.floleproto.thetower.events.listened;
 
 import com.floleproto.thetower.Main;
 import com.floleproto.thetower.game.GameStates;
 import com.floleproto.thetower.utils.ItemCreator;
 import com.floleproto.thetower.utils.Title;
+import com.floleproto.thetower.utils.XpBarManager;
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
@@ -33,6 +34,9 @@ public class JoinAndLeftEvent implements Listener {
         main.scoreboardManager.setScoreboardTemplate(p, main.gameManager.getStates());
         ev.setJoinMessage("§r" + Bukkit.getOnlinePlayers().size() + "§r / §r" + Bukkit.getMaxPlayers() + " §4§l>§1§l> §a" + p.getDisplayName() + " join the game.");
         if (main.gameManager.isStates(GameStates.WAITING)) {
+            XpBarManager.broadcastLevel(0);
+            XpBarManager.broadcastSetBar(0, 1);
+
             FileConfiguration config = main.getConfig();
             double x = config.getDouble("spawn.x");
             double y = config.getDouble("spawn.y");

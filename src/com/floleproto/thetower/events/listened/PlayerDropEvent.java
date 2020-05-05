@@ -1,4 +1,4 @@
-package com.floleproto.thetower.events;
+package com.floleproto.thetower.events.listened;
 
 import com.floleproto.thetower.Main;
 import com.floleproto.thetower.game.GameStates;
