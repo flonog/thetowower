@@ -1,5 +1,6 @@
-package com.floleproto.thetower;
+package com.floleproto.thetower.commands;
 
+import com.floleproto.thetower.Main;
 import com.floleproto.thetower.game.GameConfig;
 import com.floleproto.thetower.game.GameStates;
 import org.bukkit.command.Command;

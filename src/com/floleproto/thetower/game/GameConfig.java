@@ -1,6 +1,7 @@
 package com.floleproto.thetower.game;
 
 import com.floleproto.thetower.Main;
+import com.floleproto.thetower.scenarios.Scenario;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -82,6 +83,12 @@ public class GameConfig {
         for (String s : getRules()) {
             p.sendMessage("§e" + s);
         }
+        if(Main.instance.scenarioManager.getActiveScenario().size() > 0){
+            p.sendMessage("\n \n   §e§lActive scenarios");
+            for(Scenario scenario : Main.instance.scenarioManager.getActiveScenario()){
+                p.sendMessage("      §b" + scenario.name);
+            }
+        }
         p.sendMessage("\n§c §b===================================================\n ");
     }
 
@@ -89,6 +96,12 @@ public class GameConfig {
         commandSender.sendMessage("\n§c §b===================================================\n§c ");
         for (String s : getRules()) {
             commandSender.sendMessage("§e" + s);
+        }
+        if(Main.instance.scenarioManager.getActiveScenario().size() > 0){
+            commandSender.sendMessage("\n \n   §e§lActive scenarios");
+            for(Scenario scenario : Main.instance.scenarioManager.getActiveScenario()){
+                commandSender.sendMessage("      §b" + scenario.name);
+            }
         }
         commandSender.sendMessage("\n§c §b===================================================\n§c ");
     }
