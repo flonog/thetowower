@@ -5,11 +5,8 @@ import com.floleproto.thetower.events.listened.*;
 import com.floleproto.thetower.game.*;
 import com.floleproto.thetower.game.save.InventorySave;
 import com.floleproto.thetower.game.save.PositionSave;
-import com.floleproto.thetower.scenarios.scenarios.NoCleanUp;
-import com.floleproto.thetower.scenarios.scenarios.NoFallDamage;
+import com.floleproto.thetower.scenarios.scenarios.*;
 import com.floleproto.thetower.scenarios.ScenarioManager;
-import com.floleproto.thetower.scenarios.scenarios.TheSouth;
-import com.floleproto.thetower.scenarios.scenarios.XpOnKill;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -60,6 +57,7 @@ public class Main extends JavaPlugin {
         scenarioManager.registerScenario(new XpOnKill());
         scenarioManager.registerScenario(new NoCleanUp());
         scenarioManager.registerScenario(new TheSouth());
+        scenarioManager.registerScenario(new Upgrade());
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eScenarioManager loaded.");
         scoreboardManager = new ScoreboardManager();
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eScoreboardManager loaded. (ScoreboardSign by zyuiop)");
