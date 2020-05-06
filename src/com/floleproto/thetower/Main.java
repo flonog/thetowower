@@ -78,6 +78,7 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerDropEvent(this), this);
         getServer().getPluginManager().registerEvents(new PlayerDieEvent(this), this);
         getServer().getPluginManager().registerEvents(new ChatEvent(this), this);
+        getServer().getPluginManager().registerEvents(new MoveEvent(this), this);
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eEvents registered.");
 
         Bukkit.getWorld("world").setGameRuleValue("doDaylightCycle", "false");

@@ -10,8 +10,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 public class DamageEvent implements Listener {
     private final Main main;
+    public static Map<UUID, UUID> lastHit = new HashMap<>();
 
     public DamageEvent(Main main) {
         this.main = main;
@@ -29,12 +34,12 @@ public class DamageEvent implements Listener {
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent ev) {
         if (main.gameManager.isStates(GameStates.ONGAME)) {
-            if (!GameConfig.friendlyfire) {
-                if (ev.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) {
-                    if (ev.getEntity() instanceof Player && ev.getDamager() instanceof Player) {
-                        Player p = (Player) ev.getEntity();
-                        Player damager = (Player) ev.getDamager();
-
+            if (ev.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) {
+                if (ev.getEntity() instanceof Player && ev.getDamager() instanceof Player) {
+                    Player p = (Player) ev.getEntity();
+                    Player damager = (Player) ev.getDamager();
+                    lastHit.put(p.getUniqueId(), damager.getUniqueId());
+                    if (!GameConfig.friendlyfire) {
                         if (Main.instance.teamManager.getTeam(p) == Main.instance.teamManager.getTeam(damager))
                             ev.setCancelled(true);
                     }
