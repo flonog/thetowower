@@ -57,6 +57,7 @@ public class GameManager {
 
         for (Player p : Bukkit.getOnlinePlayers()) {
             if (!Main.instance.teamManager.isInTeam(p)) {
+                p.sendMessage("§b§lThe TOwOwer §4§l>§1§l> §rBecause of you didn't chose any team, your team has been set randomly.");
                 Main.instance.teamManager.setRandomTeam(p);
             }
         }

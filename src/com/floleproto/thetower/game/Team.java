@@ -23,6 +23,7 @@ public class Team {
     private Area pool;
     private Area poolProtected;
     private Area spawnProtected;
+    private org.bukkit.scoreboard.Team team;
 
     public Team(String name, String tag, ChatColor color, Location spawn, Area pool, Area poolProtected, Area spawnProtected) {
         this.name = name;
@@ -32,6 +33,14 @@ public class Team {
         this.pool = pool;
         this.poolProtected = poolProtected;
         this.spawnProtected = spawnProtected;
+
+        team = Bukkit.getScoreboardManager().getMainScoreboard().getTeam(tag);
+        if(team == null)
+            team = Bukkit.getScoreboardManager().getMainScoreboard().registerNewTeam(tag);
+        team.getEntries().forEach(entry -> team.removeEntry(entry));
+        team.setDisplayName(name);
+        team.setPrefix(color.toString());
+        team.setSuffix("§r");
     }
 
     public Location getSpawn() {
@@ -184,13 +193,15 @@ public class Team {
     public void addPlayer(Player p) {
         players.add(p.getUniqueId());
         p.setPlayerListName(color + p.getName() + "§r");
-        p.setDisplayName(color + p.getName() + "§r");
+        team.addEntry(p.getName());
+        //DisplayName.setDisplayName(p, color + p.getName() + "§r");
     }
 
     public void removePlayer(Player p) {
         players.remove(p.getUniqueId());
         p.setPlayerListName(p.getName() + "§r");
-        p.setDisplayName(p.getName() + "§r");
+        team.removeEntry(p.getName());
+        //DisplayName.setDisplayName(p,p.getName() + "§r");
     }
 
     public boolean isInTeam(Player p) {
