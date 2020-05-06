@@ -40,13 +40,13 @@ public class GameManager {
 
     public void startCountdown() {
         startGameRunnable = new StartGameRunnable(60);
-        startGameRunnable.runTaskTimerAsynchronously(Main.instance, 0L, 20L);
+        startGameRunnable.runTaskTimer(Main.instance, 0L, 20L);
         Bukkit.broadcastMessage("§b§lThe TOwOwer §4§l>§1§l>§e The game will start in 60 seconds.");
     }
 
     public void forceStartCountdown() {
         startGameRunnable = new StartGameRunnable(10);
-        startGameRunnable.runTaskTimerAsynchronously(Main.instance, 0L, 20L);
+        startGameRunnable.runTaskTimer(Main.instance, 0L, 20L);
         Bukkit.broadcastMessage("§b§lThe TOwOwer §4§l>§1§l>§e The game start has been forced. It will start in 10 seconds.");
     }
 
