@@ -59,6 +59,7 @@ public class Main extends JavaPlugin {
         scenarioManager.registerScenario(new TheSouth());
         scenarioManager.registerScenario(new Upgrade());
         scenarioManager.registerScenario(new NoKnockBack());
+        scenarioManager.registerScenario(new InfiniteLevel());
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eScenarioManager loaded.");
         scoreboardManager = new ScoreboardManager();
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eScoreboardManager loaded. (ScoreboardSign by zyuiop)");
