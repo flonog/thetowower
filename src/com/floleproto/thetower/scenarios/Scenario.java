@@ -19,4 +19,7 @@ public class Scenario implements Listener {
         this.icon = icon;
         this.configGui = configGui;
     }
+
+    public void onEnable(){
+    }
 }

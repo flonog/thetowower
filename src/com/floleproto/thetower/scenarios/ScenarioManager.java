@@ -30,6 +30,7 @@ public class ScenarioManager {
     public void enableListener(){
         for (Scenario scenario : activeScenario ) {
             Bukkit.getPluginManager().registerEvents(scenario, Main.instance);
+            scenario.onEnable();
         }
     }
 
