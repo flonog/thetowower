@@ -45,7 +45,7 @@ Save or remove a map chest. (Make it unbreakable when the config "Breakable ches
 
 ## How to install
 
-This plugin required ProtocoLib and Java 8 to work ! I havn't tested the Java 7, 9 or 10 version. The Java 11 version is broken.
+This plugin required ProtocoLib and Java 8 to work ! I have not tested the Java 7, 9 or 10 version. The Java 11 version is broken.
 The world must also be named "world".
 
 ## Support
