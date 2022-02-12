@@ -68,7 +68,7 @@ public class Main extends JavaPlugin {
         scenarioManager.registerScenario(new SuperHero());
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eScenarioManager loaded.");
         scoreboardManager = new ScoreboardManager();
-        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eScoreboardManager loaded. (ScoreboardSign by zyuiop)");
+        Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eScoreboardManager loaded. (FastBoard by MrMicky)");
 
         Objects.requireNonNull(getCommand("host")).setExecutor(new HostCommand(this));
         Objects.requireNonNull(getCommand("start")).setExecutor(new StartCommand(this));
