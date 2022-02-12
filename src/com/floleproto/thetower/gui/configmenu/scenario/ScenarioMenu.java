@@ -6,11 +6,14 @@ import com.floleproto.thetower.gui.configmenu.MainMenu;
 import com.floleproto.thetower.scenarios.Scenario;
 import com.floleproto.thetower.scenarios.ScenarioManager;
 import com.floleproto.thetower.utils.ItemCreator;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -35,35 +38,35 @@ public class ScenarioMenu extends GuiManager {
         for (int i = (45 * page); 45 * page <= i && i < 45 * (page + 1); i++) {
             if(scenarios.size() <= i )
                 break;
-            ItemStack item = new ItemCreator(scenarios.get(i).icon, 1, (byte) 0, "§e§l" + scenarios.get(i).name, Collections.singletonList("§r" + scenarios.get(i).description)).create();
-            item.setAmount(scenarioManager.isScenarioActive(scenarios.get(i)) ? 1 : -1);
+            ItemStack item = new ItemCreator(scenarios.get(i).icon, 1, "§e§l" + scenarios.get(i).name + (scenarioManager.isScenarioActive(scenarios.get(i)) ? " §a§lON" : " §c§lOFF"), Collections.singletonList("§r" + scenarios.get(i).description), null, Collections.singletonList(ItemFlag.HIDE_ENCHANTS)).create();
+            ItemMeta meta = item.getItemMeta();
+            if(scenarioManager.isScenarioActive(scenarios.get(i))){
+                meta.addEnchant(Enchantment.DURABILITY, 1, true);
+            }
             if(scenarios.get(i).configGui != null) {
-                ItemMeta meta = item.getItemMeta();
                 List<String> lore = meta.getLore();
                 lore.add("");
                 lore.add("§rRight click to config");
                 meta.setLore(lore);
-                item.setItemMeta(meta);
             }
+
+            item.setItemMeta(meta);
 
             inventory.addItem(item);
         }
 
         if(page > 0)
-            inventory.setItem(48, new ItemCreator(Material.ARROW, 1, (byte) 0, "§bPrevious page").create());
-        inventory.setItem(49, new ItemCreator(Material.PAPER, 1, (byte) 0, "§cPage " + (page + 1)).create());
+            inventory.setItem(48, new ItemCreator(Material.ARROW, 1,"§bPrevious page").create());
+        inventory.setItem(49, new ItemCreator(Material.PAPER, 1, "§cPage " + (page + 1)).create());
         if(45 * page > scenarioManager.getRegisteredScenario().size())
-            inventory.setItem(50, new ItemCreator(Material.ARROW, 1, (byte) 0, "§bNext page").create());
+            inventory.setItem(50, new ItemCreator(Material.ARROW, 1, "§bNext page").create());
 
-        inventory.setItem(53, new ItemCreator(Material.BARRIER, 1, (byte) 0, "§rReturn to main menu").create());
+        inventory.setItem(53, new ItemCreator(Material.BARRIER, 1, "§rReturn to main menu").create());
     }
 
-    @EventHandler
-    public void onClick(InventoryClickEvent ev) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        if (ev.getInventory() == null)
-            return;
-
-        if (!ev.getInventory().getName().equals(inventory.getName())) {
+    @Override
+    public void onClick(InventoryClickEvent ev) {
+        if (!ev.getView().getTitle().equals(this.name)) {
             return;
         }
 
@@ -92,17 +95,29 @@ public class ScenarioMenu extends GuiManager {
             return;
         }
         ScenarioManager scenarioManager = Main.instance.scenarioManager;
-        Scenario scenario = scenarioManager.getScenario(ev.getCurrentItem().getItemMeta().getDisplayName().substring(4));
+        String displayName = ev.getCurrentItem().getItemMeta().getDisplayName();
+        Scenario scenario = scenarioManager.getScenario(displayName.substring(4).replace(" §a§lON", "").replace(" §c§lOFF", ""));
         if(scenario == null)
             return;
 
         if(scenario.configGui != null && ev.getClick() == ClickType.RIGHT){
             Class<?> clazz = scenario.configGui;
             Constructor<?> ctor;
-            ctor = clazz.getConstructor(new Class[] { Player.class });
-            Object object = ctor.newInstance(new Object[] { this.player });
-            Method method = object.getClass().getMethod("show", new Class[0]);
-            method.invoke(object, new Object[0]);
+            try {
+                ctor = clazz.getConstructor(new Class[] { Player.class });
+                Object object = ctor.newInstance(new Object[] { this.player });
+                Method method = object.getClass().getMethod("show", new Class[0]);
+                method.invoke(object, new Object[0]);
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+
         } else {
             if (scenarioManager.isScenarioActive(scenario)) {
                 scenarioManager.disableScenario(scenario);

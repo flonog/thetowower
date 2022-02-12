@@ -1,7 +1,7 @@
 package com.floleproto.thetower.game;
 
 import com.floleproto.thetower.Main;
-import com.floleproto.thetower.utils.ScoreboardSign;
+import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -10,77 +10,73 @@ import java.util.HashMap;
 
 public class ScoreboardManager {
 
-    public HashMap<Player, ScoreboardSign> scoreboards = new HashMap<>();
+    public HashMap<Player, FastBoard> scoreboards = new HashMap<>();
 
     public void setScoreboardTemplate(Player p, GameStates states) {
-        ScoreboardSign scoreboardSign = scoreboards.get(p);
+        FastBoard fastBoard = scoreboards.get(p);
         DecimalFormat decimalFormat = new DecimalFormat("000");
         switch (states) {
-            case WAITING:
-                scoreboardSign.setLine(0, "§c");
-                scoreboardSign.setLine(1, "Waiting for players");
-                scoreboardSign.setLine(2, "§d");
-                break;
-            case FINISH:
-                scoreboardSign.setLine(0, "§c");
-                scoreboardSign.setLine(1, "§aKills  §r§cDeaths");
-                scoreboardSign.setLine(2, "§r" + decimalFormat.format(Main.instance.statistics.getKills(p)) + "   " + decimalFormat.format(Main.instance.statistics.getDeaths(p)));
-                scoreboardSign.setLine(3, "§d");
-                scoreboardSign.setLine(4, "§bBlue won !");
-                scoreboardSign.setLine(5, "§e");
-                scoreboardSign.setLine(6, "§f");
-                break;
-            case ONGAME:
-                scoreboardSign.setLine(0, "§c");
-                scoreboardSign.setLine(1, "§aKills  §r§cDeaths");
-                scoreboardSign.setLine(2, "§r" + decimalFormat.format(Main.instance.statistics.getKills(p)) + "   " + decimalFormat.format(Main.instance.statistics.getDeaths(p)));
-                scoreboardSign.setLine(3, "§d");
-                scoreboardSign.setLine(4, "§4§lRed§r   " + TeamManager.redTeam.getScore());
-                scoreboardSign.setLine(5, "§1§lBlue§r  " + TeamManager.blueTeam.getScore());
-                scoreboardSign.setLine(6, "§e");
-                scoreboardSign.setLine(7, "Time §e00:00");
-                break;
+            case WAITING -> fastBoard.updateLines(
+                    "",
+                    "Waiting for players",
+                    "");
+            case FINISH -> fastBoard.updateLines(
+                    "",
+                    "§aKills  §r§cDeaths",
+                    "§r" + decimalFormat.format(Main.instance.statistics.getKills(p)) + "   " + decimalFormat.format(Main.instance.statistics.getDeaths(p)),
+                    "",
+                    "OwO",
+                    "",
+                    "");
+            case ONGAME -> fastBoard.updateLines(
+                    "",
+                    "§aKills  §r§cDeaths",
+                    "§r" + decimalFormat.format(Main.instance.statistics.getKills(p)) + "   " + decimalFormat.format(Main.instance.statistics.getDeaths(p)),
+                    "",
+                    "§4§lRed§r   " + TeamManager.redTeam.getScore(),
+                    "§1§lBlue§r  " + TeamManager.blueTeam.getScore(),
+                    "",
+                    "Time §e00:00");
         }
     }
 
     public void createScoreboard(Player p) {
-        ScoreboardSign scoreboardSign = new ScoreboardSign(p, "§b§lThe TOwOwer");
-        scoreboardSign.create();
-        scoreboardSign.setLine(0, "§c");
-        scoreboards.put(p, scoreboardSign);
+        FastBoard fastBoard = new FastBoard(p);
+        fastBoard.updateTitle("§b§lThe TOwOwer");
+        scoreboards.put(p, fastBoard);
     }
 
     public void setTimer(String time) {
 
         for (Player p : Bukkit.getOnlinePlayers()) {
-            ScoreboardSign scoreboardSign = scoreboards.get(p);
-            scoreboardSign.setLine(7, "Time §e" + time);
-            scoreboards.put(p, scoreboardSign);
+            FastBoard fastBoard = scoreboards.get(p);
+            fastBoard.updateLine(7, "Time §e" + time);
+            scoreboards.put(p, fastBoard);
         }
     }
 
     public void setScore() {
         for (Player p : Bukkit.getOnlinePlayers()) {
-            ScoreboardSign scoreboardSign = scoreboards.get(p);
-            scoreboardSign.setLine(4, "§4§lRed§r   " + TeamManager.redTeam.getScore());
-            scoreboardSign.setLine(5, "§1§lBlue§r  " + TeamManager.blueTeam.getScore());
-            scoreboards.put(p, scoreboardSign);
+            FastBoard fastBoard = scoreboards.get(p);
+            fastBoard.updateLine(4, "§4§lRed§r   " + TeamManager.redTeam.getScore());
+            fastBoard.updateLine(5, "§1§lBlue§r  " + TeamManager.blueTeam.getScore());
+            scoreboards.put(p, fastBoard);
         }
     }
 
     public void setWinner(String teamName) {
         for (Player p : Bukkit.getOnlinePlayers()) {
-            ScoreboardSign scoreboardSign = scoreboards.get(p);
-            scoreboardSign.setLine(4, "§b" + teamName + " §bwon !");
-            scoreboards.put(p, scoreboardSign);
+            FastBoard fastBoard = scoreboards.get(p);
+            fastBoard.updateLine(4, "§b" + teamName + " §bwon !");
+            scoreboards.put(p, fastBoard);
         }
     }
 
     public void refreshKillsDeaths(Player p) {
-        ScoreboardSign scoreboardSign = scoreboards.get(p);
+        FastBoard fastBoard = scoreboards.get(p);
         DecimalFormat decimalFormat = new DecimalFormat("000");
-        scoreboardSign.setLine(2, "§r" + decimalFormat.format(Main.instance.statistics.getKills(p)) + "   " + decimalFormat.format(Main.instance.statistics.getDeaths(p)));
-        scoreboards.put(p, scoreboardSign);
+        fastBoard.updateLine(2, "§r" + decimalFormat.format(Main.instance.statistics.getKills(p)) + "   " + decimalFormat.format(Main.instance.statistics.getDeaths(p)));
+        scoreboards.put(p, fastBoard);
     }
 
     public void removeScoreboard(Player p) {

@@ -1,9 +1,6 @@
 package com.floleproto.thetower.utils;
 
-import net.minecraft.server.v1_8_R3.ChatComponentText;
-import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 public class Title {
@@ -28,16 +25,11 @@ public class Title {
 
     public void sendToPlayer(Player p) {
 
-        PacketPlayOutTitle packetPlayOutTitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.SUBTITLE, new ChatComponentText(subtitle));
-        ((CraftPlayer) p.getPlayer()).getHandle().playerConnection.sendPacket(packetPlayOutTitle);
-
-        packetPlayOutTitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TITLE, new ChatComponentText(title), fadeIn, duration, fadeOut);
-        ((CraftPlayer) p.getPlayer()).getHandle().playerConnection.sendPacket(packetPlayOutTitle);
+        p.sendTitle(title, subtitle, fadeIn, duration, fadeOut);
     }
 
     public void broadcast() {
-        Bukkit.getOnlinePlayers().forEach(player -> ((CraftPlayer) player).getHandle().playerConnection.sendPacket(new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.SUBTITLE, new ChatComponentText(subtitle))));
-        Bukkit.getOnlinePlayers().forEach(player -> ((CraftPlayer) player).getHandle().playerConnection.sendPacket(new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TITLE, new ChatComponentText(title), fadeIn, duration, fadeOut)));
+        Bukkit.getOnlinePlayers().forEach(player -> player.sendTitle(title, subtitle, fadeIn, duration, fadeOut));
     }
 
     public String getTitle() {

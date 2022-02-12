@@ -3,7 +3,6 @@ package com.floleproto.thetower.game;
 import com.floleproto.thetower.game.save.PositionSave;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 
 public class TeamManager {
 
@@ -18,7 +17,7 @@ public class TeamManager {
     }
 
 
-    public void addPlayer(Player p, @NotNull Team team) {
+    public void addPlayer(Player p, Team team) {
         team.addPlayer(p);
     }
 

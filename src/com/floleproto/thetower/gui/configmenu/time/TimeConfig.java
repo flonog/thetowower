@@ -16,13 +16,11 @@ public class TimeConfig extends NumberConfigMenu {
     }
 
     public void refreshInventory() {
-        inventory.setItem(4, new ItemCreator(Material.WATCH, 1, (byte) 0, "§b" + GameConfig.timelimit_time).create());
+        inventory.setItem(4, new ItemCreator(Material.CLOCK, 1, "§b" + GameConfig.timelimit_time).create());
     }
 
-    @EventHandler
+    @Override
     public void onClick(InventoryClickEvent ev) {
-        if (ev.getInventory() == null)
-            return;
 
         if (!ev.getInventory().equals(inventory)) {
             return;
@@ -44,7 +42,7 @@ public class TimeConfig extends NumberConfigMenu {
             new MainMenu(player).show();
         }
 
-        if (!ev.getCurrentItem().getType().equals(Material.WOOL)) {
+        if (!(ev.getCurrentItem().getType().equals(Material.GREEN_WOOL) || ev.getCurrentItem().getType().equals(Material.RED_WOOL))) {
             return;
         }
         String itemName = ev.getCurrentItem().getItemMeta().getDisplayName();

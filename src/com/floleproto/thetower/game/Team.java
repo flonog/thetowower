@@ -126,9 +126,7 @@ public class Team {
 
     public void setupPlayers() {
         for (Player p : getPlayers()) {
-            ItemStack[][] itemStacks = InventorySave.loadInventory(tag);
-            p.getInventory().setArmorContents(itemStacks[0]);
-            p.getInventory().setContents(itemStacks[1]);
+            setTeamInventory(p);
             p.teleport(spawn);
             p.setFoodLevel(30);
             Main.instance.scoreboardManager.setScoreboardTemplate(p, GameStates.ONGAME);
@@ -137,8 +135,9 @@ public class Team {
 
     public void setTeamInventory(Player p) {
         ItemStack[][] itemStacks = InventorySave.loadInventory(tag);
+
         p.getInventory().setArmorContents(itemStacks[0]);
-        p.getInventory().setContents(itemStacks[1]);
+        p.getInventory().setStorageContents(itemStacks[1]);
     }
 
     public void teleportToTeamPoint(Player p) {
@@ -171,9 +170,9 @@ public class Team {
 
         for (Player pl : Bukkit.getOnlinePlayers()) {
             if (isInTeam(pl)) {
-                pl.playSound(pl.getLocation(), Sound.NOTE_PLING, 1, 2);
+                pl.playSound(pl.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 2);
             } else {
-                pl.playSound(pl.getLocation(), Sound.NOTE_PLING, 1, 0.5f);
+                pl.playSound(pl.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 0.5f);
             }
         }
 
@@ -193,6 +192,7 @@ public class Team {
     public void addPlayer(Player p) {
         players.add(p.getUniqueId());
         p.setPlayerListName(color + p.getName() + "§r");
+        p.setDisplayName(color + p.getName() + "§r");
         team.addEntry(p.getName());
         //DisplayName.setDisplayName(p, color + p.getName() + "§r");
     }

@@ -8,7 +8,7 @@ import org.bukkit.event.entity.EntityRegainHealthEvent;
 
 public class UHC extends Scenario {
     public UHC() {
-        super("Ultra Hardcore", "No natural life regeneration", Material.SKULL_ITEM, null);
+        super("Ultra Hardcore", "No natural life regeneration", Material.SKELETON_SKULL, null);
     }
 
     @EventHandler

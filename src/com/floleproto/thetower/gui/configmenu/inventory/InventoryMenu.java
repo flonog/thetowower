@@ -12,12 +12,12 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 public class InventoryMenu extends GuiManager {
     public InventoryMenu(Player player) {
         super(player, 18, "§rInventory Config");
-        inventory.setItem(2, new ItemCreator(Material.WOOL, 1, (byte) 14, "§4§lRed").create());
-        inventory.setItem(6, new ItemCreator(Material.WOOL, 1, (byte) 11, "§1§lBlue").create());
-        inventory.setItem(17, new ItemCreator(Material.BARRIER, 1, (byte) 0, "§rReturn to Main Menu").create());
+        inventory.setItem(2, new ItemCreator(Material.RED_WOOL, 1, "§4§lRed").create());
+        inventory.setItem(6, new ItemCreator(Material.BLUE_WOOL, 1, "§1§lBlue").create());
+        inventory.setItem(17, new ItemCreator(Material.BARRIER, 1, "§rReturn to Main Menu").create());
     }
 
-    @EventHandler
+    @Override
     public void onClick(InventoryClickEvent ev) {
         if (ev.getInventory() == null)
             return;
@@ -31,14 +31,12 @@ public class InventoryMenu extends GuiManager {
 
         ev.setCancelled(true);
 
-        if (ev.getCurrentItem().getType() == Material.WOOL) {
-            if (ev.getCurrentItem().getDurability() == 14) {
-                player.getOpenInventory().close();
-                new InventoryViewerMenu(player, TeamManager.redTeam).show();
-            } else if (ev.getCurrentItem().getDurability() == 11) {
-                player.getOpenInventory().close();
-                new InventoryViewerMenu(player, TeamManager.blueTeam).show();
-            }
+        if (ev.getCurrentItem().getType() == Material.RED_WOOL) {
+            player.getOpenInventory().close();
+            new InventoryViewerMenu(player, TeamManager.redTeam).show();
+        } else if (ev.getCurrentItem().getType() == Material.BLUE_WOOL) {
+            player.getOpenInventory().close();
+            new InventoryViewerMenu(player, TeamManager.blueTeam).show();
         } else if (ev.getCurrentItem().getType() == Material.BARRIER) {
             player.getOpenInventory().close();
             new MainMenu(player).show();

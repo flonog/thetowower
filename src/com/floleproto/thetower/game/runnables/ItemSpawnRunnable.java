@@ -7,10 +7,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import java.util.Objects;
+
 public class ItemSpawnRunnable extends BukkitRunnable {
 
-    private ItemStack item;
-    private Location position;
+    private final ItemStack item;
+    private final Location position;
     private Item previousItem;
 
     public ItemSpawnRunnable(ItemStack item, Location position) {
@@ -23,7 +25,7 @@ public class ItemSpawnRunnable extends BukkitRunnable {
         if (previousItem != null && previousItem.isValid()) {
             previousItem.remove();
         }
-        previousItem = Bukkit.getWorld("world").dropItem(position, item);
+        previousItem = Objects.requireNonNull(Bukkit.getWorld("world")).dropItem(position, item);
         previousItem.setVelocity(new Vector(0, 0, 0));
     }
 }

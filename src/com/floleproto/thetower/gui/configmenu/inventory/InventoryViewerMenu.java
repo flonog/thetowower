@@ -5,6 +5,7 @@ import com.floleproto.thetower.game.Team;
 import com.floleproto.thetower.game.save.InventorySave;
 import com.floleproto.thetower.gui.GuiManager;
 import com.floleproto.thetower.utils.ItemCreator;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class InventoryViewerMenu extends GuiManager {
 
-    private Team team;
+    private final Team team;
 
     public InventoryViewerMenu(Player player, Team team) {
         super(player, 54, team.getName());
@@ -24,23 +25,25 @@ public class InventoryViewerMenu extends GuiManager {
         ItemStack[] armor = items[0];
         ItemStack[] content = items[1];
 
-        for (int i = 0; i < content.length; i++) {
-            inventory.setItem(i, content[i]);
+        if(content.length != 0){
+            for (int i = 0; i < content.length; i++) {
+                inventory.setItem(i, content[i]);
+            }
         }
-        inventory.setItem(39, armor[0]);
-        inventory.setItem(38, armor[1]);
-        inventory.setItem(37, armor[2]);
-        inventory.setItem(36, armor[3]);
 
-        inventory.setItem(53, new ItemCreator(Material.INK_SACK, 1, (byte) 10, "§aEdit").create());
-        inventory.setItem(52, new ItemCreator(Material.BARRIER, 1, (byte) 10, "§rMain menu").create());
+        if(armor.length != 0){
+            inventory.setItem(39, armor[0] == null ? new ItemStack(Material.AIR) : armor[0]);
+            inventory.setItem(38, armor[1] == null ? new ItemStack(Material.AIR) : armor[1]);
+            inventory.setItem(37, armor[2] == null ? new ItemStack(Material.AIR) : armor[2]);
+            inventory.setItem(36, armor[3] == null ? new ItemStack(Material.AIR) : armor[3]);
+        }
+
+        inventory.setItem(53, new ItemCreator(Material.GREEN_DYE, 1, "§aEdit").create());
+        inventory.setItem(52, new ItemCreator(Material.BARRIER, 1, "§rMain menu").create());
     }
 
-    @EventHandler
+    @Override
     public void onClick(InventoryClickEvent ev) {
-        if (ev.getInventory() == null)
-            return;
-
         if (!ev.getInventory().equals(inventory)) {
             return;
         }
@@ -59,11 +62,9 @@ public class InventoryViewerMenu extends GuiManager {
         if (ev.getCurrentItem().getType().equals(Material.BARRIER)) {
             player.getOpenInventory().close();
             new InventoryMenu(player).show();
-        } else if (ev.getCurrentItem().getType().equals(Material.INK_SACK)) {
-            if (ev.getCurrentItem().getItemMeta().getDisplayName() == "§aEdit") {
-                SaveInvCommand.openEdit(player, team);
-                player.getOpenInventory().close();
-            }
+        } else if (ev.getCurrentItem().getType().equals(Material.GREEN_DYE)) {
+            SaveInvCommand.openEdit(player, team);
+            player.getOpenInventory().close();
         }
     }
 }

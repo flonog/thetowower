@@ -12,7 +12,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 public class InfiniteLevel extends Scenario {
     public InfiniteLevel() {
-        super("Infinite Level", "Have a lot of XP. The power is in your hand.", Material.ENCHANTMENT_TABLE, null);
+        super("Infinite Level", "Have a lot of XP. The power is in your hand.", Material.ENCHANTING_TABLE, null);
     }
 
     @EventHandler

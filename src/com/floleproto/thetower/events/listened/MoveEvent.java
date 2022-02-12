@@ -1,10 +1,8 @@
 package com.floleproto.thetower.events.listened;
 
 import com.floleproto.thetower.Main;
-import com.google.common.base.Function;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.HashMap;

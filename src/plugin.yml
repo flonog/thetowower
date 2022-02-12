@@ -2,6 +2,7 @@ name: TheTOwOwer
 version: 1.0.0
 author: FloLeProto
 main: com.floleproto.thetower.Main
+api-version: 1.18
 
 commands:
   host:

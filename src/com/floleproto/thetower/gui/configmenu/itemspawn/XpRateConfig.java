@@ -15,10 +15,10 @@ public class XpRateConfig extends NumberConfigMenu {
     }
 
     public void refreshInventory() {
-        inventory.setItem(4, new ItemCreator(Material.EXP_BOTTLE, 1, (byte) 0, "§b" + GameConfig.spawnrate_xp).create());
+        inventory.setItem(4, new ItemCreator(Material.EXPERIENCE_BOTTLE, 1, "§b" + GameConfig.spawnrate_xp).create());
     }
 
-    @EventHandler
+    @Override
     public void onClick(InventoryClickEvent ev) {
         if (ev.getInventory() == null)
             return;
@@ -43,7 +43,7 @@ public class XpRateConfig extends NumberConfigMenu {
             new ItemSpawnMenu(player).show();
         }
 
-        if (!ev.getCurrentItem().getType().equals(Material.WOOL)) {
+        if (!(ev.getCurrentItem().getType().equals(Material.GREEN_WOOL) || ev.getCurrentItem().getType().equals(Material.RED_WOOL))) {
             return;
         }
         String itemName = ev.getCurrentItem().getItemMeta().getDisplayName();

@@ -18,13 +18,11 @@ public class NoCleanUpConfigMenu extends NumberConfigMenu {
     }
 
     public void refreshInventory() {
-        inventory.setItem(4, new ItemCreator(Material.STAINED_GLASS_PANE, 1, (byte) 4, "§b" + NoCleanUp.healthAmount).create());
+        inventory.setItem(4, new ItemCreator(Material.RED_STAINED_GLASS_PANE, 1,"§b" + NoCleanUp.healthAmount).create());
     }
 
     @EventHandler
     public void onClick(InventoryClickEvent ev) {
-        if (ev.getInventory() == null)
-            return;
 
         if (!ev.getInventory().equals(inventory)) {
             return;
@@ -46,7 +44,7 @@ public class NoCleanUpConfigMenu extends NumberConfigMenu {
             new ScenarioMenu(player).show();
         }
 
-        if (!ev.getCurrentItem().getType().equals(Material.WOOL)) {
+        if (!(ev.getCurrentItem().getType().equals(Material.GREEN_WOOL) || ev.getCurrentItem().getType().equals(Material.RED_WOOL))) {
             return;
         }
         String itemName = ev.getCurrentItem().getItemMeta().getDisplayName();

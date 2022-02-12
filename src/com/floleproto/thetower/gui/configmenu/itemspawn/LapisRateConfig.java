@@ -15,10 +15,10 @@ public class LapisRateConfig extends NumberConfigMenu {
     }
 
     public void refreshInventory() {
-        inventory.setItem(4, new ItemCreator(Material.INK_SACK, 1, (byte) 4, "§b" + GameConfig.spawnlapis_rate).create());
+        inventory.setItem(4, new ItemCreator(Material.LAPIS_LAZULI, 1, "§b" + GameConfig.spawnlapis_rate).create());
     }
 
-    @EventHandler
+    @Override
     public void onClick(InventoryClickEvent ev) {
         if (ev.getInventory() == null)
             return;
@@ -43,7 +43,7 @@ public class LapisRateConfig extends NumberConfigMenu {
             new ItemSpawnMenu(player).show();
         }
 
-        if (!ev.getCurrentItem().getType().equals(Material.WOOL)) {
+        if (!(ev.getCurrentItem().getType().equals(Material.GREEN_WOOL) || ev.getCurrentItem().getType().equals(Material.RED_WOOL))) {
             return;
         }
         String itemName = ev.getCurrentItem().getItemMeta().getDisplayName();

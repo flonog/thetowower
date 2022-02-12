@@ -43,55 +43,55 @@ public class Upgrade extends Scenario {
                     if(killer.getInventory().getContents()[i] == null){
                         continue;
                     }
-                    if(killer.getInventory().getContents()[i].getType().equals(Material.WOOD_SWORD)){
+                    if(killer.getInventory().getContents()[i].getType().equals(Material.WOODEN_SWORD)){
                         killer.getInventory().setItem(i, new ItemStack(Material.STONE_SWORD));
                         break;
                     }
                 }
             }else if(kill == 2 && gold){
                 if(killer.getInventory().getChestplate().getType() == Material.LEATHER_CHESTPLATE || killer.getInventory().getLeggings().getType() == Material.AIR)
-                    killer.getInventory().setChestplate(new ItemStack(Material.GOLD_CHESTPLATE));
+                    killer.getInventory().setChestplate(new ItemStack(Material.GOLDEN_CHESTPLATE));
 
                 for (int i = 0; i < killer.getInventory().getContents().length; i++) {
                     if(killer.getInventory().getContents()[i] == null){
                         continue;
                     }
-                    if(killer.getInventory().getContents()[i].getType().equals(Material.WOOD_SWORD) || killer.getInventory().getContents()[i].getType().equals(Material.STONE_SWORD)){
-                        killer.getInventory().setItem(i, new ItemStack(Material.GOLD_SWORD));
+                    if(killer.getInventory().getContents()[i].getType().equals(Material.WOODEN_SWORD) || killer.getInventory().getContents()[i].getType().equals(Material.STONE_SWORD)){
+                        killer.getInventory().setItem(i, new ItemStack(Material.GOLDEN_SWORD));
                         break;
                     }
                 }
             }else if(kill == 3 && iron){
-                if(killer.getInventory().getChestplate().getType() == Material.LEATHER_CHESTPLATE || killer.getInventory().getChestplate().getType() == Material.AIR || killer.getInventory().getChestplate().getType() == Material.GOLD_CHESTPLATE)
+                if(killer.getInventory().getChestplate().getType() == Material.LEATHER_CHESTPLATE || killer.getInventory().getChestplate().getType() == Material.AIR || killer.getInventory().getChestplate().getType() == Material.GOLDEN_CHESTPLATE)
                     killer.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
 
                 for (int i = 0; i < killer.getInventory().getContents().length; i++) {
                     if(killer.getInventory().getContents()[i] == null){
                         continue;
                     }
-                    if(killer.getInventory().getContents()[i].equals(Material.WOOD_SWORD) || killer.getInventory().getContents()[i].getType().equals(Material.STONE_SWORD) || killer.getInventory().getContents()[i].getType().equals(Material.GOLD_SWORD)){
+                    if(killer.getInventory().getContents()[i].equals(Material.WOODEN_SWORD) || killer.getInventory().getContents()[i].getType().equals(Material.STONE_SWORD) || killer.getInventory().getContents()[i].getType().equals(Material.GOLDEN_SWORD)){
                         killer.getInventory().setItem(i, new ItemStack(Material.IRON_SWORD));
                         break;
                     }
                 }
             }else if(kill == 4 && diamond){
-                if(killer.getInventory().getChestplate().getType() == Material.LEATHER_CHESTPLATE || killer.getInventory().getChestplate().getType() == Material.AIR || killer.getInventory().getChestplate().getType() == Material.GOLD_CHESTPLATE || killer.getInventory().getChestplate().getType() == Material.IRON_CHESTPLATE)
+                if(killer.getInventory().getChestplate().getType() == Material.LEATHER_CHESTPLATE || killer.getInventory().getChestplate().getType() == Material.AIR || killer.getInventory().getChestplate().getType() == Material.GOLDEN_CHESTPLATE || killer.getInventory().getChestplate().getType() == Material.IRON_CHESTPLATE)
                     killer.getInventory().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
 
                 for (int i = 0; i < killer.getInventory().getContents().length; i++) {
                     if(killer.getInventory().getContents()[i] == null){
                         continue;
                     }
-                    if(killer.getInventory().getContents()[i].getType().equals(Material.WOOD_SWORD) || killer.getInventory().getContents()[i].getType().equals(Material.STONE_SWORD) || killer.getInventory().getContents()[i].getType().equals(Material.GOLD_SWORD) || killer.getInventory().getContents()[i].getType().equals(Material.IRON_SWORD)){
+                    if(killer.getInventory().getContents()[i].getType().equals(Material.WOODEN_SWORD) || killer.getInventory().getContents()[i].getType().equals(Material.STONE_SWORD) || killer.getInventory().getContents()[i].getType().equals(Material.GOLDEN_SWORD) || killer.getInventory().getContents()[i].getType().equals(Material.IRON_SWORD)){
                         killer.getInventory().setItem(i, new ItemStack(Material.DIAMOND_SWORD));
                         break;
                     }
                 }
             }else if(kill == 5 && diamondEnchant){
-                if(killer.getInventory().getChestplate().getType() == Material.LEATHER_CHESTPLATE || killer.getInventory().getChestplate().getType() == Material.AIR || killer.getInventory().getChestplate().getType() == Material.GOLD_CHESTPLATE || killer.getInventory().getChestplate().getType() == Material.IRON_CHESTPLATE || killer.getInventory().getChestplate().getType() == Material.DIAMOND_CHESTPLATE){
+                if(killer.getInventory().getChestplate().getType() == Material.LEATHER_CHESTPLATE || killer.getInventory().getChestplate().getType() == Material.AIR || killer.getInventory().getChestplate().getType() == Material.GOLDEN_CHESTPLATE || killer.getInventory().getChestplate().getType() == Material.IRON_CHESTPLATE || killer.getInventory().getChestplate().getType() == Material.DIAMOND_CHESTPLATE){
                     Map<Enchantment, Integer> enchants = new HashMap<>();
                     enchants.put(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
-                    killer.getInventory().setChestplate(new ItemCreator(Material.DIAMOND_CHESTPLATE, 1, (byte) 0, "§bDiamond Chestplate", null, enchants).create());
+                    killer.getInventory().setChestplate(new ItemCreator(Material.DIAMOND_CHESTPLATE, 1, "§bDiamond Chestplate", null, enchants).create());
                 }
 
 
@@ -99,10 +99,10 @@ public class Upgrade extends Scenario {
                     if(killer.getInventory().getContents()[i] == null){
                         continue;
                     }
-                    if(killer.getInventory().getContents()[i].getType().equals(Material.WOOD_SWORD) || killer.getInventory().getContents()[i].getType().equals(Material.STONE_SWORD) || killer.getInventory().getContents()[i].getType().equals(Material.GOLD_SWORD) || killer.getInventory().getContents()[i].getType().equals(Material.IRON_SWORD) || killer.getInventory().getContents()[i].getType().equals(Material.DIAMOND_SWORD)){
+                    if(killer.getInventory().getContents()[i].getType().equals(Material.WOODEN_SWORD) || killer.getInventory().getContents()[i].getType().equals(Material.STONE_SWORD) || killer.getInventory().getContents()[i].getType().equals(Material.GOLDEN_SWORD) || killer.getInventory().getContents()[i].getType().equals(Material.IRON_SWORD) || killer.getInventory().getContents()[i].getType().equals(Material.DIAMOND_SWORD)){
                         Map<Enchantment, Integer> enchants = new HashMap<>();
                         enchants.put(Enchantment.DAMAGE_ALL, 1);
-                        killer.getInventory().setItem(i, new ItemCreator(Material.DIAMOND_SWORD, 1, (byte) 0, "§bDiamond SOwOrd", null, enchants).create());
+                        killer.getInventory().setItem(i, new ItemCreator(Material.DIAMOND_SWORD, 1, "§bDiamond SOwOrd", null, enchants).create());
                         break;
                     }
                 }

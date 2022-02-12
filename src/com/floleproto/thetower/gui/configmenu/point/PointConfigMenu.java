@@ -9,6 +9,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
+import java.util.Objects;
+
 public class PointConfigMenu extends NumberConfigMenu {
     public PointConfigMenu(Player player) {
         super(player, "§rTime Limit Configuration");
@@ -16,13 +18,11 @@ public class PointConfigMenu extends NumberConfigMenu {
     }
 
     public void refreshInventory() {
-        inventory.setItem(4, new ItemCreator(Material.NETHER_STAR, 1, (byte) 0, "§b" + GameConfig.scoretowin).create());
+        inventory.setItem(4, new ItemCreator(Material.NETHER_STAR, 1, "§b" + GameConfig.scoretowin).create());
     }
 
-    @EventHandler
+    @Override
     public void onClick(InventoryClickEvent ev) {
-        if (ev.getInventory() == null)
-            return;
 
         if (!ev.getInventory().equals(inventory)) {
             return;
@@ -44,10 +44,10 @@ public class PointConfigMenu extends NumberConfigMenu {
             new MainMenu(player).show();
         }
 
-        if (!ev.getCurrentItem().getType().equals(Material.WOOL)) {
+        if (!(ev.getCurrentItem().getType().equals(Material.GREEN_WOOL) || ev.getCurrentItem().getType().equals(Material.RED_WOOL))) {
             return;
         }
-        String itemName = ev.getCurrentItem().getItemMeta().getDisplayName();
+        String itemName = Objects.requireNonNull(ev.getCurrentItem().getItemMeta()).getDisplayName();
         int number = Integer.parseInt(itemName.substring(2));
 
         GameConfig.scoretowin += number;

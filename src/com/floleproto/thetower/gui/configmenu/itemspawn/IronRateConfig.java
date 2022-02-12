@@ -15,14 +15,11 @@ public class IronRateConfig extends NumberConfigMenu {
     }
 
     public void refreshInventory() {
-        inventory.setItem(4, new ItemCreator(Material.IRON_INGOT, 1, (byte) 0, "§b" + GameConfig.spawnrate_iron).create());
+        inventory.setItem(4, new ItemCreator(Material.IRON_INGOT, 1, "§b" + GameConfig.spawnrate_iron).create());
     }
 
-    @EventHandler
+    @Override
     public void onClick(InventoryClickEvent ev) {
-        if (ev.getInventory() == null)
-            return;
-
         if (!ev.getInventory().equals(inventory)) {
             return;
         }
@@ -43,7 +40,7 @@ public class IronRateConfig extends NumberConfigMenu {
             new ItemSpawnMenu(player).show();
         }
 
-        if (!ev.getCurrentItem().getType().equals(Material.WOOL)) {
+        if (!(ev.getCurrentItem().getType().equals(Material.GREEN_WOOL) || ev.getCurrentItem().getType().equals(Material.RED_WOOL))) {
             return;
         }
         String itemName = ev.getCurrentItem().getItemMeta().getDisplayName();

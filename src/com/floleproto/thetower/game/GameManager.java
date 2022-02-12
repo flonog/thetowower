@@ -12,6 +12,7 @@ import com.floleproto.thetower.game.save.PositionSave;
 import com.floleproto.thetower.utils.XpBarManager;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.GameRule;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
@@ -20,11 +21,11 @@ import org.bukkit.inventory.ItemStack;
 public class GameManager {
     private GameStates states = GameStates.WAITING;
     private StartGameRunnable startGameRunnable = null;
-    private TimerRunnable timerRunnable = new TimerRunnable();
-    private CheckPointRunnable checkPointRunnable = new CheckPointRunnable();
-    private ItemSpawnRunnable ironSpawnItem = new ItemSpawnRunnable(new ItemStack(Material.IRON_INGOT), PositionSave.ironSpawn);
-    private ItemSpawnRunnable xpSpawnItem = new ItemSpawnRunnable(new ItemStack(Material.EXP_BOTTLE), PositionSave.xpSpawn);
-    private ItemSpawnRunnable lapisSpawnItem = new ItemSpawnRunnable(new ItemStack(Material.INK_SACK, 1, (byte) 4), PositionSave.lapisSpawn);
+    private final TimerRunnable timerRunnable = new TimerRunnable();
+    private final CheckPointRunnable checkPointRunnable = new CheckPointRunnable();
+    private final ItemSpawnRunnable ironSpawnItem = new ItemSpawnRunnable(new ItemStack(Material.IRON_INGOT), PositionSave.ironSpawn);
+    private final ItemSpawnRunnable xpSpawnItem = new ItemSpawnRunnable(new ItemStack(Material.EXPERIENCE_BOTTLE), PositionSave.xpSpawn);
+    private final ItemSpawnRunnable lapisSpawnItem = new ItemSpawnRunnable(new ItemStack(Material.INK_SAC, 1), PositionSave.lapisSpawn);
 
     public GameStates getStates() {
         return states;
@@ -62,17 +63,17 @@ public class GameManager {
             }
         }
 
-        Main.instance.teamManager.redTeam.setupPlayers();
-        Main.instance.teamManager.blueTeam.setupPlayers();
+        TeamManager.redTeam.setupPlayers();
+        TeamManager.blueTeam.setupPlayers();
 
         if (!GameConfig.spawnlapis) {
             Bukkit.getPluginManager().registerEvents(new EnchantEvent(Main.instance), Main.instance);
         }
 
-        Bukkit.getWorld("world").setGameRuleValue("doDaylightCycle", String.valueOf(!GameConfig.eternalday));
-        Bukkit.getWorld("world").setGameRuleValue("doMobSpawning", String.valueOf(GameConfig.spawnmob));
-        Bukkit.getWorld("world").setGameRuleValue("doMobLoot", "false");
-        Bukkit.getWorld("world").setGameRuleValue("mobGriefing", String.valueOf(GameConfig.mobgriefing));
+        Bukkit.getWorld("world").setGameRule(GameRule.DO_DAYLIGHT_CYCLE, !GameConfig.eternalday);
+        Bukkit.getWorld("world").setGameRule(GameRule.DO_MOB_SPAWNING, GameConfig.spawnmob);
+        Bukkit.getWorld("world").setGameRule(GameRule.DO_MOB_LOOT, false);
+        Bukkit.getWorld("world").setGameRule(GameRule.MOB_GRIEFING, GameConfig.mobgriefing);
 
         Bukkit.getWorld("world").setTime(6000L);
 

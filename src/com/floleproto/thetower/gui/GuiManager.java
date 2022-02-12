@@ -1,16 +1,13 @@
 package com.floleproto.thetower.gui;
 
-import com.floleproto.thetower.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.HandlerList;
-import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 
-public class GuiManager implements Listener {
+public class GuiManager implements InventoryHolder {
     protected Player player;
     protected int size;
     protected InventoryType type;
@@ -21,18 +18,17 @@ public class GuiManager implements Listener {
         this.player = player;
         this.size = size;
         this.name = name;
-        inventory = Bukkit.createInventory(null, size, name);
+        inventory = Bukkit.createInventory(this, size, name);
     }
 
     public GuiManager(Player player, InventoryType type, String name) {
         this.player = player;
         this.type = type;
         this.name = name;
-        inventory = Bukkit.createInventory(null, type, name);
+        inventory = Bukkit.createInventory(this, type, name);
     }
 
     public void show() {
-        Bukkit.getPluginManager().registerEvents(this, Main.instance);
         this.player.openInventory(inventory);
     }
 
@@ -76,10 +72,5 @@ public class GuiManager implements Listener {
         this.inventory = inventory;
     }
 
-    @EventHandler
-    public void onCloseInventory(InventoryCloseEvent ev) {
-        if (ev.getInventory().getName().equals(inventory.getName())) {
-            HandlerList.unregisterAll(this);
-        }
-    }
+    public void onClick(InventoryClickEvent ev) {}
 }

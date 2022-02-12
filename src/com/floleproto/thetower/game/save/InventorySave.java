@@ -1,6 +1,7 @@
 package com.floleproto.thetower.game.save;
 
 import com.floleproto.thetower.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -54,15 +55,19 @@ public class InventorySave {
         ConfigurationSection armorSection = yml.getConfigurationSection(teamName + ".armor");
         ConfigurationSection inventorySection = yml.getConfigurationSection(teamName + ".inventory");
 
-        List<ItemStack> armorInventory = new ArrayList<ItemStack>();
+        List<ItemStack> armorInventory = new ArrayList<>(Arrays.asList(new ItemStack[4]));
         List<ItemStack> inventoryInventory = new ArrayList<>(Arrays.asList(new ItemStack[36]));
 
-        for (String s : armorSection.getKeys(false)) {
-            armorInventory.add(Integer.parseInt(s), yml.getItemStack(teamName + ".armor." + s));
+        if(armorSection != null){
+            for (String s : armorSection.getKeys(false)) {
+                armorInventory.set(Integer.parseInt(s), yml.getItemStack(teamName + ".armor." + s));
+            }
         }
 
-        for (String s : inventorySection.getKeys(false)) {
-            inventoryInventory.set(Integer.parseInt(s), yml.getItemStack(teamName + ".inventory." + s));
+        if(inventorySection != null){
+            for (String s : inventorySection.getKeys(false)) {
+                inventoryInventory.set(Integer.parseInt(s), yml.getItemStack(teamName + ".inventory." + s));
+            }
         }
 
         return new ItemStack[][]{armorInventory.toArray(new ItemStack[0]), inventoryInventory.toArray(new ItemStack[0])};

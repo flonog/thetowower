@@ -9,7 +9,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 public class XpOnKill extends Scenario {
     public static int xpEarned = 20;
     public XpOnKill() {
-        super("XP On Kill", "Earn XP when you kill someone.", Material.EXP_BOTTLE, XpOnKillConfigMenu.class);
+        super("XP On Kill", "Earn XP when you kill someone.", Material.EXPERIENCE_BOTTLE, XpOnKillConfigMenu.class);
     }
 
     @EventHandler

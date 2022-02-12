@@ -8,7 +8,10 @@ import com.floleproto.thetower.game.save.PositionSave;
 import com.floleproto.thetower.scenarios.scenarios.*;
 import com.floleproto.thetower.scenarios.ScenarioManager;
 import org.bukkit.Bukkit;
+import org.bukkit.GameRule;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.Objects;
 
 public class Main extends JavaPlugin {
 
@@ -67,15 +70,15 @@ public class Main extends JavaPlugin {
         scoreboardManager = new ScoreboardManager();
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eScoreboardManager loaded. (ScoreboardSign by zyuiop)");
 
-        getCommand("host").setExecutor(new HostCommand(this));
-        getCommand("start").setExecutor(new StartCommand(this));
-        getCommand("cancelstart").setExecutor(new CancelStartCommand(this));
-        getCommand("save").setExecutor(new SaveInvCommand(this));
-        getCommand("rules").setExecutor(new RulesCommand(this));
-        getCommand("savechest").setExecutor(new SaveChestCommand(this));
+        Objects.requireNonNull(getCommand("host")).setExecutor(new HostCommand(this));
+        Objects.requireNonNull(getCommand("start")).setExecutor(new StartCommand(this));
+        Objects.requireNonNull(getCommand("cancelstart")).setExecutor(new CancelStartCommand(this));
+        Objects.requireNonNull(getCommand("save")).setExecutor(new SaveInvCommand(this));
+        Objects.requireNonNull(getCommand("rules")).setExecutor(new RulesCommand(this));
+        Objects.requireNonNull(getCommand("savechest")).setExecutor(new SaveChestCommand(this));
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eCommands registered.");
 
-        getServer().getPluginManager().registerEvents(new JoinAndLeftEvent(this), this);
+        getServer().getPluginManager().registerEvents(new JoinAndLeaveEvent(this), this);
         getServer().getPluginManager().registerEvents(new FoodEvent(this), this);
         getServer().getPluginManager().registerEvents(new DamageEvent(this), this);
         getServer().getPluginManager().registerEvents(new BlockEvent(this), this);
@@ -86,10 +89,10 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new MoveEvent(this), this);
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eEvents registered.");
 
-        Bukkit.getWorld("world").setGameRuleValue("doDaylightCycle", "false");
-        Bukkit.getWorld("world").setGameRuleValue("doMobSpawning", "false");
-        Bukkit.getWorld("world").setGameRuleValue("doMobLoot", "false");
-        Bukkit.getWorld("world").setGameRuleValue("mobGriefing", "false");
+        Bukkit.getWorld("world").setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+        Bukkit.getWorld("world").setGameRule(GameRule.DO_MOB_SPAWNING, false);
+        Bukkit.getWorld("world").setGameRule(GameRule.DO_MOB_LOOT, false);
+        Bukkit.getWorld("world").setGameRule(GameRule.MOB_GRIEFING, false);
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §eGamerule world registered.");
 
         Bukkit.getConsoleSender().sendMessage("[§bThe TOwOwer§r] §aPlugin loaded successfully.");

@@ -18,14 +18,11 @@ public class XpOnKillConfigMenu extends NumberConfigMenu {
     }
 
     public void refreshInventory() {
-        inventory.setItem(4, new ItemCreator(Material.EXP_BOTTLE, 1, (byte) 0, "§b" + XpOnKill.xpEarned).create());
+        inventory.setItem(4, new ItemCreator(Material.EXPERIENCE_BOTTLE, 1,"§b" + XpOnKill.xpEarned).create());
     }
 
     @EventHandler
     public void onClick(InventoryClickEvent ev) {
-        if (ev.getInventory() == null)
-            return;
-
         if (!ev.getInventory().equals(inventory)) {
             return;
         }
@@ -46,7 +43,7 @@ public class XpOnKillConfigMenu extends NumberConfigMenu {
             new ScenarioMenu(player).show();
         }
 
-        if (!ev.getCurrentItem().getType().equals(Material.WOOL)) {
+        if (!(ev.getCurrentItem().getType().equals(Material.GREEN_WOOL) || ev.getCurrentItem().getType().equals(Material.RED_WOOL))) {
             return;
         }
         String itemName = ev.getCurrentItem().getItemMeta().getDisplayName();

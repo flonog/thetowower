@@ -6,6 +6,7 @@ import com.floleproto.thetower.utils.ItemCreator;
 import com.floleproto.thetower.utils.Title;
 import com.floleproto.thetower.utils.XpBarManager;
 import org.bukkit.*;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -19,11 +20,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JoinAndLeftEvent implements Listener {
+public class JoinAndLeaveEvent implements Listener {
 
     private Main main;
 
-    public JoinAndLeftEvent(Main main) {
+    public JoinAndLeaveEvent(Main main) {
         this.main = main;
     }
 
@@ -45,16 +46,16 @@ public class JoinAndLeftEvent implements Listener {
             World world = Bukkit.getWorld(worldName);
             p.teleport(new Location(world, x, y, z));
 
-            p.setHealth(p.getMaxHealth());
+            p.setHealth(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
             p.setFoodLevel(20);
             p.setGameMode(GameMode.SURVIVAL);
 
             p.getInventory().clear();
             Map<Enchantment, Integer> enchants = new HashMap<Enchantment, Integer>();
             enchants.put(Enchantment.DURABILITY, 1);
-            p.getInventory().setItem(4, new ItemCreator(Material.WOOL, 1, (byte) 0, "§b§lTeam", null, enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
+            p.getInventory().setItem(4, new ItemCreator(Material.WHITE_WOOL, 1, "§b§lTeam", null, enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
             if (p.hasPermission("thetowower.config") || p.hasPermission("thetowower.*") || p.isOp())
-                p.getInventory().setItem(8, new ItemCreator(Material.COMMAND, 1, (byte) 0, "§c§lConfig", null, enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
+                p.getInventory().setItem(8, new ItemCreator(Material.COMMAND_BLOCK, 1, "§c§lConfig", null, enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
 
             Title title = new Title("§b§lThe TOwOwer", "§eThe game will start soon");
             title.sendToPlayer(p);
@@ -64,12 +65,11 @@ public class JoinAndLeftEvent implements Listener {
             if (Bukkit.getOnlinePlayers().size() >= main.getConfig().getInt("minplayer") && !main.gameManager.isStarting()) {
                 main.gameManager.startCountdown();
             }
-            ;
         }
     }
 
     @EventHandler
-    public void onLeft(PlayerQuitEvent ev) {
+    public void onLeave(PlayerQuitEvent ev) {
         main.scoreboardManager.removeScoreboard(ev.getPlayer());
         ev.setQuitMessage("§r" + (Bukkit.getOnlinePlayers().size() - 1) + "§r / §r" + Bukkit.getMaxPlayers() + " §4§l>§l§1> §c" + ev.getPlayer().getDisplayName() + " left the game.");
 

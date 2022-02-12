@@ -74,13 +74,13 @@ public class SaveInvCommand implements CommandExecutor {
 
         Team team = playersEditing.get(p);
 
-        InventorySave.saveInventory(team.getTag(), p.getInventory().getContents(), p.getInventory().getArmorContents());
+        InventorySave.saveInventory(team.getTag(), p.getInventory().getStorageContents(), p.getInventory().getArmorContents());
         closeEdit(p);
 
         Map<Enchantment, Integer> enchants = new HashMap<>();
         enchants.put(Enchantment.DURABILITY, 1);
-        p.getInventory().setItem(4, new ItemCreator(Material.WOOL, 1, (byte) 0, "§b§lTeam", null, enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
-        p.getInventory().setItem(8, new ItemCreator(Material.COMMAND, 1, (byte) 0, "§c§lConfig", null, enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
+        p.getInventory().setItem(4, new ItemCreator(Material.WHITE_WOOL, 1, "§b§lTeam", null, enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
+        p.getInventory().setItem(8, new ItemCreator(Material.COMMAND_BLOCK, 1, "§c§lConfig", null, enchants, Arrays.asList(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS})).create());
 
         return true;
     }

@@ -21,13 +21,13 @@ public class EnchantEvent implements Listener {
 
     @EventHandler
     public void onEnchantEvent(EnchantItemEvent ev) {
-        ev.getInventory().setItem(1, new ItemStack(Material.INK_SACK, 3, (byte) 4));
+        ev.getInventory().setItem(1, new ItemStack(Material.LAPIS_LAZULI, 3));
     }
 
     @EventHandler
     public void onOpenInventory(InventoryOpenEvent ev) {
         if (ev.getInventory() instanceof EnchantingInventory) {
-            ev.getInventory().setItem(1, new ItemStack(Material.INK_SACK, 3, (byte) 4));
+            ev.getInventory().setItem(1, new ItemStack(Material.LAPIS_LAZULI, 3));
         }
     }
 
@@ -41,7 +41,7 @@ public class EnchantEvent implements Listener {
     @EventHandler
     public void onInventoryClick(InventoryClickEvent ev) {
         if (ev.getClickedInventory() instanceof EnchantingInventory) {
-            if (ev.getCurrentItem().getType() == Material.INK_SACK) {
+            if (ev.getCurrentItem().getType() == Material.INK_SAC) {
                 ev.setCancelled(true);
             }
         }

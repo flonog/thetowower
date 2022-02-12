@@ -31,12 +31,12 @@ public class UpgradeConfigMenu extends GuiManager {
         Map<Enchantment, Integer> enchants = new HashMap<>();
         enchants.put(Enchantment.DURABILITY, 1);
 
-        inventory.setItem(9, new ItemCreator(Material.STONE_SWORD, 1, (byte) 0, "§7§lStone level (§r" + (Upgrade.stone ? "§a§lON" : "§c§lOFF" )  + "§7§l)").create());
-        inventory.setItem(11, new ItemCreator(Material.GOLD_SWORD, 1, (byte) 0, "§6§lGold level (§r" + (Upgrade.gold ? "§a§lON" : "§c§lOFF" )  + "§6§l)").create());
-        inventory.setItem(13, new ItemCreator(Material.IRON_SWORD, 1, (byte) 0, "§r§lIron level (§r" + (Upgrade.iron ? "§a§lON" : "§c§lOFF" )  + "§r§l)").create());
-        inventory.setItem(15, new ItemCreator(Material.DIAMOND_SWORD, 1, (byte) 0, "§b§lDiamond level (§r" + (Upgrade.diamond ? "§a§lON" : "§c§lOFF" )  + "§b§l)").create());
-        inventory.setItem(17, new ItemCreator(Material.ENCHANTED_BOOK, 1, (byte) 0, "§b§lEnchant level (§r" + (Upgrade.diamondEnchant ? "§a§lON" : "§c§lOFF" )  + "§b§l)", null, enchants).create());
-        inventory.setItem(24, new ItemCreator(Material.BARRIER, 1, (byte) 0, "§rBack").create());
+        inventory.setItem(9, new ItemCreator(Material.STONE_SWORD, 1, "§7§lStone level (§r" + (Upgrade.stone ? "§a§lON" : "§c§lOFF" )  + "§7§l)").create());
+        inventory.setItem(11, new ItemCreator(Material.GOLDEN_SWORD, 1, "§6§lGold level (§r" + (Upgrade.gold ? "§a§lON" : "§c§lOFF" )  + "§6§l)").create());
+        inventory.setItem(13, new ItemCreator(Material.IRON_SWORD, 1, "§r§lIron level (§r" + (Upgrade.iron ? "§a§lON" : "§c§lOFF" )  + "§r§l)").create());
+        inventory.setItem(15, new ItemCreator(Material.DIAMOND_SWORD, 1, "§b§lDiamond level (§r" + (Upgrade.diamond ? "§a§lON" : "§c§lOFF" )  + "§b§l)").create());
+        inventory.setItem(17, new ItemCreator(Material.ENCHANTED_BOOK, 1, "§b§lEnchant level (§r" + (Upgrade.diamondEnchant ? "§a§lON" : "§c§lOFF" )  + "§b§l)", null, enchants).create());
+        inventory.setItem(24, new ItemCreator(Material.BARRIER, 1, "§rBack").create());
     }
 
     @EventHandler
@@ -64,7 +64,7 @@ public class UpgradeConfigMenu extends GuiManager {
                 Upgrade.stone = !Upgrade.stone;
                 refreshItem();
                 break;
-            case GOLD_SWORD:
+            case GOLDEN_SWORD:
                 Upgrade.gold = !Upgrade.gold;
                 refreshItem();
                 break;

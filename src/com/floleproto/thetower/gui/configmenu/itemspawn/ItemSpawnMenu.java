@@ -17,17 +17,14 @@ public class ItemSpawnMenu extends GuiManager {
     }
 
     public void refreshInventory() {
-        inventory.setItem(11, new ItemCreator(Material.IRON_INGOT, 1, (byte) 0, "§eIron " + (GameConfig.spawnrate_iron_enable ? "§a§lON (§b" + GameConfig.spawnrate_iron + "§a§l)" : "§c§lOFF")).create());
-        inventory.setItem(13, new ItemCreator(Material.EXP_BOTTLE, 1, (byte) 0, "§eXP " + (GameConfig.spawnrate_xp_enable ? "§a§lON (§b" + GameConfig.spawnrate_xp + "§a§l)" : "§c§lOFF")).create());
-        inventory.setItem(15, new ItemCreator(Material.INK_SACK, 1, (byte) 4, "§eLapis " + (GameConfig.spawnlapis ? "§a§lON (§b" + GameConfig.spawnlapis_rate + "§a§l)" : "§c§lOFF")).create());
-        inventory.setItem(26, new ItemCreator(Material.BARRIER, 1, (byte) 5, "§rReturn to Main Menu").create());
+        inventory.setItem(11, new ItemCreator(Material.IRON_INGOT, 1, "§eIron " + (GameConfig.spawnrate_iron_enable ? "§a§lON (§b" + GameConfig.spawnrate_iron + "§a§l)" : "§c§lOFF")).create());
+        inventory.setItem(13, new ItemCreator(Material.EXPERIENCE_BOTTLE, 1, "§eXP " + (GameConfig.spawnrate_xp_enable ? "§a§lON (§b" + GameConfig.spawnrate_xp + "§a§l)" : "§c§lOFF")).create());
+        inventory.setItem(15, new ItemCreator(Material.LAPIS_LAZULI, 1, "§eLapis " + (GameConfig.spawnlapis ? "§a§lON (§b" + GameConfig.spawnlapis_rate + "§a§l)" : "§c§lOFF")).create());
+        inventory.setItem(26, new ItemCreator(Material.BARRIER, 1, "§rReturn to Main Menu").create());
     }
 
-    @EventHandler
+    @Override
     public void onClick(InventoryClickEvent ev) {
-        if (ev.getInventory() == null)
-            return;
-
         if (!ev.getInventory().equals(inventory)) {
             return;
         }
@@ -48,7 +45,7 @@ public class ItemSpawnMenu extends GuiManager {
                 player.getOpenInventory().close();
                 new MainMenu(player).show();
                 break;
-            case INK_SACK:
+            case INK_SAC:
                 if (ev.getClick() == ClickType.RIGHT) {
                     GameConfig.spawnlapis = !GameConfig.spawnlapis;
                     refreshInventory();
@@ -66,7 +63,7 @@ public class ItemSpawnMenu extends GuiManager {
                     new IronRateConfig(player).show();
                 }
                 break;
-            case EXP_BOTTLE:
+            case EXPERIENCE_BOTTLE:_BOTTLE:
                 if (ev.getClick() == ClickType.RIGHT) {
                     GameConfig.spawnrate_xp_enable = !GameConfig.spawnrate_xp_enable;
                     refreshInventory();

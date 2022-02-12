@@ -17,46 +17,41 @@ public class ItemCreator {
     private List<String> lores = null;
     private Map<Enchantment, Integer> enchantments = null;
     private List<ItemFlag> itemFlags = null;
-    private byte data;
 
-    public ItemCreator(Material material, int amount, byte data) {
+
+    public ItemCreator(Material material, int amount) {
         this.material = material;
         this.amount = amount;
-        this.data = data;
     }
 
-    public ItemCreator(Material material, int amount, byte data, String name) {
+    public ItemCreator(Material material, int amount, String name) {
         this.material = material;
         this.amount = amount;
         this.name = name;
-        this.data = data;
     }
 
-    public ItemCreator(Material material, int amount, byte data, String name, List<String> lores) {
+    public ItemCreator(Material material, int amount, String name, List<String> lores) {
         this.material = material;
         this.amount = amount;
         this.name = name;
         this.lores = lores;
-        this.data = data;
     }
 
-    public ItemCreator(Material material, int amount, byte data, String name, List<String> lores, Map<Enchantment, Integer> enchantments) {
+    public ItemCreator(Material material, int amount, String name, List<String> lores, Map<Enchantment, Integer> enchantments) {
         this.material = material;
         this.amount = amount;
         this.name = name;
         this.lores = lores;
         this.enchantments = enchantments;
-        this.data = data;
     }
 
-    public ItemCreator(Material material, int amount, byte data, String name, List<String> lores, Map<Enchantment, Integer> enchantments, List<ItemFlag> itemFlags) {
+    public ItemCreator(Material material, int amount, String name, List<String> lores, Map<Enchantment, Integer> enchantments, List<ItemFlag> itemFlags) {
         this.material = material;
         this.amount = amount;
         this.name = name;
         this.lores = lores;
         this.enchantments = enchantments;
         this.itemFlags = itemFlags;
-        this.data = data;
     }
 
     public Material getMaterial() {
@@ -107,17 +102,9 @@ public class ItemCreator {
         this.itemFlags = itemFlags;
     }
 
-    public byte getData() {
-        return data;
-    }
-
-    public void setData(byte data) {
-        this.data = data;
-    }
-
     public ItemStack create() {
 
-        ItemStack item = new ItemStack(material, amount, data);
+        ItemStack item = new ItemStack(material, amount);
         ItemMeta itemM = item.getItemMeta();
 
         if (name != null) {
