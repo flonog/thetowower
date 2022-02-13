@@ -24,6 +24,7 @@ public class GameConfig {
     public static boolean spawnmob = false;
     public static boolean mobgriefing = false;
     public static boolean eternalday = true;
+    public static boolean noCooldown = true;
 
     public static boolean healonpoint = true;
 
@@ -47,6 +48,7 @@ public class GameConfig {
         spawnmob = config.getBoolean("spawnmob");
         mobgriefing = config.getBoolean("mobgriefing");
         eternalday = config.getBoolean("eternalday");
+        noCooldown = config.getBoolean("nocooldown");
 
         healonpoint = config.getBoolean("healonpoint");
     }
@@ -70,6 +72,7 @@ public class GameConfig {
         config.set("timelimit_time", timelimit_time);
         config.set("spawnmob", spawnmob);
         config.set("mobgriefing", mobgriefing);
+        config.set("nocooldown", noCooldown);
 
         config.set("healonpoint", healonpoint);
 
@@ -119,6 +122,7 @@ public class GameConfig {
                 "   Heal on point marked : " + (healonpoint ? "§a§lON" : "§c§lOFF") + "§r\n§c ",
                 "   Mob spawning : " + (spawnmob ? "§a§lON" : "§c§lOFF") + "§r",
                 "   Mob griefing : " + (mobgriefing ? "§a§lON" : "§c§lOFF") + "§r",
+                "   No Weapon Cooldown : " + (noCooldown ? "§a§lON" : "§c§lOFF") + "§r",
         };
     }
 }

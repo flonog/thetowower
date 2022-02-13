@@ -76,7 +76,7 @@ public class JoinAndLeaveEvent implements Listener {
         if (main.gameManager.isStates(GameStates.WAITING)) {
             if (Bukkit.getOnlinePlayers().size() - 1 < main.getConfig().getInt("minplayer") && main.gameManager.isStarting()) {
                 main.gameManager.stopCountdown(false);
-                Bukkit.broadcastMessage("§b§lThe TOwOwer §4§l>§1§l>§c There is'nt enough players to start the game. Cancelling.");
+                Bukkit.broadcastMessage("§b§lThe TOwOwer §4§l>§1§l>§c There isn't enough players to start the game. Cancelling.");
             }
         } else if (main.gameManager.isStates(GameStates.ONGAME)) {
             ev.getPlayer().setHealth(0);

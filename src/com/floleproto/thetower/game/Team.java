@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Sound;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -129,6 +130,8 @@ public class Team {
             setTeamInventory(p);
             p.teleport(spawn);
             p.setFoodLevel(30);
+            if(GameConfig.noCooldown)
+                p.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(999999);
             Main.instance.scoreboardManager.setScoreboardTemplate(p, GameStates.ONGAME);
         }
     }

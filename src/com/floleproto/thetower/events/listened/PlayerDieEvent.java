@@ -1,8 +1,10 @@
 package com.floleproto.thetower.events.listened;
 
 import com.floleproto.thetower.Main;
+import com.floleproto.thetower.game.GameConfig;
 import com.floleproto.thetower.game.GameStates;
 import org.bukkit.Bukkit;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -51,11 +53,16 @@ public class PlayerDieEvent implements Listener {
 
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent ev) {
+        if (!main.gameManager.isStates(GameStates.ONGAME))
+            return;
+
         Player p = ev.getPlayer();
         main.scoreboardManager.refreshKillsDeaths(p);
         main.teamManager.getTeam(p).setTeamInventory(p);
         main.statistics.addDeath(p, 1);
         main.scoreboardManager.refreshKillsDeaths(p);
+        if(GameConfig.noCooldown)
+            p.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(999999);
         ev.setRespawnLocation(main.teamManager.getTeam(p).getSpawn());
     }
 }
