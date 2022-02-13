@@ -1,6 +1,7 @@
 package com.floleproto.thetower.game;
 
 import com.floleproto.thetower.game.save.PositionSave;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -18,6 +19,8 @@ public class TeamManager {
 
 
     public void addPlayer(Player p, Team team) {
+        if(isInTeam(p))
+            removePlayer(p);
         team.addPlayer(p);
     }
 

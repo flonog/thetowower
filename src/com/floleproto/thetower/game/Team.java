@@ -3,10 +3,7 @@ package com.floleproto.thetower.game;
 import com.floleproto.thetower.Main;
 import com.floleproto.thetower.events.custom.PlayerScoreEvent;
 import com.floleproto.thetower.game.save.InventorySave;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -127,13 +124,24 @@ public class Team {
 
     public void setupPlayers() {
         for (Player p : getPlayers()) {
-            setTeamInventory(p);
-            p.teleport(spawn);
-            p.setFoodLevel(30);
-            if(GameConfig.noCooldown)
-                p.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(999999);
-            Main.instance.scoreboardManager.setScoreboardTemplate(p, GameStates.ONGAME);
+            setupPlayer(p);
         }
+    }
+
+    public void setupPlayer(Player p) {
+        if(tag == "spectator"){
+            p.teleport(spawn);
+            p.getInventory().clear();
+            p.setGameMode(GameMode.SPECTATOR);
+            Main.instance.scoreboardManager.setScoreboardTemplate(p, GameStates.ONGAME);
+            return;
+        }
+        setTeamInventory(p);
+        p.teleport(spawn);
+        p.setFoodLevel(30);
+        if(GameConfig.noCooldown)
+            p.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(999999);
+        Main.instance.scoreboardManager.setScoreboardTemplate(p, GameStates.ONGAME);
     }
 
     public void setTeamInventory(Player p) {

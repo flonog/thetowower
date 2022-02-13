@@ -3,6 +3,7 @@ package com.floleproto.thetower.events.listened;
 import com.floleproto.thetower.Main;
 import com.floleproto.thetower.game.GameConfig;
 import com.floleproto.thetower.game.GameStates;
+import com.floleproto.thetower.game.TeamManager;
 import org.bukkit.Bukkit;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
@@ -25,6 +26,9 @@ public class PlayerDieEvent implements Listener {
     public void onPlayerDie(PlayerDeathEvent ev) {
 
         if (!main.gameManager.isStates(GameStates.ONGAME))
+            return;
+
+        if(TeamManager.spectatorTeam.isInTeam(ev.getEntity()))
             return;
 
         Player killer = ev.getEntity().getKiller();

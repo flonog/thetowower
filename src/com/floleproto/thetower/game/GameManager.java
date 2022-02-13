@@ -66,6 +66,7 @@ public class GameManager {
 
         TeamManager.redTeam.setupPlayers();
         TeamManager.blueTeam.setupPlayers();
+        TeamManager.spectatorTeam.setupPlayers();
 
         if (!GameConfig.spawnlapis) {
             Bukkit.getPluginManager().registerEvents(new EnchantEvent(Main.instance), Main.instance);

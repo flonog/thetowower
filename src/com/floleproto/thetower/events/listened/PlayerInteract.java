@@ -33,6 +33,7 @@ public class PlayerInteract implements Listener {
             switch (ev.getMaterial()) {
                 case WHITE_WOOL:
                 case BLUE_WOOL:
+                case GREEN_WOOL:
                 case RED_WOOL:
                     new TeamGui(p).show();
                     break;

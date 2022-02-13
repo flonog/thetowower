@@ -41,7 +41,7 @@ public class MainMenu extends GuiManager {
         inventory.setItem(8, new ItemCreator(Material.IRON_CHESTPLATE, 1, "§eInventory Config", Collections.singletonList("§rDefined the inventory of the teams"), enchants, Collections.singletonList(ItemFlag.HIDE_ENCHANTS)).create());
         inventory.setItem(9, new ItemCreator(Material.BOOK, 1, "§eScenario", Collections.singletonList("§c§lComing soon"), enchants, Collections.singletonList(ItemFlag.HIDE_ENCHANTS)).create());
         inventory.setItem(10, new ItemCreator(Material.CLOCK, 1, "§eTime Limit " + (GameConfig.timelimit_enable ? "§a§lON (§b" + GameConfig.timelimit_time + "§a§l)" : "§c§lOFF"), Arrays.asList("§rSet the time limit.", "§rLeft click to toggle.", "§rRight click to edit the time."), enchants, Collections.singletonList(ItemFlag.HIDE_ENCHANTS)).create());
-        inventory.setItem(11, new ItemCreator(Material.WOODEN_SWORD, 1, "§No Weapon Cooldown " + (GameConfig.noCooldown ? "§a§lON (§b" + GameConfig.timelimit_time + "§a§l)" : "§c§lOFF"), Arrays.asList("§rDisable the cooldown of the weapons."), enchants, Collections.singletonList(ItemFlag.HIDE_ENCHANTS)).create());
+        inventory.setItem(11, new ItemCreator(Material.WOODEN_SWORD, 1, "§eNo Weapon Cooldown " + (GameConfig.noCooldown ? "§a§lON (§b" + GameConfig.timelimit_time + "§a§l)" : "§c§lOFF"), Arrays.asList("§rDisable the cooldown of the weapons."), enchants, Collections.singletonList(ItemFlag.HIDE_ENCHANTS)).create());
     }
 
     @Override

@@ -8,7 +8,6 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemFlag;
@@ -22,8 +21,9 @@ public class TeamGui extends GuiManager {
     public TeamGui(Player p) {
         super(p, InventoryType.HOPPER, "§f§lTeam selection");
         inventory.setItem(0, new ItemCreator(Material.RED_WOOL, 1,"§4§lRed").create());
-        inventory.setItem(2, new ItemCreator(Material.BARRIER, 1, "§f§lRandom").create());
-        inventory.setItem(4, new ItemCreator(Material.BLUE_WOOL, 1, "§1§lBlue").create());
+        inventory.setItem(1, new ItemCreator(Material.BLUE_WOOL, 1, "§1§lBlue").create());
+        inventory.setItem(2, new ItemCreator(Material.GREEN_WOOL, 1,"§2§lSpectator").create());
+        inventory.setItem(4, new ItemCreator(Material.BARRIER, 1, "§f§lRandom").create());
     }
 
     @Override
@@ -58,6 +58,13 @@ public class TeamGui extends GuiManager {
             player.getOpenInventory().close();
             player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 2);
             player.getInventory().setItem(4, new ItemCreator(Material.WHITE_WOOL, 1, "§b§lTeam", null, enchants, List.of(ItemFlag.HIDE_ENCHANTS)).create());
+        } else if (ev.getCurrentItem().getType() == Material.GREEN_WOOL) {
+            Main.instance.teamManager.removePlayer(player);
+            enchants.put(Enchantment.DURABILITY, 1);
+            Main.instance.teamManager.addPlayer(player, TeamManager.spectatorTeam);
+            player.getOpenInventory().close();
+            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 2);
+            player.getInventory().setItem(4, new ItemCreator(Material.GREEN_WOOL, 1, "§b§lTeam", null, enchants, List.of(ItemFlag.HIDE_ENCHANTS)).create());
         }
         ev.setCancelled(true);
     }

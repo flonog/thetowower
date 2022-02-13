@@ -2,6 +2,7 @@ package com.floleproto.thetower.events.listened;
 
 import com.floleproto.thetower.Main;
 import com.floleproto.thetower.game.GameStates;
+import com.floleproto.thetower.game.TeamManager;
 import com.floleproto.thetower.utils.ItemCreator;
 import com.floleproto.thetower.utils.Title;
 import com.floleproto.thetower.utils.XpBarManager;
@@ -35,8 +36,8 @@ public class JoinAndLeaveEvent implements Listener {
         main.scoreboardManager.setScoreboardTemplate(p, main.gameManager.getStates());
         ev.setJoinMessage("§r" + Bukkit.getOnlinePlayers().size() + "§r / §r" + Bukkit.getMaxPlayers() + " §4§l>§1§l> §a" + p.getDisplayName() + " join the game.");
         if (main.gameManager.isStates(GameStates.WAITING)) {
-            XpBarManager.broadcastLevel(0);
-            XpBarManager.broadcastSetBar(0, 1);
+            p.setLevel(0);
+            p.setExp(0);
 
             FileConfiguration config = main.getConfig();
             double x = config.getDouble("spawn.x");
@@ -45,7 +46,6 @@ public class JoinAndLeaveEvent implements Listener {
             String worldName = config.getString("spawn.world");
             World world = Bukkit.getWorld(worldName);
             p.teleport(new Location(world, x, y, z));
-
             p.setHealth(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
             p.setFoodLevel(20);
             p.setGameMode(GameMode.SURVIVAL);
@@ -65,6 +65,16 @@ public class JoinAndLeaveEvent implements Listener {
             if (Bukkit.getOnlinePlayers().size() >= main.getConfig().getInt("minplayer") && !main.gameManager.isStarting()) {
                 main.gameManager.startCountdown();
             }
+        } else if (main.gameManager.isStates(GameStates.ONGAME)){
+            if(main.teamManager.isInTeam(p)){
+                p.setPlayerListName(main.teamManager.getTeam(p).getColor().toString() + p.getName() + "§r");
+                p.setDisplayName(main.teamManager.getTeam(p).getColor().toString() + p.getName() + "§r");
+            }
+            else{
+                TeamManager.spectatorTeam.addPlayer(p);
+                TeamManager.spectatorTeam.setupPlayer(p);
+            }
+            //p.setDisplayName();
         }
     }
 
@@ -79,7 +89,8 @@ public class JoinAndLeaveEvent implements Listener {
                 Bukkit.broadcastMessage("§b§lThe TOwOwer §4§l>§1§l>§c There isn't enough players to start the game. Cancelling.");
             }
         } else if (main.gameManager.isStates(GameStates.ONGAME)) {
-            ev.getPlayer().setHealth(0);
+            if(!TeamManager.spectatorTeam.isInTeam(ev.getPlayer()))
+                ev.getPlayer().setHealth(0);
         }
     }
 }

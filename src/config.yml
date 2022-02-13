@@ -21,6 +21,8 @@ chest_breakable: true
 friendlyfire: false
 eternalday: true
 
+nocooldown: true
+
 spawnmob: false
 mobgriefing: false
 
