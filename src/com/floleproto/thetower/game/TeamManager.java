@@ -43,11 +43,10 @@ public class TeamManager {
     }
 
     public Team getTeam(Player p) {
-        if (blueTeam.isInTeam(p)) {
+        if (blueTeam.isInTeam(p))
             return blueTeam;
-        } else if (redTeam.isInTeam(p)) {
+        else if (redTeam.isInTeam(p))
             return redTeam;
-        }
 
         return spectatorTeam;
     }
