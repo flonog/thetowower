@@ -1,6 +1,6 @@
 # The TOwOwer
 
-This plugin is a customizable version of the original game The Tower. You can set the minimum number of points, the start inventory etc...
+This plugin is a customizable version of the original game The Tower.
 
 ## Features
 
@@ -10,14 +10,13 @@ This plugin is a customizable version of the original game The Tower. You can se
 - Message on score
 - Rules command
 - Team selection
-
-- SOON Scenario
+- Scenario (like the UHC's ones)
 
 ## Configuration
 
-The configuration menu require the permission thetowower.config to be opened. You can access it when the game is not started with a simple right click on the command block.
+The configuration menu require the permission `thetowower.config` to be opened. You can access it when the game is not started with a simple right click on the command block.
 
-You can change it a lot of thing :
+You can configure :
 
 - Point limit
 - If chest can be breakable
@@ -41,12 +40,7 @@ Force start the countdown
 Cancel the countdown
 
 ### /savechest <add | remove> (thetowower.command.savechest)
-Save or remove a map chest. (Make it unbreakable when the config "Breakable chest is ON")
-
-## How to install
-
-This plugin required ProtocoLib and Java 8 to work ! I have not tested the Java 7, 9 or 10 version. The Java 11 version is broken.
-The world must also be named "world".
+Save or remove a chest. (Make it unbreakable when the config "Breakable chest is ON")
 
 ## Support
 
